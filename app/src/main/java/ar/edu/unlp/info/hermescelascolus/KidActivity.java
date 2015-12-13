@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import ar.edu.unlp.info.hermescelascolus.dao.Daos;
+
 public class KidActivity extends AppCompatActivity {
 
     @Override
@@ -13,9 +15,10 @@ public class KidActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kid);
 
         Intent intent = getIntent();
-        String kidName = intent.getStringExtra(InitialActivity.KID_NAME);
+        int kidId = intent.getIntExtra(InitialActivity.KID_ID, -1);
+        Kid kid = Daos.KID.getById(kidId);
 
         TextView textView = (TextView) findViewById(R.id.kid_text);
-        textView.setText(kidName);
+        textView.setText(kid.getName());
     }
 }

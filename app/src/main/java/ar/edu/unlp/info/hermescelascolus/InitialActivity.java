@@ -17,9 +17,11 @@ import android.widget.Toast;
 
 import java.util.Arrays;
 
+import ar.edu.unlp.info.hermescelascolus.dao.Daos;
+
 public class InitialActivity extends AppCompatActivity {
 
-    public final static String KID_NAME = "ar.edu.unlp.info.hermescelascolus.KID_NAME";
+    public final static String KID_ID = "ar.edu.unlp.info.hermescelascolus.KID_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +30,11 @@ public class InitialActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<Kid> adapter = new ArrayAdapter<>(
                 this,
                 R.layout.kid_list_item,
                 android.R.id.text1,
-                Arrays.asList(
-                        "Jimi Hendrix",
-                        "Jimmy Page",
-                        "Jenny Gump",
-                        "Jimmy Carter",
-                        "Jimmy Olsen",
-                        "Jimmy James",
-                        "Jimmy Carrey (?)",
-                        "Jimmy Churry"
-                )
+                Daos.KID.all()
         );
         ListView listView = (ListView) findViewById(R.id.kids_list_view);
         listView.setAdapter(adapter);
@@ -49,7 +42,8 @@ public class InitialActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView textView = (TextView) view;
-                startKidActivity(String.valueOf(textView.getText()));
+                Kid kid = (Kid) parent.getItemAtPosition(position);
+                startKidActivity(kid);
             }
         });
 
@@ -67,9 +61,9 @@ public class InitialActivity extends AppCompatActivity {
 
     }
 
-    private void startKidActivity(String kidName){
+    private void startKidActivity(Kid kid){
         Intent intent = new Intent(this, KidActivity.class);
-        intent.putExtra(KID_NAME, kidName);
+        intent.putExtra(KID_ID, kid.getId());
         startActivity(intent);
     }
 
