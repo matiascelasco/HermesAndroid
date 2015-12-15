@@ -67,6 +67,6 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.comunicador__0040_vector_smart_object,
             R.drawable.comunicador__0041_vector_smart_object,
             R.drawable.comunicador__0042_vector_smart_object,
-            R.drawable.comunicador__0042_vector_smart_object,
+            R.drawable.comunicador__0043_vector_smart_object,
     };
 }
