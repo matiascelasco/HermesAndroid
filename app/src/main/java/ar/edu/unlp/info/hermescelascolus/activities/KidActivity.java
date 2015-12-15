@@ -4,11 +4,12 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+
+import com.astuetz.PagerSlidingTabStrip;
 
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
-import ar.edu.unlp.info.hermescelascolus.StupidAdapter;
+import ar.edu.unlp.info.hermescelascolus.CategoryAdapter;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class KidActivity extends AppCompatActivity {
@@ -20,14 +21,15 @@ public class KidActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kid);
 
-        getActionBar();
-
         Intent intent = getIntent();
         int kidId = intent.getIntExtra(InitialActivity.KID_ID, -1);
         Kid kid = Daos.KID.getById(kidId);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(new StupidAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(new CategoryAdapter(getSupportFragmentManager(), kid.pictograms));
+
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        tabs.setViewPager(viewPager);
 
     }
 }

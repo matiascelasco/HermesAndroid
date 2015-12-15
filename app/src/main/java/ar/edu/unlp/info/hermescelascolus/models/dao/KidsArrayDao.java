@@ -22,7 +22,7 @@ public class KidsArrayDao implements Dao<Kid> {
     static {
         for (int i = 0; i < names.size(); i++){
             Kid kid = new Kid();
-            kid.setId(i);
+            kid.setId(i + 1);
             kid.setName(names.get(i));
             array.add(kid);
         }
@@ -35,6 +35,6 @@ public class KidsArrayDao implements Dao<Kid> {
 
     @Override
     public Kid getById(int id) {
-        return array.get(id);
+        return array.get(id - 1);
     }
 }
