@@ -26,9 +26,6 @@ public class KidActivity extends AppCompatActivity {
         int kidId = intent.getIntExtra(InitialActivity.KID_ID, -1);
         Kid kid = Daos.KID.getById(kidId);
 
-        TextView textView = (TextView) findViewById(R.id.kid_text);
-        textView.setText(kid.getName());
-
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(new StupidAdapter(getSupportFragmentManager()));
 
