@@ -75,9 +75,11 @@ public class PictogramsArrayDao implements Dao<Pictogram> {
             R.raw.tarima
     };
 
-    private static List<Pictogram> array = new ArrayList<>();
+    
+    private static List<Pictogram> array = null;
 
     private static void loadArray(){
+        array = new ArrayList<>();
         Random random = new Random();
         List<Category> categories = Daos.CATEGORY.all();
         for (int i = 0; i < imageIds.length; i++){

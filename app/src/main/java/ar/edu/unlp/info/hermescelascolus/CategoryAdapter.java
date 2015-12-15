@@ -42,7 +42,7 @@ public class CategoryAdapter extends FragmentPagerAdapter {
         args.putString(CategoryFragment.CATEGORY, category.getName());
         ArrayList<Integer> array = new ArrayList<>();
         for (Pictogram pictogram: pictogramsByCategory.get(category)){
-            array.get(pictogram.getId());
+            array.add(pictogram.getId());
         }
         args.putIntegerArrayList(CategoryFragment.PICTOGRAM_IDS, array);
         fragment.setArguments(args);
@@ -51,11 +51,11 @@ public class CategoryAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return categories.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "OBJECT " + (position + 1);
+        return categories.get(position).getName();
     }
 }
