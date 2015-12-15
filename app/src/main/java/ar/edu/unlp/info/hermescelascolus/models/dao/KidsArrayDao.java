@@ -1,10 +1,10 @@
-package ar.edu.unlp.info.hermescelascolus.dao;
+package ar.edu.unlp.info.hermescelascolus.models.dao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import ar.edu.unlp.info.hermescelascolus.Kid;
+import ar.edu.unlp.info.hermescelascolus.models.Kid;
 
 public class KidsArrayDao implements Dao<Kid> {
 

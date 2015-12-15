@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.hermescelascolus.dao;
+package ar.edu.unlp.info.hermescelascolus.models.dao;
 
 import java.util.List;
 

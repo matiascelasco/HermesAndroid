@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.hermescelascolus;
+package ar.edu.unlp.info.hermescelascolus.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.Arrays;
-
-import ar.edu.unlp.info.hermescelascolus.dao.Daos;
+import ar.edu.unlp.info.hermescelascolus.models.Kid;
+import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class InitialActivity extends AppCompatActivity {
 

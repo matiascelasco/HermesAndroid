@@ -1,14 +1,15 @@
-package ar.edu.unlp.info.hermescelascolus;
+package ar.edu.unlp.info.hermescelascolus.activities;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import ar.edu.unlp.info.hermescelascolus.dao.Daos;
+import ar.edu.unlp.info.hermescelascolus.models.Kid;
+import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.StupidAdapter;
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class KidActivity extends AppCompatActivity {
 

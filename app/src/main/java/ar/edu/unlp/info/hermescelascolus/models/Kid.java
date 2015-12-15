@@ -1,8 +1,6 @@
-package ar.edu.unlp.info.hermescelascolus;
+package ar.edu.unlp.info.hermescelascolus.models;
 
 public class Kid {
-
-    private int id;
 
     public String getName() {
         return name;
@@ -24,5 +22,6 @@ public class Kid {
         return name;
     }
 
+    private int id;
     private String name;
 }
