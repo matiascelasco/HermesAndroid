@@ -3,6 +3,8 @@ package ar.edu.unlp.info.hermescelascolus.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
+
 public class Kid {
 
     public String getName() {
@@ -27,5 +29,9 @@ public class Kid {
 
     private int id;
     private String name;
-    public final List<Pictogram> pictograms = new ArrayList<>();
+
+    public List<Pictogram> getPictograms() {
+        return Daos.PICTOGRAM.all();
+    }
+
 }

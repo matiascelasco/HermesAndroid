@@ -26,7 +26,7 @@ public class KidActivity extends AppCompatActivity {
         Kid kid = Daos.KID.getById(kidId);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(new CategoryAdapter(getSupportFragmentManager(), kid.pictograms));
+        viewPager.setAdapter(new CategoryAdapter(getSupportFragmentManager(), kid.getPictograms()));
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);

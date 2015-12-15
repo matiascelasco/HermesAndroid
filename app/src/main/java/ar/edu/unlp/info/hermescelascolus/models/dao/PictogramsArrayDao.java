@@ -27,9 +27,10 @@ public class PictogramsArrayDao implements Dao<Pictogram> {
             R.drawable.comunicador__0042_vector_smart_object,
             R.drawable.comunicador__0043_vector_smart_object,
     };
-    private static List<Pictogram> array = new ArrayList<>();
+    private static List<Pictogram> array = null;
 
     private static void loadArray(){
+        array = new ArrayList<>();
         Random random = new Random();
         List<Category> categories = Daos.CATEGORY.all();
         for (int i = 0; i < imageIds.length; i++){

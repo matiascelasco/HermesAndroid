@@ -15,9 +15,10 @@ public class CategoriesArrayDao implements Dao<Category> {
             "Necesidades",
             "Emociones"
     );
-    private static List<Category> array = new ArrayList<>();
+    private static List<Category> array = null;
 
     private static void loadArray(){
+        array = new ArrayList<>();
         for (int i = 0; i < names.size(); i++){
             Category category = new Category();
             category.setId(i + 1);
