@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import java.util.List;
 
-public class StupidFragment extends Fragment {
-    public static final String ARG_OBJECT = "object";
+import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
+
+public class CategoryFragment extends Fragment {
+    public static final String CATEGORY = "category";
+    public static final String PICTOGRAM_IDS = "pictograms";
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -22,7 +24,13 @@ public class StupidFragment extends Fragment {
                 R.layout.fragment_collection_object, container, false);
         Bundle args = getArguments();
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
-        grid.setAdapter(new ImageAdapter(this.getContext(), args.getInt(ARG_OBJECT)));
+        grid.setAdapter(
+                new ImageAdapter(
+                        this.getContext(),
+                        args.getIntegerArrayList(PICTOGRAM_IDS),
+                        args.getString(CATEGORY)
+                )
+        );
 
         return rootView;
     }

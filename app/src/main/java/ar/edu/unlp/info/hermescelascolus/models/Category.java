@@ -1,9 +1,6 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Kid {
+public class Category {
 
     public String getName() {
         return name;
@@ -27,5 +24,20 @@ public class Kid {
 
     private int id;
     private String name;
-    public final List<Pictogram> pictograms = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+
+        return id == category.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }

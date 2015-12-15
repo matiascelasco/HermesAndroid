@@ -7,17 +7,27 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
+
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
-    private int page;
+    private final List<Pictogram> pictograms = new ArrayList<>();
+    private String category;
 
-    public ImageAdapter(Context c, int page) {
+    public ImageAdapter(Context c, List<Integer> pictogramIds, String category) {
         mContext = c;
-        this.page = page;
+        for (int id: pictogramIds){
+            this.pictograms.add(Daos.PICTOGRAM.getById(id));
+        }
+        this.category = category;
     }
 
     public int getCount() {
-        return 5;
+        return pictograms.size();
     }
 
     public Object getItem(int position) {
@@ -47,26 +57,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[page * 5 + position]);
+        imageView.setImageResource(pictograms.get(position).getImageId());
         return imageView;
     }
-
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.comunicador__0029_vector_smart_object,
-            R.drawable.comunicador__0030_vector_smart_object,
-            R.drawable.comunicador__0031_vector_smart_object,
-            R.drawable.comunicador__0032_vector_smart_object,
-            R.drawable.comunicador__0033_vector_smart_object,
-            R.drawable.comunicador__0034_vector_smart_object,
-            R.drawable.comunicador__0035_vector_smart_object,
-            R.drawable.comunicador__0036_vector_smart_object,
-            R.drawable.comunicador__0037_vector_smart_object,
-            R.drawable.comunicador__0038_vector_smart_object,
-            R.drawable.comunicador__0039_vector_smart_object,
-            R.drawable.comunicador__0040_vector_smart_object,
-            R.drawable.comunicador__0041_vector_smart_object,
-            R.drawable.comunicador__0042_vector_smart_object,
-            R.drawable.comunicador__0043_vector_smart_object,
-    };
 }
