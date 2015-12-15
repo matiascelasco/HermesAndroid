@@ -27,6 +27,55 @@ public class PictogramsArrayDao implements Dao<Pictogram> {
             R.drawable.comunicador__0042_vector_smart_object,
             R.drawable.comunicador__0043_vector_smart_object,
     };
+
+    private static Integer[] soundIds ={
+            R.raw.banio,
+            R.raw.me_duele,
+            R.raw.me_duele,
+            R.raw.cansada,
+            R.raw.cansado,
+            R.raw.triste,
+            R.raw.triste,
+            R.raw.sorprendida,
+            R.raw.sorprendido,
+            R.raw.sed,
+            R.raw.sed,
+            R.raw.asustada,
+            R.raw.asustado,
+            R.raw.contenta,
+            R.raw.contento,
+            R.raw.enojada,
+            R.raw.enojado,
+            R.raw.casco,
+            R.raw.cepillo,
+            R.raw.chapas,
+            R.raw.limpieza,
+            R.raw.letras,
+            R.raw.escarba_vasos,
+            R.raw.cubos,
+            R.raw.no,
+            R.raw.montura,
+            R.raw.matra,
+            R.raw.maracas,
+            R.raw.palos,
+            R.raw.pasto,
+            R.raw.pato,
+            R.raw.pelota,
+            R.raw.si,
+            R.raw.riendas,
+            R.raw.rasqueta_dura,
+            R.raw.rasqueta_blanda,
+            R.raw.caballo,
+            R.raw.caballo,
+            R.raw.caballo,
+            R.raw.burbujas,
+            R.raw.broches,
+            R.raw.aro,
+            R.raw.zanahoria,
+            R.raw.tarima
+    };
+
+    
     private static List<Pictogram> array = null;
 
     private static void loadArray(){

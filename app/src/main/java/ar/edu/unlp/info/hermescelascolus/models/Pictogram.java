@@ -26,7 +26,16 @@ public class Pictogram {
         this.category = category;
     }
 
+    public int getSoundId() {
+        return soundId;
+    }
+
+    public void setSoundId(int soundId) {
+        this.imageId = soundId;
+    }
+
     private int id;
     private int imageId;
+    private int soundId;
     private Category category;
 }
