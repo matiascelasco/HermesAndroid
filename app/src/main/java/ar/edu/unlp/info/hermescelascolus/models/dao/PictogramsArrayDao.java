@@ -86,6 +86,7 @@ public class PictogramsArrayDao implements Dao<Pictogram> {
             Pictogram pictogram = new Pictogram();
             pictogram.setId(i + 1);
             pictogram.setImageId(imageIds[i]);
+            pictogram.setSoundId(soundIds[i]);
             pictogram.setCategory(categories.get(random.nextInt(categories.size())));
 
             array.add(pictogram);

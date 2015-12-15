@@ -1,11 +1,13 @@
 package ar.edu.unlp.info.hermescelascolus;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +41,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
@@ -58,6 +60,15 @@ public class ImageAdapter extends BaseAdapter {
         }
 
         imageView.setImageResource(pictograms.get(position).getImageId());
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaPlayer mp = MediaPlayer.create(mContext, pictograms.get(position).getSoundId());
+                mp.start();
+
+            }
+        });
         return imageView;
     }
 }
