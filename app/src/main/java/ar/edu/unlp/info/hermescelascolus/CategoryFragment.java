@@ -7,10 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import java.util.List;
-
-import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
-
 public class CategoryFragment extends Fragment {
     public static final String CATEGORY = "category";
     public static final String PICTOGRAM_IDS = "pictograms";
@@ -25,7 +21,7 @@ public class CategoryFragment extends Fragment {
         Bundle args = getArguments();
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
         grid.setAdapter(
-                new ImageAdapter(
+                new PictogramAdapter(
                         this.getContext(),
                         args.getIntegerArrayList(PICTOGRAM_IDS),
                         args.getString(CATEGORY)

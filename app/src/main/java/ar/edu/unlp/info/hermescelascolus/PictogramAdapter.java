@@ -15,12 +15,12 @@ import java.util.List;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
-public class ImageAdapter extends BaseAdapter {
+public class PictogramAdapter extends BaseAdapter {
     private Context mContext;
     private final List<Pictogram> pictograms = new ArrayList<>();
     private String category;
 
-    public ImageAdapter(Context c, List<Integer> pictogramIds, String category) {
+    public PictogramAdapter(Context c, List<Integer> pictogramIds, String category) {
         mContext = c;
         for (int id: pictogramIds){
             this.pictograms.add(Daos.PICTOGRAM.getById(id));
@@ -66,8 +66,6 @@ public class ImageAdapter extends BaseAdapter {
             public void onClick(View v) {
                 MediaPlayer mp = MediaPlayer.create(mContext, pictograms.get(position).getSoundId());
                 mp.start();
-
-
             }
         });
         return imageView;
