@@ -29,12 +29,12 @@ public class Pictogram {
     }
 
     public int getSoundId() {
-        return R.raw.enojada;
-        //return soundId;
+       // return R.raw.enojada;
+        return soundId;
     }
 
     public void setSoundId(int soundId) {
-        this.imageId = soundId;
+        this.soundId = soundId;
     }
 
     private int id;
