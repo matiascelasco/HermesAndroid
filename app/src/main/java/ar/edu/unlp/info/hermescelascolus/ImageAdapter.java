@@ -67,6 +67,7 @@ public class ImageAdapter extends BaseAdapter {
                 MediaPlayer mp = MediaPlayer.create(mContext, pictograms.get(position).getSoundId());
                 mp.start();
 
+
             }
         });
         return imageView;
