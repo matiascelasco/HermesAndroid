@@ -1,5 +1,6 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class KidActivity extends AppCompatActivity {
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
+        setTitle(kid.getName());
 
     }
 }
