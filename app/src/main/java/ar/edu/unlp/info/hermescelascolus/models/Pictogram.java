@@ -1,5 +1,7 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
+import ar.edu.unlp.info.hermescelascolus.R;
+
 public class Pictogram {
 
     public int getImageId() {
@@ -27,7 +29,8 @@ public class Pictogram {
     }
 
     public int getSoundId() {
-        return soundId;
+        return R.raw.enojada;
+        //return soundId;
     }
 
     public void setSoundId(int soundId) {
