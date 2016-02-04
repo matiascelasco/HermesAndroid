@@ -5,9 +5,7 @@ import android.media.MediaPlayer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +16,12 @@ import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 public class PictogramAdapter extends BaseAdapter {
     private Context mContext;
     private final List<Pictogram> pictograms = new ArrayList<>();
-    private String category;
 
     public PictogramAdapter(Context c, List<Integer> pictogramIds, String category) {
         mContext = c;
         for (int id: pictogramIds){
             this.pictograms.add(Daos.PICTOGRAM.getById(id));
         }
-        this.category = category;
     }
 
     public int getCount() {
@@ -59,7 +55,7 @@ public class PictogramAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(pictograms.get(position).getImageId());
+        BitmapWorkerTask.loadBitmap(pictograms.get(position).getImageId(), imageView);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

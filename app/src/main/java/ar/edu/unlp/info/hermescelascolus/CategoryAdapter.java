@@ -3,7 +3,7 @@ package ar.edu.unlp.info.hermescelascolus;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import java.util.Map;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
-public class CategoryAdapter extends FragmentPagerAdapter {
+public class CategoryAdapter extends FragmentStatePagerAdapter {
 
     private List<Category> categories = new ArrayList<>();
     private Map<Category, List<Pictogram>> pictogramsByCategory = new HashMap<>();

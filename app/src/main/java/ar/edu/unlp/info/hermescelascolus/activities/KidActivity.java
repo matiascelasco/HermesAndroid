@@ -1,6 +1,5 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +7,7 @@ import android.os.Bundle;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.CategoryAdapter;
@@ -32,6 +32,6 @@ public class KidActivity extends AppCompatActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
         setTitle(kid.getName());
-
+        BitmapWorkerTask.setResources(getResources());
     }
 }
