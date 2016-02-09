@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class InitialActivity extends AppCompatActivity {
@@ -28,6 +29,9 @@ public class InitialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_initial);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //testing
+        DBHelper.getInstance(getApplicationContext());
 
         ArrayAdapter<Kid> adapter = new ArrayAdapter<>(
                 this,
