@@ -22,6 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private void createCategoriesTable(SQLiteDatabase db) {
         //creation of categories
+       // db.execSQL("DROP TABLE Categories IF EXISTS;");
         db.execSQL("CREATE TABLE Categories ("+
                 "_id INTEGER PRIMARY KEY NOT NULL,"+
                 "name VARCHAR(20) NOT NULL" + ");");
@@ -45,15 +46,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //this method must execute if the database file does not exists
         this.createCategoriesTable(db);
-
-        ArrayList<Category> cats = (ArrayList<Category>) (new CategoriesArrayDao()).all();
-        //insert necessary categories
-        for (Category c: cats){
-           //creo el statement
-            db.execSQL("INSERT INTO Categories(_id, name) "+
-                       "VALUES("+String.valueOf(c.getId())+" , '"+c.getName()+"' );");
-           //lo ejecuto
-        }
     }
 
     @Override

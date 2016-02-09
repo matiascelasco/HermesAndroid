@@ -25,7 +25,7 @@ public class CategoryDAO implements Dao<Category> {
             db = dbHelper.getWritableDatabase();
         }
         catch(SQLException e){
-
+            System.out.println(e.getMessage());
         }
     }
 
@@ -34,7 +34,10 @@ public class CategoryDAO implements Dao<Category> {
     }
 
     public void addCategory(Category c){
-
+        this.open();
+        db.execSQL("INSERT INTO Categories(_id, name) " +
+                "VALUES(" + String.valueOf(c.getId()) + " , '" + c.getName() + "' );");
+        this.close();
     }
 
     public ArrayList<Category> all(){
