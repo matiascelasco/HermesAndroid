@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Facu on 04/02/2016.
  */
 public class DBHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "celascolus.db";
-
     //for Singleton purposes
     private static DBHelper sInstance;
 
