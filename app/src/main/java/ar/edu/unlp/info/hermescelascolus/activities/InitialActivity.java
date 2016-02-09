@@ -14,9 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
+import ar.edu.unlp.info.hermescelascolus.models.dao.CategoryDAO;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class InitialActivity extends AppCompatActivity {
@@ -31,7 +33,9 @@ public class InitialActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //testing
+        getApplicationContext().deleteDatabase("celascolus.db");
         DBHelper.getInstance(getApplicationContext());
+        (new CategoryDAO(getApplicationContext())).open();
 
         ArrayAdapter<Kid> adapter = new ArrayAdapter<>(
                 this,
