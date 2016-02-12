@@ -1,5 +1,11 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
+
 public class Category {
 
     public String getName() {
@@ -24,6 +30,17 @@ public class Category {
 
     private int id;
     private String name;
+
+    public List<Pictogram> getPictograms() {
+        //TODO: change this implementation when db is ready
+        List<Pictogram> pictograms = new ArrayList<>();
+        for (Pictogram p: Daos.PICTOGRAM.all()){
+            if (p.getCategory().equals(this)){
+                pictograms.add(p);
+            }
+        }
+        return Collections.unmodifiableList(pictograms);
+    }
 
     @Override
     public boolean equals(Object o) {
