@@ -4,6 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
+import ar.edu.unlp.info.hermescelascolus.models.Category;
+import ar.edu.unlp.info.hermescelascolus.models.dao.CategoriesArrayDao;
+
 /**
  * Created by Facu on 04/02/2016.
  */
@@ -17,8 +22,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private void createCategoriesTable(SQLiteDatabase db) {
         //creation of categories
+       // db.execSQL("DROP TABLE Categories IF EXISTS;");
         db.execSQL("CREATE TABLE Categories ("+
-                "ID INTEGER PRIMARY KEY NOT NULL,"+
+                "_id INTEGER PRIMARY KEY NOT NULL,"+
                 "name VARCHAR(20) NOT NULL" + ");");
     }
 
