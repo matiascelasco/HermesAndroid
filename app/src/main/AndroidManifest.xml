@@ -22,6 +22,10 @@
             android:name=".activities.KidActivity"
             android:screenOrientation="sensor" >
         </activity>
+        <activity android:name=".activities.SettingsActivity" >
+        </activity>
+        <activity android:name=".activities.TherapistActivity" >
+        </activity>
     </application>
 
 </manifest>
