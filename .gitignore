@@ -6,5 +6,7 @@
 /build
 /captures
 .idea/encodings.xml
-HermesAndroid.iml
-HermesCelascoLus.iml
+*.iml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/modules.xml
