@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 import com.astuetz.PagerSlidingTabStrip;
 
@@ -17,6 +18,13 @@ import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 public class KidActivity extends AppCompatActivity {
 
     ViewPager viewPager;
+
+    @Override
+    public boolean onPrepareOptionsMenu(final Menu menu) {
+        menu.clear();
+        getMenuInflater().inflate(R.menu.menu_kid, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

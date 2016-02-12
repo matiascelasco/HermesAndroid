@@ -72,13 +72,6 @@ public class InitialActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_initial, menu);
-        return true;
-    }
-
     //@Override
     public void onListItemClick(ListView l, View v, int position, long id) {
 
