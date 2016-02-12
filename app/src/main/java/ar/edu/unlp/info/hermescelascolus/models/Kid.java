@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
@@ -29,9 +30,23 @@ public class Kid {
 
     private int id;
     private String name;
+    private List<Pictogram> pictograms = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
     public List<Pictogram> getPictograms() {
-        return Daos.PICTOGRAM.all();
+        return Collections.unmodifiableList(pictograms);
+    }
+
+    public void addPictogram(Pictogram pictogram){
+        pictograms.add(pictogram);
+    }
+
+    public List<Category> getCategories() {
+        return Collections.unmodifiableList(categories);
+    }
+
+    public void addCategory(Category category){
+        categories.add(category);
     }
 
 }

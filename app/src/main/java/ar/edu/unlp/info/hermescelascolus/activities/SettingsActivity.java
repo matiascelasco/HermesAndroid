@@ -20,12 +20,6 @@ public class SettingsActivity extends AppCompatActivity {
         int kidId = intent.getIntExtra(KidActivity.KID_ID, -1);
         Kid kid = Daos.KID.getById(kidId);
 
-
-
-
-
-        
-
         TextView textView = (TextView) findViewById(R.id.settings_text);
         textView.setText("Este es el coso de ajustes. El pibe se llama " + kid.getName());
     }
