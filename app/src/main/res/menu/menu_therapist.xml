@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_therapist_mode"
-        android:title="@string/action_therapist_mode"
+    <item android:id="@+id/action_kid_mode"
+        android:title="@string/action_kid_mode"
         app:showAsAction="never"/>
 
     <item android:id="@+id/action_settings"

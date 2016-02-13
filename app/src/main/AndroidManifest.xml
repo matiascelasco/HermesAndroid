@@ -26,6 +26,8 @@
         </activity>
         <activity android:name=".activities.TherapistActivity" >
         </activity>
+        <activity android:name=".activities.TabsWithPictogramsActivity" >
+        </activity>
     </application>
 
 </manifest>

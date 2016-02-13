@@ -2,5 +2,5 @@
     <string name="app_name">HermesCelascoLus</string>
     <string name="action_settings">Ajustes</string>
     <string name="action_therapist_mode">Modo terapeuta</string>
-    <string name="action_student_mode">Modo alumno</string>
+    <string name="action_kid_mode">Modo alumno</string>
 </resources>

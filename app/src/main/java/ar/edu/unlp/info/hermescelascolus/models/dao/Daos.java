@@ -5,9 +5,11 @@ import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class Daos {
-
-    public static final Dao<Kid> KID = new KidsArrayDao();
-    public static final Dao<Pictogram> PICTOGRAM = new PictogramsArrayDao();
+    // The order is important!
+    // PictogramsArrayDao needs CATEGORY to exists first and
+    // KidsArrayDao needs PICTOGRAM to exists first too
     public static final Dao<Category> CATEGORY = new CategoriesArrayDao();
+    public static final Dao<Pictogram> PICTOGRAM = new PictogramsArrayDao();
+    public static final Dao<Kid> KID = new KidsArrayDao();
 
 }

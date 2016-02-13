@@ -1,26 +1,25 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.TextView;
+import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.R;
-import ar.edu.unlp.info.hermescelascolus.models.Kid;
+import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
-public class TherapistActivity extends AppCompatActivity {
+public class TherapistActivity extends TabsWithPictogramsActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_therapist);
+    protected int getMenuId() {
+        return R.menu.menu_therapist;
+    }
 
-        Intent intent = getIntent();
-        int kidId = intent.getIntExtra(InitialActivity.KID_ID, -1);
-        Kid kid = Daos.KID.getById(kidId);
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_therapist;
+    }
 
-        TextView textView = (TextView) findViewById(R.id.therapist_text);
-        textView.setText("Este es el modo terapeuta. El pibe se llama " + kid.getName());
+    @Override
+    protected List<Category> getCategories() {
+        return Daos.CATEGORY.all();
     }
 }

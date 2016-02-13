@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 public class CategoryFragment extends Fragment {
-    public static final String CATEGORY = "category";
+    public static final String TITLE = "category";
     public static final String PICTOGRAM_IDS = "pictograms";
 
     @Override
@@ -24,7 +24,7 @@ public class CategoryFragment extends Fragment {
                 new PictogramAdapter(
                         this.getContext(),
                         args.getIntegerArrayList(PICTOGRAM_IDS),
-                        args.getString(CATEGORY)
+                        args.getString(TITLE)
                 )
         );
 
