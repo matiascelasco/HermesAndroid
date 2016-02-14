@@ -20,12 +20,30 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
 
-    private void createCategoriesTable(SQLiteDatabase db) {
+    private void createKidsTable(SQLiteDatabase db) {
         //creation of categories
-       // db.execSQL("DROP TABLE Categories IF EXISTS;");
-        db.execSQL("CREATE TABLE Categories ("+
+        /*db.execSQL("DROP TABLE IF EXISTS Categories;");*/
+        db.execSQL("CREATE TABLE Kid ("+
                 "_id INTEGER PRIMARY KEY NOT NULL,"+
-                "name VARCHAR(20) NOT NULL" + ");");
+                "name VARCHAR(50) NOT NULL, " +
+                "surname VARCHAR(20) NOT NULL, " +
+                "pictogramSize INTEGER NOT NULL, "+
+                "track INTEGER DEFAULT 0, "+
+                "barn INTEGER DEFAULT 0, "+
+                "needs INTEGER DEFAULT 0, "+
+                "emotions INTEGER DEFAULT 0"+");");
+    }
+
+    private void createGeneralSettingsTable(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE GeneralSettings ("+
+                "_id INTEGER PRIMARY KEY NOT NULL,"+
+                "ip_address VARCHAR(12) NOT NULL, " +
+                "port INTEGER NOT NULL"+");");
+
+        //insert default data
+        db.execSQL("INSERT INTO GeneralSettings(ip_address, port)"+
+                   " VALUES('192.168.100.1','8080');");
+
     }
 
     public static synchronized DBHelper getInstance(Context context) {
@@ -45,7 +63,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //this method must execute if the database file does not exists
-        this.createCategoriesTable(db);
+        this.createKidsTable(db);
+        this.createGeneralSettingsTable(db);
     }
 
     @Override

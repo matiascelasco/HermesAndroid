@@ -35,8 +35,8 @@ public class CategoryDAO implements Dao<Category> {
 
     public void addCategory(Category c){
         this.open();
-        db.execSQL("INSERT INTO Categories(_id, name) " +
-                "VALUES(" + String.valueOf(c.getId()) + " , '" + c.getName() + "' );");
+      /*  db.execSQL("INSERT INTO Categories(_id, name) " +
+                "VALUES(" + String.valueOf(c.getId()) + " , '" + c.getName() + "' );");*/
         this.close();
     }
 
