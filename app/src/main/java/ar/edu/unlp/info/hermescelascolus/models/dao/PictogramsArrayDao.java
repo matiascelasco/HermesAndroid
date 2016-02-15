@@ -6,6 +6,7 @@ import java.util.Random;
 
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
+import ar.edu.unlp.info.hermescelascolus.models.Category2;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class PictogramsArrayDao implements Dao<Pictogram> {
@@ -109,14 +110,12 @@ public class PictogramsArrayDao implements Dao<Pictogram> {
 
     private static void loadArray(){
         array = new ArrayList<>();
-        Random random = new Random();
-        List<Category> categories = Daos.CATEGORY.all();
         for (int i = 0; i < imageIds.length; i++){
             Pictogram pictogram = new Pictogram();
             pictogram.setId(i + 1);
             pictogram.setImageId(imageIds[i]);
             pictogram.setSoundId(soundIds[i]);
-            pictogram.setCategory(categories.get(random.nextInt(categories.size())));
+            pictogram.setCategory(Category2.ESTABLO);
 
             array.add(pictogram);
         }

@@ -33,7 +33,7 @@ public class Kid {
     private int id;
     private String name;
     private List<Pictogram> pictograms = new ArrayList<>();
-    private List<Category> categories = new ArrayList<>();
+    private List<Category2> categories = new ArrayList<>();
 
     public List<Pictogram> getPictograms() {
         return Collections.unmodifiableList(pictograms);
@@ -43,11 +43,14 @@ public class Kid {
         pictograms.add(pictogram);
     }
 
-    public List<Category> getCategories() {
+    public List<Category2> getCategories() {
+        for(Category2 c : Category2.values()){
+            categories.add(c);
+        }
         return Collections.unmodifiableList(categories);
     }
 
-    public void addCategory(Category category){
+    public void addCategory(Category2 category){
         categories.add(category);
     }
 

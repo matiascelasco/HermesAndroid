@@ -17,7 +17,7 @@ import java.util.List;
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.CategoryAdapter;
 import ar.edu.unlp.info.hermescelascolus.R;
-import ar.edu.unlp.info.hermescelascolus.models.Category;
+import ar.edu.unlp.info.hermescelascolus.models.Category2;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.PictogramsTab;
@@ -30,7 +30,7 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
 
     protected abstract int getMenuId();
     protected abstract int getLayoutId();
-    protected abstract List<Category> getCategories();
+    protected abstract List<Category2> getCategories();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +58,8 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
         List<Pair<String, List<Pictogram>>> tabs = new ArrayList<>();
         tabs.add(new Pair<>(kid.getName(), kid.getPictograms()));
 
-        for (Category c: getCategories()){
-            tabs.add(new Pair<>(c.getName(), c.getPictograms()));
+        for (Category2 c: Category2.values()){
+            tabs.add(new Pair<>(c.toString(), c.getPictograms()));
         }
         return tabs;
     }

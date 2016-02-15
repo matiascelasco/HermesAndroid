@@ -20,16 +20,15 @@ public class Pictogram {
         this.id = id;
     }
 
-    public Category getCategory() {
+    public Category2 getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(Category2 category) {
         this.category = category;
     }
 
     public int getSoundId() {
-       // return R.raw.enojada;
         return soundId;
     }
 
@@ -40,5 +39,5 @@ public class Pictogram {
     private int id;
     private int imageId;
     private int soundId;
-    private Category category;
+    private Category2 category;
 }

@@ -4,11 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-
-import ar.edu.unlp.info.hermescelascolus.models.Category;
-import ar.edu.unlp.info.hermescelascolus.models.dao.CategoriesArrayDao;
-
 /**
  * Created by Facu on 04/02/2016.
  */

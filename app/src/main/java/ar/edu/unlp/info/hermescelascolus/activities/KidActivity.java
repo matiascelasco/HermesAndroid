@@ -4,6 +4,7 @@ import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.models.Category2;
 
 public class KidActivity extends TabsWithPictogramsActivity {
 
@@ -19,7 +20,7 @@ public class KidActivity extends TabsWithPictogramsActivity {
     }
 
     @Override
-    protected List<Category> getCategories() {
+    protected List<Category2> getCategories() {
         return kid.getCategories();
     }
 }
