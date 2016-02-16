@@ -20,6 +20,7 @@ public class CategoryFragment extends Fragment {
                 R.layout.fragment_collection_object, container, false);
         Bundle args = getArguments();
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
+
         grid.setAdapter(
                 new PictogramAdapter(
                         this.getContext(),

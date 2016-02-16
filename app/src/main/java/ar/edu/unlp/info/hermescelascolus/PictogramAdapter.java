@@ -1,7 +1,6 @@
 package ar.edu.unlp.info.hermescelascolus;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,15 +9,16 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.unlp.info.hermescelascolus.activities.TabsWithPictogramsActivity;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class PictogramAdapter extends BaseAdapter {
-    private Context mContext;
+    private TabsWithPictogramsActivity activity;
     private final List<Pictogram> pictograms = new ArrayList<>();
 
     public PictogramAdapter(Context c, List<Integer> pictogramIds, String category) {
-        mContext = c;
+        activity = (TabsWithPictogramsActivity) c;
         for (int id: pictogramIds){
             this.pictograms.add(Daos.PICTOGRAM.getById(id));
         }
@@ -41,7 +41,7 @@ public class PictogramAdapter extends BaseAdapter {
         ImageView imageView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
+            imageView = new ImageView(activity);
             imageView.setAdjustViewBounds(true);
             /*imageView.setLayoutParams(
                     new GridView.LayoutParams(
@@ -59,9 +59,8 @@ public class PictogramAdapter extends BaseAdapter {
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                MediaPlayer mp = MediaPlayer.create(mContext, pictograms.get(position).getSoundId());
-                mp.start();
+            public void onClick(View view) {
+                activity.onPictogramClick((ImageView) view, pictograms.get(position));
             }
         });
         return imageView;
