@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import ar.edu.unlp.info.hermescelascolus.models.Category2;
+import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
@@ -44,7 +44,7 @@ public class KidsArrayDao implements Dao<Kid> {
             /* for (Category2 c: randomSample(Category2.values().length)) {
                 kid.addCategory(c);
             }*/
-            kid.addCategory(Category2.ESTABLO);
+            kid.addCategory(Category.ESTABLO);
 
             kid.setId(i + 1);
             kid.setName(names.get(i));

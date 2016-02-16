@@ -2,11 +2,9 @@ package ar.edu.unlp.info.hermescelascolus.models.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
-import ar.edu.unlp.info.hermescelascolus.models.Category2;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class PictogramsArrayDao implements Dao<Pictogram> {
@@ -115,10 +113,11 @@ public class PictogramsArrayDao implements Dao<Pictogram> {
             pictogram.setId(i + 1);
             pictogram.setImageId(imageIds[i]);
             pictogram.setSoundId(soundIds[i]);
-            pictogram.setCategory(Category2.ESTABLO);
+            pictogram.setCategory(Category.ESTABLO);
 
             array.add(pictogram);
         }
+
     }
 
     @Override

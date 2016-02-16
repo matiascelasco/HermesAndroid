@@ -2,11 +2,7 @@ package ar.edu.unlp.info.hermescelascolus.models;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class Kid {
 
@@ -33,7 +29,7 @@ public class Kid {
     private int id;
     private String name;
     private List<Pictogram> pictograms = new ArrayList<>();
-    private List<Category2> categories = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
     public List<Pictogram> getPictograms() {
         return Collections.unmodifiableList(pictograms);
@@ -43,14 +39,14 @@ public class Kid {
         pictograms.add(pictogram);
     }
 
-    public List<Category2> getCategories() {
-        for(Category2 c : Category2.values()){
+    public List<Category> getCategories() {
+        for(Category c : Category.values()){
             categories.add(c);
         }
         return Collections.unmodifiableList(categories);
     }
 
-    public void addCategory(Category2 category){
+    public void addCategory(Category category){
         categories.add(category);
     }
 

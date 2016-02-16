@@ -5,8 +5,6 @@ import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
-import ar.edu.unlp.info.hermescelascolus.models.Category2;
-import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class TherapistActivity extends TabsWithPictogramsActivity {
 
@@ -21,9 +19,9 @@ public class TherapistActivity extends TabsWithPictogramsActivity {
     }
 
     @Override
-    protected List<Category2> getCategories() {
-        ArrayList<Category2> categories = new ArrayList<Category2>();
-        for (Category2 c : Category2.values()){
+    protected List<Category> getCategories() {
+        ArrayList<Category> categories = new ArrayList<Category>();
+        for (Category c : Category.values()){
           categories.add(c);
         }
         return categories;

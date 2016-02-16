@@ -1,7 +1,5 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
-import ar.edu.unlp.info.hermescelascolus.R;
-
 public class Pictogram {
 
     public int getImageId() {
@@ -20,11 +18,11 @@ public class Pictogram {
         this.id = id;
     }
 
-    public Category2 getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category2 category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -39,5 +37,5 @@ public class Pictogram {
     private int id;
     private int imageId;
     private int soundId;
-    private Category2 category;
+    private Category category;
 }
