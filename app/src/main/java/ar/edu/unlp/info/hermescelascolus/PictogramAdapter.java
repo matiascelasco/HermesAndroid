@@ -43,12 +43,6 @@ public class PictogramAdapter extends BaseAdapter {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(activity);
             imageView.setAdjustViewBounds(true);
-            /*imageView.setLayoutParams(
-                    new GridView.LayoutParams(
-                            ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT
-                    )
-            );*/
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
         } else {
