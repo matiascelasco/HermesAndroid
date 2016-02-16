@@ -14,11 +14,6 @@ public class KidActivity extends TabsWithPictogramsActivity {
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_kid;
-    }
-
-    @Override
     protected List<Category> getCategories() {
         return kid.getCategories();
     }

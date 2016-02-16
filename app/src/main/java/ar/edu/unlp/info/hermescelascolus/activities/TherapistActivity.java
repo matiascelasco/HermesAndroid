@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.R;
@@ -14,16 +15,7 @@ public class TherapistActivity extends TabsWithPictogramsActivity {
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_therapist;
-    }
-
-    @Override
     protected List<Category> getCategories() {
-        ArrayList<Category> categories = new ArrayList<Category>();
-        for (Category c : Category.values()){
-          categories.add(c);
-        }
-        return categories;
+        return Arrays.asList(Category.values());
     }
 }

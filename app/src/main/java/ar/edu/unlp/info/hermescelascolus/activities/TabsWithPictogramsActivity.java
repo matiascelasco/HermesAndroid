@@ -28,13 +28,12 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
     protected Kid kid;
 
     protected abstract int getMenuId();
-    protected abstract int getLayoutId();
     protected abstract List<Category> getCategories();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        setContentView(R.layout.activity_tabs_with_pictograms);
 
         Intent intent = getIntent();
         int kidId = intent.getIntExtra(InitialActivity.KID_ID, -1);
@@ -72,38 +71,22 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = getIntent();
-
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.action_settings:
-                startSettingsActivity();
-                return true;
+                intent = new Intent(this, SettingsActivity.class);
+                break;
             case R.id.action_therapist_mode:
-                startTherapistActivity();
-                return true;
+                intent = new Intent(this, TherapistActivity.class);
+                break;
             case R.id.action_kid_mode:
-                startKidActivity();
-                return true;
+                intent = new Intent(this, KidActivity.class);
+                break;
             default:
                 throw new IllegalStateException("Option does not exist");
         }
+        startActivity(intent);
+        return true;
     }
 
-    private void startSettingsActivity(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        intent.putExtra(KID_ID, kid.getId());
-        startActivity(intent);
-    }
-
-    private void startTherapistActivity(){
-        Intent intent = new Intent(this, TherapistActivity.class);
-        intent.putExtra(KID_ID, kid.getId());
-        startActivity(intent);
-    }
-
-    private void startKidActivity(){
-        Intent intent = new Intent(this, KidActivity.class);
-        intent.putExtra(KID_ID, kid.getId());
-        startActivity(intent);
-    }
 }
