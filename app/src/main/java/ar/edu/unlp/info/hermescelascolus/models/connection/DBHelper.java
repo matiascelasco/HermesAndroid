@@ -42,7 +42,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Pictograms ("+
                    "_id INTEGER PRIMARY KEY NOT NULL,"+
                    "name VARCHAR(20) NOT NULL, " +
-                   "path VARCHAR(20) NOT NULL);");
+                   "path VARCHAR(20) NOT NULL, "+
+                   "id_category INTEGER NOT NULL"+
+                   ");");
     }
 
     public static synchronized DBHelper getInstance(Context context) {

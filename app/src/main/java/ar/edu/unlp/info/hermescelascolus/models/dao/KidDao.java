@@ -21,9 +21,28 @@ import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
  * Created by laura on 16/02/16.
  */
 public class KidDao implements Dao<Kid> {
+    //from here
+    protected SQLiteDatabase db;
+    protected DBHelper dbHelper;
 
-    private SQLiteDatabase db;
-    private DBHelper dbHelper;
+    public void open() {
+        try {
+            db = dbHelper.getWritableDatabase();
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void close() {
+        dbHelper.close();
+    }
+
+    //to here
+
+    public KidDao(Context context) {
+        dbHelper = DBHelper.getInstance(context);
+    }
 
     private static <T> List<T> randomSample(List<T> list){
         Random random = new Random();
@@ -34,23 +53,6 @@ public class KidDao implements Dao<Kid> {
             }
         }
         return sample;
-    }
-
-    public KidDao(Context context) {
-        dbHelper = DBHelper.getInstance(context);
-    }
-
-    public void open() {
-        try {
-            db = dbHelper.getWritableDatabase();
-        }
-        catch(SQLException e){
-             System.out.println(e.getMessage());
-        }
-    }
-
-    public void close() {
-        dbHelper.close();
     }
 
     public void save(Kid k){
