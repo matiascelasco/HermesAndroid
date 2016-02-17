@@ -49,6 +49,7 @@ public class Kid {
     private Map<Category, Set<Pictogram>> pictogramsByCategory = new EnumMap<>(Category.class);
 
     public Kid(){
+        id=0;
         for (Category c: Category.values()){
             pictogramsByCategory.put(c, new HashSet<Pictogram>());
         }

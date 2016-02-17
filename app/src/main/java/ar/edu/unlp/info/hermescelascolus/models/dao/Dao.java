@@ -7,4 +7,6 @@ public interface Dao <T>{
     List<T> all();
 
     T getById(int id);
+
+    public void save(T t);
 }

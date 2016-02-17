@@ -38,6 +38,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    private void createPictogramsTable(SQLiteDatabase db){
+        db.execSQL("CREATE TABLE Pictograms ("+
+                   "_id INTEGER PRIMARY KEY NOT NULL,"+
+                   "name VARCHAR(20) NOT NULL, " +
+                   "path VARCHAR(20) NOT NULL);");
+    }
+
     public static synchronized DBHelper getInstance(Context context) {
         // Use the application context, which will ensure that you
         // don't accidentally leak an Activity's context.
@@ -57,6 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //this method must execute if the database file does not exists
         this.createKidsTable(db);
         this.createGeneralSettingsTable(db);
+        this.createPictogramsTable(db);
     }
 
     @Override
