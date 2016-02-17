@@ -5,16 +5,13 @@ import android.content.Context;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.dao.KidDao;
 
-/**
- * Created by laura on 16/02/16.
- */
 public class KidSeeder {
 
     public KidSeeder(Context context){
         KidDao kidDAO = new KidDao(context);
         //add Stark family, the north remembers
         Kid kid = new Kid();
-        kid.setName("John");
+        kid.setName("Jon");
         kid.setSurname("Snow");
         kid.setGender("M");
         kidDAO.addKid(kid);
@@ -32,7 +29,7 @@ public class KidSeeder {
         kidDAO.addKid(kid3);
         //
         Kid kid4 = new Kid();
-        kid4.setName("Aria");
+        kid4.setName("Arya");
         kid4.setSurname("Stark");
         kid4.setGender("F");
         kidDAO.addKid(kid4);
