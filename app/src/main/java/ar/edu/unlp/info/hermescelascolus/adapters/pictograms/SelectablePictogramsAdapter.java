@@ -31,11 +31,9 @@ public class SelectablePictogramsAdapter extends PictogramsAdapter {
             public void onClick(View v) {
                 if (selectedPictograms.contains(pictogram)) {
                     removeBorder(v);
-                    selectedPictograms.remove(pictogram);
                     context.pictogramUnselected(pictogram);
                 } else {
                     addBorder(v);
-                    selectedPictograms.add(pictogram);
                     context.pictogramSelected(pictogram);
                 }
             }
@@ -58,4 +56,5 @@ public class SelectablePictogramsAdapter extends PictogramsAdapter {
         }
         return v;
     }
+
 }

@@ -1,8 +1,10 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
@@ -13,6 +15,8 @@ import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TherapistActivity extends TabsWithPictogramsActivity {
+
+    private Map<Category, SelectablePictogramsAdapter> adapterByCategory = new EnumMap<>(Category.class);
 
     @Override
     protected int getMenuId() {
@@ -33,16 +37,27 @@ public class TherapistActivity extends TabsWithPictogramsActivity {
         for (Category c : Category.values()) {
             // A set with the initially selected pictograms for that tab
             // is required as an extra parameter
-            Set<Pictogram> selected = new HashSet<>();
-            for (Pictogram p: kid.getPictograms()) {
-                if (p.getCategory().equals(c)){
-                    selected.add(p);
-                }
-            }
-            adapters.add(new SelectablePictogramsAdapter(this, c.name(), c.getPictograms(), selected));
+            Set<Pictogram> selected = kid.getPictogramsSetByCategory(c);
+            SelectablePictogramsAdapter adapter =
+                    new SelectablePictogramsAdapter(this, c.name(), c.getPictograms(), selected);
+            adapters.add(adapter);
+            adapterByCategory.put(c, adapter);
         }
 
         return adapters;
+    }
+
+    @Override
+    public void pictogramSelected(Pictogram pictogram){
+        super.pictogramSelected(pictogram);
+        adapterByCategory.get(pictogram.getCategory()).notifyDataSetChanged();
+    }
+
+
+    @Override
+    public void pictogramUnselected(Pictogram pictogram){
+        super.pictogramUnselected(pictogram);
+        adapterByCategory.get(pictogram.getCategory()).notifyDataSetChanged();
     }
 
 }
