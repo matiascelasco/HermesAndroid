@@ -14,7 +14,9 @@ import android.widget.TextView;
 
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.models.connection.KidSeeder;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
+import ar.edu.unlp.info.hermescelascolus.models.dao.KidDao;
 
 public class InitialActivity extends AppCompatActivity {
 
@@ -27,12 +29,15 @@ public class InitialActivity extends AppCompatActivity {
 
         //testing
         getApplicationContext().deleteDatabase("celascolus.db");
+        KidSeeder ks = new KidSeeder(getApplicationContext());
+        KidDao kidDAO = new KidDao(getApplicationContext());
 
         ArrayAdapter<Kid> adapter = new ArrayAdapter<>(
                 this,
                 R.layout.kid_list_item,
                 android.R.id.text1,
-                Daos.KID.all()
+                //Daos.KID.all()
+                kidDAO.all()
         );
         ListView listView = (ListView) findViewById(R.id.kids_list_view);
         listView.setAdapter(adapter);
