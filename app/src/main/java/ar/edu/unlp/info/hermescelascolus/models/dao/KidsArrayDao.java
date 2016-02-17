@@ -52,10 +52,10 @@ public class KidsArrayDao implements Dao<Kid> {
             for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
                 kid.addPictogram(p);
             }
+
             for (Category c: randomSample(Arrays.asList(Category.values()))){
                 kid.addCategory(c);
             }
-
 
             kid.setId(i + 1);
             kid.setName(names.get(i));
