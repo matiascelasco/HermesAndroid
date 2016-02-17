@@ -28,8 +28,9 @@ public class KidsArrayDao implements Dao<Kid> {
             "Jenny Gump",
             "Jimmy Carter",
             "Jimmy Olsen",
+            "Jennifer Zarassa",
             "Jimmy James",
-            "Jimmy Carrey (?)",
+            "Jimmy Jump",
             "Jimmy Churry"
     );
     private static List<Kid> array = new ArrayList<>();
@@ -40,11 +41,10 @@ public class KidsArrayDao implements Dao<Kid> {
             for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
                 kid.addPictogram(p);
             }
-
-            /* for (Category2 c: randomSample(Category2.values().length)) {
+            for (Category c: randomSample(Arrays.asList(Category.values()))){
                 kid.addCategory(c);
-            }*/
-            kid.addCategory(Category.ESTABLO);
+            }
+
 
             kid.setId(i + 1);
             kid.setName(names.get(i));

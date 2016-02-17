@@ -1,13 +1,12 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
-import android.media.MediaPlayer;
-import android.widget.ImageView;
-
+import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.TalkingPictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
-import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class KidActivity extends TabsWithPictogramsActivity {
 
@@ -18,13 +17,21 @@ public class KidActivity extends TabsWithPictogramsActivity {
     }
 
     @Override
-    protected List<Category> getCategories() {
-        return kid.getCategories();
+    protected List<PictogramsAdapter> getPictogramsAdapters() {
+        List<PictogramsAdapter> adapters = new ArrayList<>();
+
+        // In all tabs, each pictogram produces a sound (talks) when clicked.
+        // That's why the TalkingPictogramsAdapter subclass is used
+
+        // The first tab has the kid pictograms
+        adapters.add(new TalkingPictogramsAdapter(this, kid.getName(), kid.getPictograms()));
+
+        // The following tabs contains the pictograms from that category enabled for that kid
+        for (Category c : kid.getCategories()) {
+            adapters.add(new TalkingPictogramsAdapter(this, c.name(), c.getPictograms()));
+        }
+
+        return adapters;
     }
 
-    @Override
-    public void onPictogramClick(ImageView view, Pictogram pictogram) {
-        MediaPlayer mp = MediaPlayer.create(this, pictogram.getSoundId());
-        mp.start();
-    }
 }

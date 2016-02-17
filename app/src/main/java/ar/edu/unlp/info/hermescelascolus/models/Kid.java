@@ -39,10 +39,11 @@ public class Kid {
         pictograms.add(pictogram);
     }
 
+    public void removePictogram(Pictogram pictogram){
+        pictograms.remove(pictogram);
+    }
+
     public List<Category> getCategories() {
-        for(Category c : Category.values()){
-            categories.add(c);
-        }
         return Collections.unmodifiableList(categories);
     }
 

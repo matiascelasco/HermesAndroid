@@ -1,26 +1,21 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
-import ar.edu.unlp.info.hermescelascolus.CategoryAdapter;
+import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
+import ar.edu.unlp.info.hermescelascolus.adapters.TabAdapter;
 import ar.edu.unlp.info.hermescelascolus.R;
-import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
@@ -31,10 +26,10 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
     protected Kid kid;
 
     protected abstract int getMenuId();
-    protected abstract List<Category> getCategories();
-    public abstract void onPictogramClick(ImageView view, Pictogram pictogram);
+    protected abstract List<PictogramsAdapter> getPictogramsAdapters();
 
-    @Override
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabs_with_pictograms);
@@ -44,7 +39,7 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
         kid = Daos.KID.getById(kidId);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(new CategoryAdapter(getSupportFragmentManager(), getPictogramsTabs()));
+        viewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), getPictogramsAdapters()));
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
@@ -54,16 +49,6 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         BitmapWorkerTask.setResources(getResources());
-    }
-
-    private List<Pair<String, List<Pictogram>>> getPictogramsTabs(){
-        List<Pair<String, List<Pictogram>>> tabs = new ArrayList<>();
-        tabs.add(new Pair<>(kid.getName(), kid.getPictograms()));
-
-        for (Category c: Category.values()){
-            tabs.add(new Pair<>(c.toString(), c.getPictograms()));
-        }
-        return tabs;
     }
 
     @Override
@@ -92,5 +77,13 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
         intent.putExtra(KID_ID, kid.getId());
         startActivity(intent);
         return true;
+    }
+
+    public void pictogramSelected(Pictogram pictogram){
+        kid.addPictogram(pictogram);
+    }
+
+    public void pictogramUnselected(Pictogram pictogram){
+        kid.removePictogram(pictogram);
     }
 }

@@ -1,19 +1,18 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
-import android.widget.ImageView;
-
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.RemovablePictogramsAdapter;
+import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.SelectablePictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TherapistActivity extends TabsWithPictogramsActivity {
-
-    private Set<Integer> selectedPictogramIds = new HashSet<>();
 
     @Override
     protected int getMenuId() {
@@ -21,20 +20,29 @@ public class TherapistActivity extends TabsWithPictogramsActivity {
     }
 
     @Override
-    protected List<Category> getCategories() {
-        return Arrays.asList(Category.values());
+    protected List<PictogramsAdapter> getPictogramsAdapters() {
+        List<PictogramsAdapter> adapters = new ArrayList<>();
+
+        // The first tab has the kid pictograms, which can be removed with a long click.
+        // That's why the RemovablePictogramsAdapter subclass is used
+        adapters.add(new RemovablePictogramsAdapter(this, kid.getName(), kid.getPictograms()));
+
+        // The following tabs contains the pictograms from each category
+        // The pictograms can be selected with a click and that's why the
+        // SelectablePictogramsAdapter subclass is used
+        for (Category c : Category.values()) {
+            // A set with the initially selected pictograms for that tab
+            // is required as an extra parameter
+            Set<Pictogram> selected = new HashSet<>();
+            for (Pictogram p: kid.getPictograms()) {
+                if (p.getCategory().equals(c)){
+                    selected.add(p);
+                }
+            }
+            adapters.add(new SelectablePictogramsAdapter(this, c.name(), c.getPictograms(), selected));
+        }
+
+        return adapters;
     }
 
-    @Override
-    public void onPictogramClick(ImageView view, Pictogram pictogram) {
-        int id = pictogram.getId();
-        if (selectedPictogramIds.contains(id)){
-            view.setBackgroundResource(0);  //removes the background
-            selectedPictogramIds.remove(id);
-        }
-        else {
-            view.setBackgroundResource(R.drawable.pictogram_border);
-            selectedPictogramIds.add(id);
-        }
-    }
 }

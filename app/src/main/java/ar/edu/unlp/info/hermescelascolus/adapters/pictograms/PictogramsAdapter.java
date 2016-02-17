@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.hermescelascolus;
+package ar.edu.unlp.info.hermescelascolus.adapters.pictograms;
 
 import android.content.Context;
 import android.view.View;
@@ -6,22 +6,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.activities.TabsWithPictogramsActivity;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
-import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
-public class PictogramAdapter extends BaseAdapter {
-    private TabsWithPictogramsActivity activity;
-    private final List<Pictogram> pictograms = new ArrayList<>();
+public abstract class PictogramsAdapter extends BaseAdapter {
 
-    public PictogramAdapter(Context c, List<Integer> pictogramIds, String category) {
-        activity = (TabsWithPictogramsActivity) c;
-        for (int id: pictogramIds){
-            this.pictograms.add(Daos.PICTOGRAM.getById(id));
-        }
+    protected TabsWithPictogramsActivity context;
+    protected List<Pictogram> pictograms;
+    private String title;
+
+    protected abstract void subscribeHandlers(ImageView v, Pictogram pictogram);
+
+    protected PictogramsAdapter(TabsWithPictogramsActivity context, String title, List<Pictogram> pictograms){
+        this.context = context;
+        this.title = title;
+        this.pictograms = pictograms;
     }
 
     public int getCount() {
@@ -41,7 +43,7 @@ public class PictogramAdapter extends BaseAdapter {
         ImageView imageView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
-            imageView = new ImageView(activity);
+            imageView = new ImageView(context);
             imageView.setAdjustViewBounds(true);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
@@ -50,13 +52,13 @@ public class PictogramAdapter extends BaseAdapter {
         }
 
         BitmapWorkerTask.loadBitmap(pictograms.get(position).getImageId(), imageView);
+        subscribeHandlers(imageView, pictograms.get(position));
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activity.onPictogramClick((ImageView) view, pictograms.get(position));
-            }
-        });
         return imageView;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
 }

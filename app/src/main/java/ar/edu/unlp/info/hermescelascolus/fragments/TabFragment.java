@@ -1,4 +1,4 @@
-package ar.edu.unlp.info.hermescelascolus;
+package ar.edu.unlp.info.hermescelascolus.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,9 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-public class CategoryFragment extends Fragment {
+import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
+
+public class TabFragment extends Fragment {
     public static final String TITLE = "category";
     public static final String PICTOGRAM_IDS = "pictograms";
+
+    private PictogramsAdapter pictogramsAdapter;
+
+    public void setPictogramsAdapter(PictogramsAdapter pictogramsAdapter) {
+        this.pictogramsAdapter = pictogramsAdapter;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -21,13 +30,10 @@ public class CategoryFragment extends Fragment {
         Bundle args = getArguments();
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
 
-        grid.setAdapter(
-                new PictogramAdapter(
-                        this.getContext(),
-                        args.getIntegerArrayList(PICTOGRAM_IDS),
-                        args.getString(TITLE)
-                )
-        );
+        if (pictogramsAdapter == null){
+            throw new IllegalStateException("setPictogramsAdapter must be called after the constructor");
+        }
+        grid.setAdapter(pictogramsAdapter);
 
         return rootView;
     }

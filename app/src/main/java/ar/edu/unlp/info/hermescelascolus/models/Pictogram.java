@@ -38,4 +38,20 @@ public class Pictogram {
     private int imageId;
     private int soundId;
     private Category category;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pictogram pictogram = (Pictogram) o;
+
+        return id == pictogram.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }
