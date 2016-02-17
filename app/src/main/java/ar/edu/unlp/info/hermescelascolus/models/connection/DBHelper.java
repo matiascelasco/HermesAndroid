@@ -16,24 +16,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     private void createKidsTable(SQLiteDatabase db) {
-        //creation of categories
+        //creation of kids table
         /*db.execSQL("DROP TABLE IF EXISTS Categories;");*/
         db.execSQL("CREATE TABLE Kid ("+
-                "_id INTEGER PRIMARY KEY NOT NULL,"+
-                "name VARCHAR(50) NOT NULL, " +
-                "surname VARCHAR(20) NOT NULL, " +
-                "pictogramSize INTEGER NOT NULL, "+
-                "track INTEGER DEFAULT 0, "+
-                "barn INTEGER DEFAULT 0, "+
-                "needs INTEGER DEFAULT 0, "+
-                "emotions INTEGER DEFAULT 0"+");");
+                   "_id INTEGER PRIMARY KEY NOT NULL,"+
+                   "name VARCHAR(50) NOT NULL, " +
+                   "surname VARCHAR(20) NOT NULL, " +
+                   "gender VARCHAR(1) NOT NULL, " +
+                   "pictogramSize INTEGER NOT NULL);");
     }
 
     private void createGeneralSettingsTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE GeneralSettings ("+
-                "_id INTEGER PRIMARY KEY NOT NULL,"+
-                "ip_address VARCHAR(12) NOT NULL, " +
-                "port INTEGER NOT NULL"+");");
+                   "_id INTEGER PRIMARY KEY NOT NULL,"+
+                   "ip_address VARCHAR(12) NOT NULL, " +
+                   "port INTEGER NOT NULL"+");");
 
         //insert default data
         db.execSQL("INSERT INTO GeneralSettings(ip_address, port)"+
