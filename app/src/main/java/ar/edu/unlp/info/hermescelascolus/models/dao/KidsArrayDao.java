@@ -23,16 +23,27 @@ public class KidsArrayDao implements Dao<Kid> {
     }
 
     private static List<String> names = Arrays.asList(
-            "Jimi Hendrix",
-            "Jimmy Page",
-            "Jenny Gump",
-            "Jimmy Carter",
-            "Jimmy Olsen",
-            "Jennifer Zarassa",
-            "Jimmy James",
-            "Jimmy Jump",
-            "Jimmy Churry"
+            "Jimi",
+            "Jimmy",
+            "Jenny",
+            "Jimmy",
+            "Jimmy",
+            "Jimmy",
+            "Jimmy",
+            "Jimmy"
     );
+
+    private static List<String> surnames = Arrays.asList(
+            "Hendrix",
+            "Page",
+            "Gump",
+            "Carter",
+            "Olsen",
+            "James",
+            "Carrey (?)",
+            "Churry"
+    );
+
     private static List<Kid> array = new ArrayList<>();
     static {
         for (int i = 0; i < names.size(); i++){
@@ -48,6 +59,8 @@ public class KidsArrayDao implements Dao<Kid> {
 
             kid.setId(i + 1);
             kid.setName(names.get(i));
+            kid.setSurname(surnames.get(i));
+            kid.setGender("M");
             array.add(kid);
         }
     }

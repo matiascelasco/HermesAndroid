@@ -23,11 +23,23 @@ public class Kid {
     }
 
     public String toString(){
-        return name;
+        return name+" "+surname;
     }
+
+    public String getGender(){ return this.gender; }
+
+    public void setGender(String g){
+        this.gender = g;
+    }
+
+    public String getSurname() { return surname; }
+
+    public void setSurname(String surname) { this.surname = surname; }
 
     private int id;
     private String name;
+    private String surname;
+    private String gender;
     private List<Pictogram> pictograms = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
 
