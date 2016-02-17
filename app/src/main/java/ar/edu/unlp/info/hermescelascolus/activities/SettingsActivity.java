@@ -1,8 +1,15 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.database.DataSetObserver;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.ThemedSpinnerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import ar.edu.unlp.info.hermescelascolus.R;
@@ -19,8 +26,5 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int kidId = intent.getIntExtra(KidActivity.KID_ID, -1);
         Kid kid = Daos.KID.getById(kidId);
-
-        TextView textView = (TextView) findViewById(R.id.settings_text);
-        textView.setText("Este es el coso de ajustes. El pibe se llama " + kid.getName());
     }
 }

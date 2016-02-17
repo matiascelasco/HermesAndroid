@@ -3,7 +3,6 @@ package ar.edu.unlp.info.hermescelascolus.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.connection.KidSeeder;
-import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 import ar.edu.unlp.info.hermescelascolus.models.dao.KidDao;
 
 public class InitialActivity extends AppCompatActivity {
@@ -56,8 +54,7 @@ public class InitialActivity extends AppCompatActivity {
         addKidButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Agregar nuevo alumn@. Proximamente...", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startCreateKidActivity();
             }
         });
 
@@ -70,10 +67,11 @@ public class InitialActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //@Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-
+    private void startCreateKidActivity(){
+        Intent intent = new Intent(this, CreateKidActivity.class);
+        startActivity(intent);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

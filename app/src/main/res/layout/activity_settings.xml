@@ -8,10 +8,4 @@
     tools:context="ar.edu.unlp.info.hermescelascolus.activities.SettingsActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/settings_text"
-        android:text="Jet fuel can't melt steel beams, Yeah settings"/>
-
 </RelativeLayout>
