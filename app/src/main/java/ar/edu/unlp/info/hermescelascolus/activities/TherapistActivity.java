@@ -50,14 +50,14 @@ public class TherapistActivity extends TabsWithPictogramsActivity {
     @Override
     public void pictogramSelected(Pictogram pictogram){
         super.pictogramSelected(pictogram);
-        adapterByCategory.get(pictogram.getCategory()).addPictogramBorder(pictogram);
+        adapterByCategory.get(pictogram.getCategory()).notifyDataSetChanged();
     }
 
 
     @Override
     public void pictogramUnselected(Pictogram pictogram){
         super.pictogramUnselected(pictogram);
-        adapterByCategory.get(pictogram.getCategory()).removePictogramBorder(pictogram);
+        adapterByCategory.get(pictogram.getCategory()).notifyDataSetChanged();
     }
 
 }

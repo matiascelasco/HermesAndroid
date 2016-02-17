@@ -3,4 +3,12 @@
     <string name="action_settings">Ajustes</string>
     <string name="action_therapist_mode">Modo terapeuta</string>
     <string name="action_kid_mode">Modo alumno</string>
+    <string name="first_name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="gender">Sexo</string>
+    <string name="female">Femenino</string>
+    <string name="male">Masculino</string>
+    <string name="add">Agregar</string>
+    <string name="first_name_required_msg">Falta el nombre</string>
+    <string name="last_name_required_msg">Falta el apellido</string>
 </resources>

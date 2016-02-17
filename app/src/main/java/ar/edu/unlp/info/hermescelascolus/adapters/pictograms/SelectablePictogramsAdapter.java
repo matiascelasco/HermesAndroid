@@ -57,10 +57,4 @@ public class SelectablePictogramsAdapter extends PictogramsAdapter {
         return v;
     }
 
-    public void addPictogramBorder(Pictogram pictogram) {
-    }
-
-    public void removePictogramBorder(Pictogram pictogram) {
-
-    }
 }

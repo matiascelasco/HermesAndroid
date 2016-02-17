@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ar.edu.unlp.info.hermescelascolus" >
+    package="ar.edu.unlp.info.hermescelascolus">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar" >
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".activities.InitialActivity"
             android:label="@string/app_name"
-            android:screenOrientation="sensor" >
+            android:screenOrientation="sensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,14 +20,11 @@
         </activity>
         <activity
             android:name=".activities.KidActivity"
-            android:screenOrientation="sensor" >
-        </activity>
-        <activity android:name=".activities.SettingsActivity" >
-        </activity>
-        <activity android:name=".activities.TherapistActivity" >
-        </activity>
-        <activity android:name=".activities.TabsWithPictogramsActivity" >
-        </activity>
+            android:screenOrientation="sensor"></activity>
+        <activity android:name=".activities.SettingsActivity"></activity>
+        <activity android:name=".activities.TherapistActivity"></activity>
+        <activity android:name=".activities.TabsWithPictogramsActivity"></activity>
+        <activity android:name=".activities.CreateKidActivity"></activity>
     </application>
 
 </manifest>
