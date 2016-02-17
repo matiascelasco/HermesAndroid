@@ -53,7 +53,7 @@ public class KidDao implements Dao<Kid> {
         dbHelper.close();
     }
 
-    public void addKid(Kid k){
+    public void save(Kid k){
         this.open();
         ContentValues cv = new ContentValues();
         cv.put("name",k.getName());
@@ -61,18 +61,19 @@ public class KidDao implements Dao<Kid> {
         cv.put("gender",k.getGender());
         cv.put("pictogramSize",0);
 
-       /*db.execSQL("INSERT INTO Kid(name, surname, gender, pictogramSize) " +
-                  "VALUES(" + k.getName() + " , "+k.getSurname()+" ,"+ k.getGender()+" , 0 );");*/
-
         // Inserting Row
         try{
             db.beginTransaction();
-            db.insert("Kid", null, cv);
+            if(k.getId() == 0) {
+                db.insert("Kid", null, cv);
+            }
+            else{ //the kid already exists
+                db.update("Kid", cv, "_id=" + k.getId(), null);
+            }
             db.setTransactionSuccessful();
         }catch (SQLiteException e){
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
         this.close();
@@ -84,7 +85,7 @@ public class KidDao implements Dao<Kid> {
         this.open();
         try {
             Cursor cursor = db.rawQuery("SELECT _id, name, surname, gender, pictogramSize FROM Kid", null);
-            System.out.println("cant rows = "+String.valueOf(cursor.getCount()));
+
             while (cursor.moveToNext()) {
                  Kid k = new Kid();
                  k.setId(Integer.parseInt(cursor.getString(0)));
@@ -111,6 +112,27 @@ public class KidDao implements Dao<Kid> {
 
     @Override
     public Kid getById(int id) {
-        return null;
+        Kid k = new Kid();
+        this.open();
+        try {
+            Cursor cursor = db.rawQuery("SELECT _id, name, surname, gender, pictogramSize FROM Kid where _id =?",new String [] {String.valueOf(id)});
+            if (cursor.moveToNext()) {
+                k.setId(Integer.parseInt(cursor.getString(0)));
+                k.setName(cursor.getString(1));
+                k.setSurname(cursor.getString(2));
+                k.setGender(cursor.getString(3));
+                //category random
+                for (Category c : randomSample(Arrays.asList(Category.values()))) {
+                    k.addCategory(c);
+                }
+                for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
+                    k.addPictogram(p);
+                }
+            }
+        }
+        catch (SQLiteException e) {
+            e.printStackTrace();
+        }
+        return k;
     }
 }

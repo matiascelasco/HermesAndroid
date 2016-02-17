@@ -28,14 +28,13 @@ public class InitialActivity extends AppCompatActivity {
         //testing
         getApplicationContext().deleteDatabase("celascolus.db");
         KidSeeder ks = new KidSeeder(getApplicationContext());
-        KidDao kidDAO = new KidDao(getApplicationContext());
+        Daos.initialize(getApplicationContext());
 
         ArrayAdapter<Kid> adapter = new ArrayAdapter<>(
                 this,
                 R.layout.kid_list_item,
                 android.R.id.text1,
-                //Daos.KID.all()
-                kidDAO.all()
+                Daos.KID.all()
         );
         ListView listView = (ListView) findViewById(R.id.kids_list_view);
         listView.setAdapter(adapter);
