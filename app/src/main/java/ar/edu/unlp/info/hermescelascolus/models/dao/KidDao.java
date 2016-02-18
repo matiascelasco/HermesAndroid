@@ -20,28 +20,26 @@ import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 /**
  * Created by laura on 16/02/16.
  */
-public class KidDao implements Dao<Kid> {
-    //from here
-    protected SQLiteDatabase db;
-    protected DBHelper dbHelper;
-
-    public void open() {
-        try {
-            db = dbHelper.getWritableDatabase();
-        }
-        catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void close() {
-        dbHelper.close();
-    }
-
-    //to here
+public class KidDao extends GenericDao implements Dao<Kid> {
 
     public KidDao(Context context) {
-        dbHelper = DBHelper.getInstance(context);
+        super(context);
+    }
+
+    private Kid loadFromCursor(Cursor cursor){
+        Kid k = new Kid();
+        k.setId(Integer.parseInt(cursor.getString(0)));
+        k.setName(cursor.getString(1));
+        k.setSurname(cursor.getString(2));
+        k.setGender(cursor.getString(3));
+        //category random
+        for (Category c : randomSample(Arrays.asList(Category.values()))) {
+            k.addCategory(c);
+        }
+        for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
+            k.addPictogram(p);
+        }
+        return k;
     }
 
     private static <T> List<T> randomSample(List<T> list){
@@ -89,52 +87,32 @@ public class KidDao implements Dao<Kid> {
             Cursor cursor = db.rawQuery("SELECT _id, name, surname, gender, pictogramSize FROM Kid", null);
 
             while (cursor.moveToNext()) {
-                 Kid k = new Kid();
-                 k.setId(Integer.parseInt(cursor.getString(0)));
-                 k.setName(cursor.getString(1));
-                 k.setSurname(cursor.getString(2));
-                 k.setGender(cursor.getString(3));
-                 //category random
-                 for (Category c : randomSample(Arrays.asList(Category.values()))) {
-                     k.addCategory(c);
-                 }
-                 for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
-                     k.addPictogram(p);
-                 }
                  // Adding kid to list
-                 kids.add(k);
+                 kids.add(this.loadFromCursor(cursor));
             }
         }
         catch (SQLiteException e) {
             e.printStackTrace();
         }
         return kids;
-        //return Daos.KID.all();
+
     }
 
     @Override
     public Kid getById(int id) {
-        Kid k = new Kid();
+
         this.open();
         try {
-            Cursor cursor = db.rawQuery("SELECT _id, name, surname, gender, pictogramSize FROM Kid where _id =?",new String [] {String.valueOf(id)});
+            Cursor cursor = db.rawQuery("SELECT _id, name, surname, gender, pictogramSize FROM Kid where _id =?", new String[]{String.valueOf(id)});
             if (cursor.moveToNext()) {
-                k.setId(Integer.parseInt(cursor.getString(0)));
-                k.setName(cursor.getString(1));
-                k.setSurname(cursor.getString(2));
-                k.setGender(cursor.getString(3));
-                //category random
-                for (Category c : randomSample(Arrays.asList(Category.values()))) {
-                    k.addCategory(c);
-                }
-                for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
-                    k.addPictogram(p);
-                }
+                return this.loadFromCursor(cursor);
+            } else {
+                return (new Kid());
             }
-        }
-        catch (SQLiteException e) {
+        } catch (SQLiteException e) {
             e.printStackTrace();
         }
-        return k;
+        return (new Kid());
     }
+
 }

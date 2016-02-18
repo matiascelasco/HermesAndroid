@@ -13,30 +13,11 @@ import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 /**
  * Created by Facu on 17/02/2016.
  */
-public class PictogramDao implements Dao<Pictogram>{
-
-    //from here
-    protected SQLiteDatabase db;
-    protected DBHelper dbHelper;
+public class PictogramDao extends GenericDao implements Dao<Pictogram>{
 
     public PictogramDao(Context context) {
-        dbHelper = DBHelper.getInstance(context);
+        super(context);
     }
-
-    public void open() {
-        try {
-            db = dbHelper.getWritableDatabase();
-        }
-        catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void close() {
-        dbHelper.close();
-    }
-
-    //to here
 
     @Override
     public List<Pictogram> all() {
