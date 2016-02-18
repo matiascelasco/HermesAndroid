@@ -14,6 +14,7 @@ import android.widget.TextView;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.connection.KidSeeder;
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 import ar.edu.unlp.info.hermescelascolus.models.dao.KidDao;
 
 public class InitialActivity extends AppCompatActivity {
