@@ -11,4 +11,16 @@
     <string name="add">Agregar</string>
     <string name="first_name_required_msg">Falta el nombre</string>
     <string name="last_name_required_msg">Falta el apellido</string>
+    <string name="pictograms_size">Tamaño de pictogramas</string>
+    <string name="enable_categories">Habilitar categorías</string>
+    <string name="delete_kid">Eliminar alumno</string>
+    <string name="kid">Alumn@</string>
+    <string name="general_settings">Configuración general</string>
+    <string name="monitor_ip_address">Dirección IP del monitor</string>
+    <string name="monitor_port">Puerto del monitor</string>
+    <string name="save">Guardar cambios</string>
+    <string name="ip_required_msg">Falta la dirección IP</string>
+    <string name="port_required_msg">Falta el puerto</string>
+    <string name="ip_invalid">Dirección IP inválida</string>
+    <string name="port_invalid">Puerto inválido</string>
 </resources>

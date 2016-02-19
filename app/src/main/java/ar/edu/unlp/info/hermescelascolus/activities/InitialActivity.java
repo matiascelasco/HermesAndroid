@@ -15,7 +15,6 @@ import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.connection.KidSeeder;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
-import ar.edu.unlp.info.hermescelascolus.models.dao.KidDao;
 
 public class InitialActivity extends AppCompatActivity {
 
@@ -68,7 +67,7 @@ public class InitialActivity extends AppCompatActivity {
     }
 
     private void startCreateKidActivity(){
-        Intent intent = new Intent(this, CreateKidActivity.class);
+        Intent intent = new Intent(this, NewKidFormActivity.class);
         startActivity(intent);
     }
 

@@ -7,6 +7,7 @@ import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.TalkingPictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
+import ar.edu.unlp.info.hermescelascolus.models.Mode;
 
 public class KidActivity extends TabsWithPictogramsActivity {
 
@@ -32,6 +33,11 @@ public class KidActivity extends TabsWithPictogramsActivity {
         }
 
         return adapters;
+    }
+
+    @Override
+    protected Mode getCurrentMode() {
+        return Mode.KID;
     }
 
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/kid"/>
+
+    <include layout="@layout/kid_basic_fields"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pictograms_size"/>
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/pictograms_size_input"
+        android:entries="@array/pictograms_sizes_array"
+        android:prompt="@string/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.AppCompatSpinner>
+
+    <TextView
+        android:text="@string/enable_categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <GridLayout
+        android:columnCount="2"
+        android:rowCount="2"
+        android:id="@+id/category_checkboxes"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </GridLayout>
+
+    <Button
+        android:id="@+id/delete_kid_button"
+        android:text="@string/delete_kid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</merge>

@@ -7,45 +7,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ar.edu.unlp.info.hermescelascolus.activities.CreateKidActivity">
+    tools:context="ar.edu.unlp.info.hermescelascolus.activities.NewKidFormActivity">
 
     <LinearLayout
         android:layout_alignParentTop="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/first_name_input"
-                android:hint="@string/first_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/last_name_input"
-                android:hint="@string/last_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </android.support.design.widget.TextInputLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gender"/>
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/gender_input"
-            android:entries="@array/gender_array"
-            android:prompt="@string/gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.v7.widget.AppCompatSpinner>
+        <include layout="@layout/kid_basic_fields"/>
         <Button
-            android:id="@+id/create_kid_button"
+            android:id="@+id/save_button"
             android:text="@string/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

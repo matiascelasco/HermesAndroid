@@ -20,11 +20,14 @@
         </activity>
         <activity
             android:name=".activities.KidActivity"
-            android:screenOrientation="sensor"></activity>
-        <activity android:name=".activities.SettingsActivity"></activity>
-        <activity android:name=".activities.TherapistActivity"></activity>
-        <activity android:name=".activities.TabsWithPictogramsActivity"></activity>
-        <activity android:name=".activities.CreateKidActivity"></activity>
+            android:screenOrientation="sensor"/>
+        <activity
+            android:name=".activities.SettingsFormActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.TherapistActivity"/>
+        <activity
+            android:name=".activities.NewKidFormActivity"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

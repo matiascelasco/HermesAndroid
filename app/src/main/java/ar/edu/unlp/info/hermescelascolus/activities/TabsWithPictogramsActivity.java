@@ -17,6 +17,7 @@ import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.adapters.TabAdapter;
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
+import ar.edu.unlp.info.hermescelascolus.models.Mode;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
@@ -43,9 +44,11 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
-        setTitle(kid.getName());
+//        setTitle(kid.getFullName()); TODO: restore this line and delete the following
+        setTitle(kid.getFullName() + " " + getCurrentMode().name());
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+
+            Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         BitmapWorkerTask.setResources(getResources());
@@ -63,7 +66,8 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.action_settings:
-                intent = new Intent(this, SettingsActivity.class);
+                intent = new Intent(this, SettingsFormActivity.class);
+                intent.putExtra(SettingsFormActivity.PREVIOUS_MODE_ORDINAL, getCurrentMode().ordinal());
                 break;
             case R.id.action_therapist_mode:
                 intent = new Intent(this, TherapistActivity.class);
@@ -78,6 +82,8 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
         startActivity(intent);
         return true;
     }
+
+    protected abstract Mode getCurrentMode();
 
     public void pictogramSelected(Pictogram pictogram){
         kid.addPictogram(pictogram);

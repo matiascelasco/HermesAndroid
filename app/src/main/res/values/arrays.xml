@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="gender_array" >
-        <item>@string/male</item>
-        <item>@string/female</item>
+    <string-array name="pictograms_sizes_array">
+        <item>Mediano</item>
     </string-array>
+
 </resources>

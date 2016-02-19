@@ -30,9 +30,9 @@ public class Kid {
         return name+" "+surname;
     }
 
-    public String getGender(){ return this.gender; }
+    public Gender getGender(){ return this.gender; }
 
-    public void setGender(String g){
+    public void setGender(Gender g){
         this.gender = g;
     }
 
@@ -43,7 +43,7 @@ public class Kid {
     private int id;
     private String name;
     private String surname;
-    private String gender;
+    private Gender gender;
     private List<Pictogram> pictograms = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
     private Map<Category, Set<Pictogram>> pictogramsByCategory = new EnumMap<>(Category.class);
@@ -82,4 +82,15 @@ public class Kid {
     }
 
 
+    public boolean hasCategory(Category c) {
+        return categories.contains(c);
+    }
+
+    public void removeCategory(Category c) {
+        categories.remove(c);
+    }
+
+    public String getFullName() {
+        return name + " " + surname;
+    }
 }

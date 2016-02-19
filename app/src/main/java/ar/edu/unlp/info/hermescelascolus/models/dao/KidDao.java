@@ -13,13 +13,11 @@ import java.util.List;
 import java.util.Random;
 
 import ar.edu.unlp.info.hermescelascolus.models.Category;
+import ar.edu.unlp.info.hermescelascolus.models.Gender;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 
-/**
- * Created by laura on 16/02/16.
- */
 public class KidDao implements Dao<Kid> {
     //from here
     protected SQLiteDatabase db;
@@ -58,10 +56,10 @@ public class KidDao implements Dao<Kid> {
     public void save(Kid k){
         this.open();
         ContentValues cv = new ContentValues();
-        cv.put("name",k.getName());
+        cv.put("name", k.getName());
         cv.put("surname", k.getSurname());
-        cv.put("gender",k.getGender());
-        cv.put("pictogramSize",0);
+        cv.put("gender", k.getGender().getValue());
+        cv.put("pictogramSize", 0);
 
         // Inserting Row
         try{
@@ -93,7 +91,7 @@ public class KidDao implements Dao<Kid> {
                  k.setId(Integer.parseInt(cursor.getString(0)));
                  k.setName(cursor.getString(1));
                  k.setSurname(cursor.getString(2));
-                 k.setGender(cursor.getString(3));
+                 k.setGender(Gender.getByValue(cursor.getString(3)));
                  //category random
                  for (Category c : randomSample(Arrays.asList(Category.values()))) {
                      k.addCategory(c);
@@ -122,7 +120,7 @@ public class KidDao implements Dao<Kid> {
                 k.setId(Integer.parseInt(cursor.getString(0)));
                 k.setName(cursor.getString(1));
                 k.setSurname(cursor.getString(2));
-                k.setGender(cursor.getString(3));
+                k.setGender(Gender.getByValue(cursor.getString(3)));
                 //category random
                 for (Category c : randomSample(Arrays.asList(Category.values()))) {
                     k.addCategory(c);

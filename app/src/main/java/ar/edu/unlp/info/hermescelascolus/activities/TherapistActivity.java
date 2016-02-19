@@ -12,6 +12,7 @@ import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.RemovablePictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.SelectablePictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
+import ar.edu.unlp.info.hermescelascolus.models.Mode;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TherapistActivity extends TabsWithPictogramsActivity {
@@ -45,6 +46,11 @@ public class TherapistActivity extends TabsWithPictogramsActivity {
         }
 
         return adapters;
+    }
+
+    @Override
+    protected Mode getCurrentMode() {
+        return Mode.THERAPIST;
     }
 
     @Override
