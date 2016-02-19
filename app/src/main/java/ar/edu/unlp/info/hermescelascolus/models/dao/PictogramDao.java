@@ -23,7 +23,9 @@ public class PictogramDao extends GenericDao implements Dao<Pictogram>{
     }
 
     @Override
-    public void save(Pictogram pictogram) {
+    public int save(Pictogram pictogram) {
         this.open();
+        ContentValues cv = new ContentValues();
+        return 0;
     }
 }

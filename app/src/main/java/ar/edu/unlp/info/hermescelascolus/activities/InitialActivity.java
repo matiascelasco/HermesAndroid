@@ -26,6 +26,7 @@ public class InitialActivity extends AppCompatActivity {
         //testing
         getApplicationContext().deleteDatabase("celascolus.db");
         KidSeeder.seed(getApplicationContext());
+
         Daos.initialize(getApplicationContext());
 
         ArrayAdapter<Kid> adapter = new ArrayAdapter<>(

@@ -27,8 +27,10 @@ public class NewKidFormActivity extends FormActivity {
             public void onClick(View v) {
                 try {
                     retrieveDataFromBasicKidFields();
-                    Daos.KID.save(kid);
+                    kid.setId(Daos.KID.save(kid));
                     startKidActivity(kid);
+                    //finish();
+
                 } catch (ValidationError validationError) {
                     // don't do nothing. getValue method in validators
                     // takes care of showing the validation errors
