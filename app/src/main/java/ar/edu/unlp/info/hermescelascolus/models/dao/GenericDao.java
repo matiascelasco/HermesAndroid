@@ -9,7 +9,7 @@ import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 /**
  * Created by Facu on 17/02/2016.
  */
-public abstract class GenericDao {
+public class GenericDao {
 
     //from here
     protected SQLiteDatabase db;
