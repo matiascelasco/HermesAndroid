@@ -86,11 +86,11 @@ public class Kid {
         return categories.contains(c);
     }
 
-    public void removeCategory(Category c) {
-        categories.remove(c);
-    }
-
     public String getFullName() {
         return name + " " + surname;
+    }
+
+    public void clearCategories() {
+        categories.clear();
     }
 }

@@ -16,7 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static Context context;
     private static DBHelper sInstance;
 
-    private static final String DATABASE_NAME = "celascolus.db";
+    public static final String DATABASE_NAME = "celascolus.db";
     private static final int DATABASE_VERSION = 1;
 
     public static synchronized DBHelper getInstance(Context c) {

@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 import ar.edu.unlp.info.hermescelascolus.models.connection.KidSeeder;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
@@ -22,10 +23,6 @@ public class InitialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
-
-        //testing
-        getApplicationContext().deleteDatabase("celascolus.db");
-        KidSeeder.seed(getApplicationContext());
 
         Daos.initialize(getApplicationContext());
 

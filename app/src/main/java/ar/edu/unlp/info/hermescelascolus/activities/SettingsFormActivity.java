@@ -63,6 +63,8 @@ public class SettingsFormActivity extends FormActivity {
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             checkBox.setText(c.name());
             checkBox.setChecked(kid.hasCategory(c));
+            System.out.println(kid.getCategories().size());
+            System.out.println(kid.hasCategory(c));
             checkboxContainer.addView(checkBox);
             checkboxByCategory.put(c, checkBox);
         }
@@ -95,16 +97,10 @@ public class SettingsFormActivity extends FormActivity {
             public void onClick(View v) {
                 try {
                     retrieveDataFromBasicKidFields();
-
-                    for (Category c : kid.getCategories()) {
-                        kid.removeCategory(c);
-                    }
-                    for (Category c: Category.values()) {
-                        if (checkboxByCategory.get(c).isChecked()){
+                    kid.clearCategories();
+                    for (Category c : Category.values()) {
+                        if (checkboxByCategory.get(c).isChecked()) {
                             kid.addCategory(c);
-                        }
-                        else {
-                            kid.removeCategory(c);
                         }
                     }
                     //TODO: pictogram size

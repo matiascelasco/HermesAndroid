@@ -56,7 +56,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
             update("Kid", cv, "_id = ?", String.valueOf(k.getId()));
         }
         delete("KidCategory", "kid_id = ?", String.valueOf(k.getId()));
-        for (Category c :Category.values()) {
+        for (Category c: k.getCategories()) {
             cv = new ContentValues();
             cv.put("kid_id", k.getId());
             cv.put("category_id", c.ordinal());
@@ -99,6 +99,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
 
         Cursor cursor = db.rawQuery(SELECT_RELATED_CATEGORIES_QUERY, new String[]{String.valueOf(kid.getId())});
         while (cursor.moveToNext()) {
+            System.out.println("WTFFFFFFFFFFFFFFFFF" + String.valueOf(cursor.getInt(1)));
             kid.addCategory(Category.values()[cursor.getInt(1)]);
         }
         for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
