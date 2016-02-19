@@ -27,7 +27,7 @@ public class NewKidFormActivity extends FormActivity {
             public void onClick(View v) {
                 try {
                     retrieveDataFromBasicKidFields();
-                    kid.setId(Daos.KID.save(kid));
+                    Daos.KID.save(kid);
                     startKidActivity(kid);
                     //finish();
 
