@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 
 import ar.edu.unlp.info.hermescelascolus.R;
-import ar.edu.unlp.info.hermescelascolus.models.Gender;
 import ar.edu.unlp.info.hermescelascolus.validation.ValidationError;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
