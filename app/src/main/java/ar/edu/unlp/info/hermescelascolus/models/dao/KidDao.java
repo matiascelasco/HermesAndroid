@@ -29,7 +29,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
         k.setId(Integer.parseInt(cursor.getString(0)));
         k.setName(cursor.getString(1));
         k.setSurname(cursor.getString(2));
-        k.setGender(cursor.getString(3));
+        k.setGender(Gender.getByValue(cursor.getString(3)));
         //category random
         for (Category c : randomSample(Arrays.asList(Category.values()))) {
             k.addCategory(c);
