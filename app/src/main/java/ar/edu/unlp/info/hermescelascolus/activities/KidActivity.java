@@ -9,7 +9,7 @@ import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.TalkingPictogramsAd
 import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Mode;
 
-public class KidActivity extends TabsWithPictogramsActivity {
+public class KidActivity extends PictogramsActivity {
 
 
     @Override

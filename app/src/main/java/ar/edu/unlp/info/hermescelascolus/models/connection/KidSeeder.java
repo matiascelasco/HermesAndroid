@@ -4,12 +4,11 @@ import android.content.Context;
 
 import ar.edu.unlp.info.hermescelascolus.models.Gender;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
-import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 import ar.edu.unlp.info.hermescelascolus.models.dao.KidDao;
 
 public class KidSeeder {
 
-    public KidSeeder(Context context){
+    public static void seed(Context context){
         KidDao kidDAO = new KidDao(context);
         //add Stark family, the north remembers
         Kid kid = new Kid();

@@ -6,21 +6,11 @@ import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
-/**
- * Created by laura on 14/02/16.
- */
 public enum Category {
-    PISTA (1),
-    ESTABLO (2),
-    NECESIDADES (3),
-    EMOCIONES (4);
-
-    private int identifier;
-
-    private Category(int value){
-        this.identifier = value;
-    }
-
+    PISTA,
+    ESTABLO,
+    NECESIDADES,
+    EMOCIONES;
 
     public List<Pictogram> getPictograms(){
         //TODO: change this implementation when db is ready

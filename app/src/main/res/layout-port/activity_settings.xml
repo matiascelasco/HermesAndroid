@@ -15,8 +15,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <include layout="@layout/kid_settings"></include>
-            <include layout="@layout/general_settings"></include>
+            <include layout="@layout/kid_settings"/>
+            <include layout="@layout/general_settings"/>
             <Button
                 android:id="@+id/save_button"
                 android:text="@string/save"

@@ -168,7 +168,7 @@ public class PictogramsArrayDao implements Dao<Pictogram> {
     }
 
     @Override
-    public Pictogram getById(int id) {
+    public Pictogram getById(long id) {
         if (array == null){
             loadArray();
         }

@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.R;
@@ -18,7 +17,6 @@ import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class InitialActivity extends AppCompatActivity {
 
-    public final static String KID_ID = "ar.edu.unlp.info.hermescelascolus.KID_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +25,7 @@ public class InitialActivity extends AppCompatActivity {
 
         //testing
         getApplicationContext().deleteDatabase("celascolus.db");
-        KidSeeder ks = new KidSeeder(getApplicationContext());
+        KidSeeder.seed(getApplicationContext());
         Daos.initialize(getApplicationContext());
 
         ArrayAdapter<Kid> adapter = new ArrayAdapter<>(
@@ -41,7 +39,6 @@ public class InitialActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView textView = (TextView) view;
                 Kid kid = (Kid) parent.getItemAtPosition(position);
                 startKidActivity(kid);
             }
@@ -62,7 +59,7 @@ public class InitialActivity extends AppCompatActivity {
 
     private void startKidActivity(Kid kid){
         Intent intent = new Intent(this, KidActivity.class);
-        intent.putExtra(KID_ID, kid.getId());
+        intent.putExtra(PictogramsActivity.KID_ID, kid.getId());
         startActivity(intent);
     }
 

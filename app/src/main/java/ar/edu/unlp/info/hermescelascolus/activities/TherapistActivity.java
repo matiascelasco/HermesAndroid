@@ -2,7 +2,6 @@ package ar.edu.unlp.info.hermescelascolus.activities;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,7 +14,7 @@ import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Mode;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
-public class TherapistActivity extends TabsWithPictogramsActivity {
+public class TherapistActivity extends PictogramsActivity {
 
     private Map<Category, SelectablePictogramsAdapter> adapterByCategory = new EnumMap<>(Category.class);
 

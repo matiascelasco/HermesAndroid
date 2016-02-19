@@ -26,15 +26,13 @@ import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class SettingsFormActivity extends FormActivity {
 
+    public final static String KID_ID = "ar.edu.unlp.info.hermescelascolus.KID_ID";
     public static final String PREVIOUS_MODE_ORDINAL =
             "ar.edu.unlp.info.hermescelascolus.PREVIOUS_MODE_ORDINAL";
     private final Map<Category, CheckBox> checkboxByCategory = new EnumMap<>(Category.class);
     private Settings settings;
-    private EditText ipInput;
-    private EditText portInput;
     private EditTextValidator ipValidator;
     private EditTextValidator portValidator;
-    private Button deleteButton;
     private Mode previousMode;
 
     @Override
@@ -44,7 +42,7 @@ public class SettingsFormActivity extends FormActivity {
 
         Intent intent = getIntent();
 
-        int kidId = intent.getIntExtra(KidActivity.KID_ID, -1);
+        long kidId = intent.getLongExtra(KID_ID, -1);
         int previousModeOrdinal = intent.getIntExtra(PREVIOUS_MODE_ORDINAL, -1);
 
         kid = Daos.KID.getById(kidId);
@@ -70,7 +68,7 @@ public class SettingsFormActivity extends FormActivity {
         }
 
 
-        ipInput = (EditText) findViewById(R.id.monitor_ip_address_input);
+        EditText ipInput = (EditText) findViewById(R.id.monitor_ip_address_input);
         ipValidator =
                 new EditTextValidator(
                         ipInput,
@@ -79,7 +77,7 @@ public class SettingsFormActivity extends FormActivity {
                 );
         ipInput.setText(settings.getMonitorIp());
 
-        portInput = (EditText) findViewById(R.id.monitor_port_input);
+        EditText portInput = (EditText) findViewById(R.id.monitor_port_input);
         portValidator =
                 new EditTextValidator(
                         portInput,
@@ -124,7 +122,7 @@ public class SettingsFormActivity extends FormActivity {
             }
         });
 
-        deleteButton = (Button) findViewById(R.id.delete_kid_button);
+        Button deleteButton = (Button) findViewById(R.id.delete_kid_button);
         deleteButton.setOnClickListener(new Button.OnClickListener() {
 
             @Override
@@ -143,7 +141,7 @@ public class SettingsFormActivity extends FormActivity {
 
     private void startPreviousActivity(){
         Intent intent = new Intent(this, previousMode.getActivityClass());
-        intent.putExtra(InitialActivity.KID_ID, kid.getId());
+        intent.putExtra(PictogramsActivity.KID_ID, kid.getId());
         startActivity(intent);
     }
 }

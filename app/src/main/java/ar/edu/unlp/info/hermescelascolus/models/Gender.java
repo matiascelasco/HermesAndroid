@@ -17,10 +17,6 @@ public enum Gender {
         return value;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public static Gender getByValue(String value){
         for (Gender g: Gender.values()){
             if (g.getValue().equals(value)){

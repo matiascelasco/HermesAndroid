@@ -1,6 +1,5 @@
 package ar.edu.unlp.info.hermescelascolus.adapters.pictograms;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,18 +8,18 @@ import android.widget.ImageView;
 import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
-import ar.edu.unlp.info.hermescelascolus.activities.TabsWithPictogramsActivity;
+import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public abstract class PictogramsAdapter extends BaseAdapter {
 
-    protected TabsWithPictogramsActivity context;
+    protected PictogramsActivity context;
     protected List<Pictogram> pictograms;
     private String title;
 
     protected abstract void subscribeHandlers(ImageView v, Pictogram pictogram);
 
-    protected PictogramsAdapter(TabsWithPictogramsActivity context, String title, List<Pictogram> pictograms){
+    protected PictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms){
         this.context = context;
         this.title = title;
         this.pictograms = pictograms;

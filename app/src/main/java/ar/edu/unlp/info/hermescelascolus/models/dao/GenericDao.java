@@ -6,20 +6,17 @@ import android.database.sqlite.SQLiteDatabase;
 
 import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 
-/**
- * Created by Facu on 17/02/2016.
- */
 public class GenericDao {
 
     //from here
     protected SQLiteDatabase db;
-    protected DBHelper dbHelper;
+    private DBHelper dbHelper;
 
-    public GenericDao(Context context){
+    GenericDao(Context context){
         dbHelper = DBHelper.getInstance(context);
     }
 
-    public void open() {
+    protected void open() {
         try {
             db = dbHelper.getWritableDatabase();
         }
@@ -28,7 +25,7 @@ public class GenericDao {
         }
     }
 
-    public void close() {
+    protected void close() {
         dbHelper.close();
     }
 }

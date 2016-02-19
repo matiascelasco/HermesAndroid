@@ -1,9 +1,6 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
-import android.app.Activity;
-
 import ar.edu.unlp.info.hermescelascolus.activities.KidActivity;
-import ar.edu.unlp.info.hermescelascolus.activities.TabsWithPictogramsActivity;
 import ar.edu.unlp.info.hermescelascolus.activities.TherapistActivity;
 
 public enum Mode {

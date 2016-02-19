@@ -102,7 +102,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
     }
 
     @Override
-    public Kid getById(int id) {
+    public Kid getById(long id) {
 
         this.open();
         try {

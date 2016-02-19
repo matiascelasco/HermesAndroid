@@ -6,7 +6,9 @@ public interface Dao <T>{
 
     List<T> all();
 
-    T getById(int id);
+    T getById(long id);
 
-    public void save(T t);
+    void save(T t);
+
+    //TODO: delete
 }

@@ -6,12 +6,12 @@ import android.widget.ImageView;
 
 import java.util.List;
 
-import ar.edu.unlp.info.hermescelascolus.activities.TabsWithPictogramsActivity;
+import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class RemovablePictogramsAdapter extends PictogramsAdapter {
 
-    public RemovablePictogramsAdapter(TabsWithPictogramsActivity context, String title, List<Pictogram> pictograms) {
+    public RemovablePictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms) {
         super(context, title, pictograms);
     }
 

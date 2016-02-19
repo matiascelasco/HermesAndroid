@@ -1,8 +1,6 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
 
-import java.util.Set;
-
 public class Settings {
 
     private static final Settings instance = new Settings();

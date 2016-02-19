@@ -27,7 +27,6 @@ public class TabFragment extends Fragment {
         // properly.
         View rootView = inflater.inflate(
                 R.layout.fragment_collection_object, container, false);
-        Bundle args = getArguments();
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
 
         if (pictogramsAdapter == null){

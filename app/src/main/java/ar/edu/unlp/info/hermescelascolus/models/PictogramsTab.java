@@ -2,9 +2,6 @@ package ar.edu.unlp.info.hermescelascolus.models;
 
 import java.util.List;
 
-/**
- * Created by matias on 13/02/16.
- */
 public class PictogramsTab {
     private String title;
     private List<Pictogram> pictograms;

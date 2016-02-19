@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Set;
 
 import ar.edu.unlp.info.hermescelascolus.R;
-import ar.edu.unlp.info.hermescelascolus.activities.TabsWithPictogramsActivity;
+import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class SelectablePictogramsAdapter extends PictogramsAdapter {
 
     private Set<Pictogram> selectedPictograms = new HashSet<>();
 
-    public SelectablePictogramsAdapter(TabsWithPictogramsActivity context,
+    public SelectablePictogramsAdapter(PictogramsActivity context,
                                        String title,
                                        List<Pictogram> pictograms,
                                        Set<Pictogram> selectedPictograms) {

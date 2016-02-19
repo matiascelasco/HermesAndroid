@@ -21,7 +21,7 @@ import ar.edu.unlp.info.hermescelascolus.models.Mode;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
-public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
+public abstract class PictogramsActivity extends AppCompatActivity {
 
     public final static String KID_ID = "ar.edu.unlp.info.hermescelascolus.KID_ID";
     protected Kid kid;
@@ -30,14 +30,15 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
     protected abstract List<PictogramsAdapter> getPictogramsAdapters();
 
 
-        @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabs_with_pictograms);
 
         Intent intent = getIntent();
-        int kidId = intent.getIntExtra(InitialActivity.KID_ID, -1);
+        long kidId = intent.getLongExtra(KID_ID, -1);
         kid = Daos.KID.getById(kidId);
+
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), getPictogramsAdapters()));
@@ -67,18 +68,20 @@ public abstract class TabsWithPictogramsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 intent = new Intent(this, SettingsFormActivity.class);
+                intent.putExtra(SettingsFormActivity.KID_ID, kid.getId());
                 intent.putExtra(SettingsFormActivity.PREVIOUS_MODE_ORDINAL, getCurrentMode().ordinal());
                 break;
             case R.id.action_therapist_mode:
                 intent = new Intent(this, TherapistActivity.class);
+                intent.putExtra(KID_ID, kid.getId());
                 break;
             case R.id.action_kid_mode:
                 intent = new Intent(this, KidActivity.class);
+                intent.putExtra(KID_ID, kid.getId());
                 break;
             default:
                 throw new IllegalStateException("Option does not exist");
         }
-        intent.putExtra(KID_ID, kid.getId());
         startActivity(intent);
         return true;
     }
