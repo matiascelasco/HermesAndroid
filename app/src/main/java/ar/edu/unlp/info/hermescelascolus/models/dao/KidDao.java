@@ -3,8 +3,6 @@ package ar.edu.unlp.info.hermescelascolus.models.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 import java.util.ArrayList;
@@ -16,7 +14,6 @@ import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Gender;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
-import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 
 public class KidDao extends GenericDao implements Dao<Kid> {
 
@@ -26,7 +23,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
 
     private Kid loadFromCursor(Cursor cursor){
         Kid k = new Kid();
-        k.setId(Integer.parseInt(cursor.getString(0)));
+        k.setId(cursor.getInt(0));
         k.setName(cursor.getString(1));
         k.setSurname(cursor.getString(2));
         k.setGender(Gender.getByValue(cursor.getString(3)));
@@ -60,20 +57,16 @@ public class KidDao extends GenericDao implements Dao<Kid> {
         cv.put("pictogramSize", 0);
 
         // Inserting Row
-        try{
-            db.beginTransaction();
-            if(k.getId() == 0) {
-                db.insert("Kid", null, cv);
-            }
-            else{ //the kid already exists
-                db.update("Kid", cv, "_id=" + k.getId(), null);
-            }
-            db.setTransactionSuccessful();
-        }catch (SQLiteException e){
-            e.printStackTrace();
-        } finally {
-            db.endTransaction();
+        db.beginTransaction();
+        if(k.getId() == 0) {
+            long id = db.insert("Kid", null, cv);
+            k.setId(id);
         }
+        else{ //the kid already exists
+            db.update("Kid", cv, "_id=" + k.getId(), null);
+        }
+        db.setTransactionSuccessful();
+        db.endTransaction();
         this.close();
         }
 

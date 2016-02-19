@@ -18,11 +18,11 @@ public class Kid {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -40,7 +40,7 @@ public class Kid {
 
     public void setSurname(String surname) { this.surname = surname; }
 
-    private int id;
+    private long id;
     private String name;
     private String surname;
     private Gender gender;

@@ -31,6 +31,4 @@ public class GenericDao {
     public void close() {
         dbHelper.close();
     }
-
-    //to here
 }
