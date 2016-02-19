@@ -40,7 +40,7 @@ public class NewKidFormActivity extends FormActivity {
 
     private void startKidActivity(Kid kid){
         Intent intent = new Intent(this, KidActivity.class);
-        intent.putExtra(InitialActivity.KID_ID, kid.getId());
+        intent.putExtra(PictogramsActivity.KID_ID, kid.getId());
         startActivity(intent);
         //TODO: not sure if its a good idea to use always KID_ID from InitialActivity
     }

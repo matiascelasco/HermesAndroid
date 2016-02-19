@@ -172,7 +172,7 @@ public class PictogramsArrayDao implements Dao<Pictogram> {
         if (array == null){
             loadArray();
         }
-        return array.get(id - 1);
+        return array.get((int) id - 1);
     }
 
     public void save(Pictogram p){}

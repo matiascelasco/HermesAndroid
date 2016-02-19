@@ -20,3 +20,10 @@ CREATE TABLE Pictograms (
     path VARCHAR(20) NOT NULL,
     id_category INTEGER NOT NULL
 );
+
+CREATE TABLE KidCategory (
+    kid_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+    FOREIGN KEY(kid_id) REFERENCES Kid(_id),
+    UNIQUE(kid_id, category_id) ON CONFLICT REPLACE
+);

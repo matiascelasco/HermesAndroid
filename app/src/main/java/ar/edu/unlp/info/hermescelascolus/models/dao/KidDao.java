@@ -17,24 +17,14 @@ import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class KidDao extends GenericDao implements Dao<Kid> {
 
+    private static final String SELECT_QUERY =
+            "SELECT _id, name, surname, gender, pictogramSize FROM Kid";
+
+    private static final String SELECT_RELATED_CATEGORIES_QUERY =
+            "SELECT kid_id, category_id FROM KidCategory WHERE kid_id = ?";
+
     public KidDao(Context context) {
         super(context);
-    }
-
-    private Kid loadFromCursor(Cursor cursor){
-        Kid k = new Kid();
-        k.setId(cursor.getInt(0));
-        k.setName(cursor.getString(1));
-        k.setSurname(cursor.getString(2));
-        k.setGender(Gender.getByValue(cursor.getString(3)));
-        //category random
-        for (Category c : randomSample(Arrays.asList(Category.values()))) {
-            k.addCategory(c);
-        }
-        for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
-            k.addPictogram(p);
-        }
-        return k;
     }
 
     private static <T> List<T> randomSample(List<T> list){
@@ -63,59 +53,70 @@ public class KidDao extends GenericDao implements Dao<Kid> {
             k.setId(id);
         }
         else{ //the kid already exists
-            db.update("Kid", cv, "_id=" + k.getId(), null);
+            update("Kid", cv, "_id = ?", String.valueOf(k.getId()));
+        }
+        delete("KidCategory", "kid_id = ?", String.valueOf(k.getId()));
+        for (Category c :Category.values()) {
+            cv = new ContentValues();
+            cv.put("kid_id", k.getId());
+            cv.put("category_id", c.ordinal());
+            db.insert("KidCategory", null, cv);
         }
         db.setTransactionSuccessful();
         db.endTransaction();
         this.close();
-        }
+    }
+
+    private Kid loadFromCursor(Cursor cursor){
+        Kid k = new Kid();
+        k.setId(cursor.getInt(0));
+        k.setName(cursor.getString(1));
+        k.setSurname(cursor.getString(2));
+        k.setGender(Gender.getByValue(cursor.getString(3)));
+        return k;
+    }
 
     @Override
     public List<Kid> all() {
         ArrayList<Kid> kids = new ArrayList<>();
         this.open();
         try {
-            Cursor cursor = db.rawQuery("SELECT _id, name, surname, gender, pictogramSize FROM Kid", null);
-
+            Cursor cursor = db.rawQuery(SELECT_QUERY, null);
             while (cursor.moveToNext()) {
-                 Kid k = new Kid();
-                 k.setId(Integer.parseInt(cursor.getString(0)));
-                 k.setName(cursor.getString(1));
-                 k.setSurname(cursor.getString(2));
-                 k.setGender(Gender.getByValue(cursor.getString(3)));
-                 //category random
-                 for (Category c : randomSample(Arrays.asList(Category.values()))) {
-                     k.addCategory(c);
-                 }
-                 for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
-                     k.addPictogram(p);
-                 }
-                 // Adding kid to list
                  kids.add(this.loadFromCursor(cursor));
+            }
+            for (Kid kid : kids) {
+                loadRelated(kid);
             }
         }
         catch (SQLiteException e) {
             e.printStackTrace();
         }
         return kids;
-        //return Daos.KID.all();
+    }
+
+    private void loadRelated(Kid kid) {
+
+        Cursor cursor = db.rawQuery(SELECT_RELATED_CATEGORIES_QUERY, new String[]{String.valueOf(kid.getId())});
+        while (cursor.moveToNext()) {
+            kid.addCategory(Category.values()[cursor.getInt(1)]);
+        }
+        for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
+            kid.addPictogram(p);
+        }
     }
 
     @Override
     public Kid getById(long id) {
-
         this.open();
-        try {
-            Cursor cursor = db.rawQuery("SELECT _id, name, surname, gender, pictogramSize FROM Kid where _id =?", new String[]{String.valueOf(id)});
-            if (cursor.moveToNext()) {
-                return this.loadFromCursor(cursor);
-            } else {
-                return (new Kid());
-            }
-        } catch (SQLiteException e) {
-            e.printStackTrace();
+        Cursor cursor = db.rawQuery(SELECT_QUERY + " WHERE _id = ?", new String[]{String.valueOf(id)});
+        if (cursor.moveToNext()) {
+            Kid kid = loadFromCursor(cursor);
+            loadRelated(kid);
+            return kid;
+        } else {
+            throw new RuntimeException(String.format("Kid with id %d not found", id));
         }
-        return (new Kid());
     }
 
 }

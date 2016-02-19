@@ -95,6 +95,10 @@ public class SettingsFormActivity extends FormActivity {
             public void onClick(View v) {
                 try {
                     retrieveDataFromBasicKidFields();
+
+                    for (Category c : kid.getCategories()) {
+                        kid.removeCategory(c);
+                    }
                     for (Category c: Category.values()) {
                         if (checkboxByCategory.get(c).isChecked()){
                             kid.addCategory(c);
@@ -111,6 +115,9 @@ public class SettingsFormActivity extends FormActivity {
                     settings.setMonitorPort(port);
 
                     //TODO: Daos.SETTINGS.save(settings);
+                    for (Category c : kid.getCategories()) {
+                        System.out.println(c.name());
+                    }
                     Daos.KID.save(kid);
 
                     startPreviousActivity();
