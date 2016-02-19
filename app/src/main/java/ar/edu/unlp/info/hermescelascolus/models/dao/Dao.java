@@ -8,5 +8,5 @@ public interface Dao <T>{
 
     T getById(int id);
 
-    public void save(T t);
+    int save(T t);
 }

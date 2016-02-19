@@ -51,7 +51,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
         return sample;
     }
 
-    public void save(Kid k){
+    public int save(Kid k){
         this.open();
         ContentValues cv = new ContentValues();
         cv.put("name", k.getName());
@@ -63,7 +63,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
         try{
             db.beginTransaction();
             if(k.getId() == 0) {
-                db.insert("Kid", null, cv);
+                k.setId((int) db.insert("Kid", null, cv));
             }
             else{ //the kid already exists
                 db.update("Kid", cv, "_id=" + k.getId(), null);
@@ -75,6 +75,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
             db.endTransaction();
         }
         this.close();
+        return k.getId();
         }
 
     @Override

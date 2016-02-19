@@ -175,5 +175,5 @@ public class PictogramsArrayDao implements Dao<Pictogram> {
         return array.get(id - 1);
     }
 
-    public void save(Pictogram p){}
+    public int save(Pictogram p){ return 0;}
 }

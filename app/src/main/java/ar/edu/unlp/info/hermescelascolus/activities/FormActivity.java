@@ -57,6 +57,8 @@ public class FormActivity extends AppCompatActivity {
         kid.setName(firstName);
         kid.setSurname(lastName);
         kid.setGender(gender);
+
+        System.out.println(gender);
     }
 
 }

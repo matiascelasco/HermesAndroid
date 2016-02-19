@@ -25,9 +25,9 @@ public class InitialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
 
-        //testing
-        getApplicationContext().deleteDatabase("celascolus.db");
-        KidSeeder ks = new KidSeeder(getApplicationContext());
+       //testing
+       // getApplicationContext().deleteDatabase("celascolus.db");
+       // KidSeeder ks = new KidSeeder(getApplicationContext());
         Daos.initialize(getApplicationContext());
 
         ArrayAdapter<Kid> adapter = new ArrayAdapter<>(
