@@ -8,7 +8,7 @@ import ar.edu.unlp.info.hermescelascolus.models.dao.PictogramDao;
 
 public class PictogramSeeder {
 
-    public PictogramSeeder(Context context){
+    public static void seed(Context context){
         //this method load all the pictograms in the database
         PictogramDao picDao = new PictogramDao(context);
         for(Pictogram p:  Daos.PICTOGRAM.all()){

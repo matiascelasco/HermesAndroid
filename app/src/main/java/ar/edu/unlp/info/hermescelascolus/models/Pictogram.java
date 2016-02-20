@@ -34,10 +34,28 @@ public class Pictogram {
         this.soundId = soundId;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     private int id;
     private int imageId;
     private int soundId;
     private Category category;
+    private String name;
+    private String path;
 
     @Override
     public boolean equals(Object o) {
