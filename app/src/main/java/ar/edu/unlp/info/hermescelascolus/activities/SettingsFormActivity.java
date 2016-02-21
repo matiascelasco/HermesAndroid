@@ -11,7 +11,11 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 
 import java.util.EnumMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.Mode;
@@ -55,6 +59,8 @@ public class SettingsFormActivity extends FormActivity {
         lastNameInput.setText(kid.getSurname());
         genderInput.setSelection(kid.getGender().ordinal());
 
+        Set<Category> categories = new HashSet<>(kid.getCategories());
+
         GridLayout checkboxContainer = (GridLayout) findViewById(R.id.category_checkboxes);
         for (Category c: Category.values()){
             CheckBox checkBox = new AppCompatCheckBox(this);
@@ -62,9 +68,7 @@ public class SettingsFormActivity extends FormActivity {
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             checkBox.setText(c.name());
-            checkBox.setChecked(kid.hasCategory(c));
-            System.out.println(kid.getCategories().size());
-            System.out.println(kid.hasCategory(c));
+            checkBox.setChecked(categories.contains(c));
             checkboxContainer.addView(checkBox);
             checkboxByCategory.put(c, checkBox);
         }
@@ -97,12 +101,15 @@ public class SettingsFormActivity extends FormActivity {
             public void onClick(View v) {
                 try {
                     retrieveDataFromBasicKidFields();
-                    kid.clearCategories();
+
+                    LinkedList<Category> checkedCategories = new LinkedList<>();
                     for (Category c : Category.values()) {
                         if (checkboxByCategory.get(c).isChecked()) {
-                            kid.addCategory(c);
+                            checkedCategories.add(c);
                         }
                     }
+                    kid.setCategories(checkedCategories);
+
                     //TODO: pictogram size
 
                     String ip = ipValidator.getValue();

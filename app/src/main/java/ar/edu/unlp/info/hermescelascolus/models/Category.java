@@ -6,11 +6,11 @@ import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
-public enum Category {
-    PISTA,
-    ESTABLO,
-    NECESIDADES,
-    EMOCIONES;
+public enum Category implements Model {
+    PISTA("/track"),
+    ESTABLO("/barn"),
+    NECESIDADES("/needs"),
+    EMOCIONES("/emotions");
 
     public List<Pictogram> getPictograms(){
         //TODO: change this implementation when db is ready
@@ -21,6 +21,20 @@ public enum Category {
             }
         }
         return Collections.unmodifiableList(pictograms);
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    Category(String dir) {
+        this.path = dir;
+    }
+
+    private String path;
+
+    public long getId(){
+        return (long) ordinal();
     }
 
 }

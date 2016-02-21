@@ -1,21 +1,54 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumMap;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-public class Kid {
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
-    public String getName() {
-        return name;
+public class Kid implements Model {
+
+    private long id;
+    private String name;
+    private String surname;
+    private Gender gender;
+
+    public Kid(){
+        id = 0;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Collection<Pictogram> getPictograms() {
+        return Daos.KID_PICTOGRAM.getRelated(this);
+    }
+
+    public void addPictogram(Pictogram pictogram){
+        Daos.KID_PICTOGRAM.add(this, pictogram);
+    }
+
+    public void removePictogram(Pictogram pictogram){
+        Daos.KID_PICTOGRAM.remove(this, pictogram);
+    }
+
+    public Collection<Category> getCategories() {
+        return Daos.KID_CATEGORY.getRelated(this);
+    }
+
+    public void setCategories(Collection<Category> categories){
+        Daos.KID_CATEGORY.setRelated(this, categories);
+    }
+
+    public Set<Pictogram> getPictogramsSetByCategory(Category c){
+        Set<Pictogram> set = new HashSet<>();
+        for (Pictogram p: Daos.KID_PICTOGRAM.getRelated(this)){
+            if (p.getCategory().equals(c)){
+                set.add(p);
+            }
+        }
+        return set;
+    }
+
+    public String getFullName() {
+        return name + " " + surname;
     }
 
     public long getId() {
@@ -26,71 +59,33 @@ public class Kid {
         this.id = id;
     }
 
-    public String toString(){
-        return name+" "+surname;
+    public String getName() {
+        return name;
     }
 
-    public Gender getGender(){ return this.gender; }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Gender getGender(){
+        return this.gender;
+    }
 
     public void setGender(Gender g){
         this.gender = g;
     }
 
-    public String getSurname() { return surname; }
-
-    public void setSurname(String surname) { this.surname = surname; }
-
-    private long id;
-    private String name;
-    private String surname;
-    private Gender gender;
-    private List<Pictogram> pictograms = new ArrayList<>();
-    private List<Category> categories = new ArrayList<>();
-    private Map<Category, Set<Pictogram>> pictogramsByCategory = new EnumMap<>(Category.class);
-
-    public Kid(){
-        id=0;
-        for (Category c: Category.values()){
-            pictogramsByCategory.put(c, new HashSet<Pictogram>());
-        }
-    }
-
-    public List<Pictogram> getPictograms() {
-        return Collections.unmodifiableList(pictograms);
-    }
-
-    public void addPictogram(Pictogram pictogram){
-        pictograms.add(pictogram);
-        pictogramsByCategory.get(pictogram.getCategory()).add(pictogram);
-    }
-
-    public void removePictogram(Pictogram pictogram){
-        pictograms.remove(pictogram);
-        pictogramsByCategory.get(pictogram.getCategory()).remove(pictogram);
-    }
-
-    public List<Category> getCategories() {
-        return Collections.unmodifiableList(categories);
-    }
-
-    public void addCategory(Category category){
-        categories.add(category);
-    }
-
-    public Set<Pictogram> getPictogramsSetByCategory(Category c){
-        return Collections.unmodifiableSet(pictogramsByCategory.get(c));
+    public String toString(){
+        return getFullName();
     }
 
 
-    public boolean hasCategory(Category c) {
-        return categories.contains(c);
-    }
-
-    public String getFullName() {
-        return name + " " + surname;
-    }
-
-    public void clearCategories() {
-        categories.clear();
-    }
 }

@@ -5,6 +5,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
@@ -19,10 +21,10 @@ public abstract class PictogramsAdapter extends BaseAdapter {
 
     protected abstract void subscribeHandlers(ImageView v, Pictogram pictogram);
 
-    protected PictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms){
+    protected PictogramsAdapter(PictogramsActivity context, String title, Collection<Pictogram> pictograms){
         this.context = context;
         this.title = title;
-        this.pictograms = pictograms;
+        this.pictograms = new ArrayList<>(pictograms);
     }
 
     public int getCount() {

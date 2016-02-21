@@ -14,11 +14,12 @@ CREATE TABLE Kid (
     pictogramSize INTEGER NOT NULL
 );
 
-CREATE TABLE Pictograms (
+CREATE TABLE Pictogram (
     _id INTEGER PRIMARY KEY NOT NULL,
+    category_id INTEGER NOT NULL,
     name VARCHAR(20) NOT NULL,
-    path VARCHAR(20) NOT NULL,
-    id_category INTEGER NOT NULL
+    image_id INTEGER NOT NULL,
+    sound_id INTEGER NOT NULL
 );
 
 CREATE TABLE KidCategory (
@@ -26,4 +27,12 @@ CREATE TABLE KidCategory (
     category_id INTEGER NOT NULL,
     FOREIGN KEY(kid_id) REFERENCES Kid(_id),
     UNIQUE(kid_id, category_id) ON CONFLICT REPLACE
+);
+
+CREATE TABLE KidPictogram (
+    kid_id INTEGER NOT NULL,
+    pictogram_id INTEGER NOT NULL,
+    FOREIGN KEY(kid_id) REFERENCES Kid(_id),
+    FOREIGN KEY(pictogram_id) REFERENCES Pictogram(_id),
+    UNIQUE(kid_id, pictogram_id) ON CONFLICT REPLACE
 );

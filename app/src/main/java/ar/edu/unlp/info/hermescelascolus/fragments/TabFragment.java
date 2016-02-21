@@ -32,7 +32,9 @@ public class TabFragment extends Fragment {
         if (pictogramsAdapter == null){
             // TODO: sometimes this exception is thrown, I don't know why
             // maybe this thing of the setPictogramsAdapter was a bad idea
-            throw new IllegalStateException("setPictogramsAdapter must be called after the constructor");
+            throw new IllegalStateException(
+                    "setPictogramsAdapter must be called after the constructor"
+            );
         }
         grid.setAdapter(pictogramsAdapter);
 

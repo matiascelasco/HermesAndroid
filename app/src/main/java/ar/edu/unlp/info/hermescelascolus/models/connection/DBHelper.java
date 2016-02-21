@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // don't accidentally leak an Activity's context.
         if (sInstance == null) {
             context = c;
-            sInstance = new DBHelper(context.getApplicationContext());
+            sInstance = new DBHelper(context);
         }
         return sInstance;
     }
@@ -36,7 +36,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
 
         //this method must execute if the database file does not exists
         InputStream in = context.getResources().openRawResource(R.raw.schema);

@@ -8,6 +8,7 @@ import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.TalkingPictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Mode;
+import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class KidActivity extends PictogramsActivity {
 
@@ -25,7 +26,11 @@ public class KidActivity extends PictogramsActivity {
         // That's why the TalkingPictogramsAdapter subclass is used
 
         // The first tab has the kid pictograms
-        adapters.add(new TalkingPictogramsAdapter(this, kid.getName(), kid.getPictograms()));
+        List<Pictogram> pictograms = new ArrayList<>();
+        for (Pictogram p: kid.getPictograms()) {
+            pictograms.add(p);
+        }
+        adapters.add(new TalkingPictogramsAdapter(this, kid.getName(), pictograms));
 
         // The following tabs contains the pictograms from that category enabled for that kid
         for (Category c : kid.getCategories()) {

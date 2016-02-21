@@ -3,118 +3,74 @@ package ar.edu.unlp.info.hermescelascolus.models.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
-import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Gender;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
-import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class KidDao extends GenericDao implements Dao<Kid> {
 
     private static final String SELECT_QUERY =
             "SELECT _id, name, surname, gender, pictogramSize FROM Kid";
 
-    private static final String SELECT_RELATED_CATEGORIES_QUERY =
-            "SELECT kid_id, category_id FROM KidCategory WHERE kid_id = ?";
-
     public KidDao(Context context) {
         super(context);
     }
 
-    private static <T> List<T> randomSample(List<T> list){
-        Random random = new Random();
-        List<T> sample = new ArrayList<>();
-        for (T elem: list) {
-            if (random.nextInt(2) == 1){
-                sample.add(elem);
-            }
-        }
-        return sample;
-    }
-
     public void save(Kid k){
-        this.open();
         ContentValues cv = new ContentValues();
         cv.put("name", k.getName());
         cv.put("surname", k.getSurname());
         cv.put("gender", k.getGender().getValue());
         cv.put("pictogramSize", 0);
 
-        // Inserting Row
-        db.beginTransaction();
+//        db.beginTransaction();
+
         if(k.getId() == 0) {
             long id = db.insert("Kid", null, cv);
+            if (id == -1){
+                throw new RuntimeException("DB error");
+            }
             k.setId(id);
-        }
-        else{ //the kid already exists
+        } else { //the kid already exists
             update("Kid", cv, "_id = ?", String.valueOf(k.getId()));
         }
-        delete("KidCategory", "kid_id = ?", String.valueOf(k.getId()));
-        for (Category c: k.getCategories()) {
-            cv = new ContentValues();
-            cv.put("kid_id", k.getId());
-            cv.put("category_id", c.ordinal());
-            db.insert("KidCategory", null, cv);
-        }
-        db.setTransactionSuccessful();
-        db.endTransaction();
-        this.close();
+
+//        db.setTransactionSuccessful();
+//        db.endTransaction();
+    }
+
+    @Override
+    public void delete(Kid kid) {
+        delete("Kid", "_id = ?", String.valueOf(kid.getId()));
     }
 
     private Kid loadFromCursor(Cursor cursor){
-        Kid k = new Kid();
-        k.setId(cursor.getInt(0));
-        k.setName(cursor.getString(1));
-        k.setSurname(cursor.getString(2));
-        k.setGender(Gender.getByValue(cursor.getString(3)));
-        return k;
+        Kid kid = new Kid();
+        kid.setId(cursor.getInt(0));
+        kid.setName(cursor.getString(1));
+        kid.setSurname(cursor.getString(2));
+        kid.setGender(Gender.getByValue(cursor.getString(3)));
+        return kid;
     }
 
     @Override
     public List<Kid> all() {
-        ArrayList<Kid> kids = new ArrayList<>();
-        this.open();
-        try {
-            Cursor cursor = db.rawQuery(SELECT_QUERY, null);
-            while (cursor.moveToNext()) {
-                 kids.add(this.loadFromCursor(cursor));
-            }
-            for (Kid kid : kids) {
-                loadRelated(kid);
-            }
-        }
-        catch (SQLiteException e) {
-            e.printStackTrace();
+        List<Kid> kids = new ArrayList<>();
+        Cursor cursor = rawQuery(SELECT_QUERY);
+        while (cursor.moveToNext()) {
+             kids.add(this.loadFromCursor(cursor));
         }
         return kids;
     }
 
-    private void loadRelated(Kid kid) {
-
-        Cursor cursor = db.rawQuery(SELECT_RELATED_CATEGORIES_QUERY, new String[]{String.valueOf(kid.getId())});
-        while (cursor.moveToNext()) {
-            System.out.println("WTFFFFFFFFFFFFFFFFF" + String.valueOf(cursor.getInt(1)));
-            kid.addCategory(Category.values()[cursor.getInt(1)]);
-        }
-        for (Pictogram p: randomSample(Daos.PICTOGRAM.all())) {
-            kid.addPictogram(p);
-        }
-    }
-
     @Override
     public Kid getById(long id) {
-        this.open();
-        Cursor cursor = db.rawQuery(SELECT_QUERY + " WHERE _id = ?", new String[]{String.valueOf(id)});
+        Cursor cursor = rawQuery(SELECT_QUERY + " WHERE _id = ?", String.valueOf(id));
         if (cursor.moveToNext()) {
-            Kid kid = loadFromCursor(cursor);
-            loadRelated(kid);
-            return kid;
+            return loadFromCursor(cursor);
         } else {
             throw new RuntimeException(String.format("Kid with id %d not found", id));
         }
