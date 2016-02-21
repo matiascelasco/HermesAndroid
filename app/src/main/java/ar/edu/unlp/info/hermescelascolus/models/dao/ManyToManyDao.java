@@ -36,40 +36,31 @@ public class ManyToManyDao<A extends Model, B extends Model> extends GenericDao 
 
     @Override
     public Collection<B> getRelated(A a) {
-//        open();
         List<B> list = new ArrayList<>();
         Cursor cursor = rawQuery(selectQuery);
         while (cursor.moveToNext()) {
             long id = (long) cursor.getInt(0);
             list.add(secondDao.getById(id));
         }
-//        close();
+        cursor.close();
         return list;
     }
 
     @Override
     public void setRelated(A a, Collection<B> bs) {
-//        open();
         //TODO: transaction
         delete(tableName, firstColumnName + " = ?", String.valueOf(a.getId()));
         for (B b: bs){
-            addOnceOpened(a, b);
+            add(a, b);
         }
-//        close();
-    }
-
-    private void addOnceOpened(A a, B b) {
-        ContentValues cv = new ContentValues();
-        cv.put(firstColumnName, a.getId());
-        cv.put(secondColumnName, b.getId());
-        db.insert(tableName, null, cv);
     }
 
     @Override
     public void add(A a, B b) {
-//        open();
-        addOnceOpened(a, b);
-//        close();
+        ContentValues cv = new ContentValues();
+        cv.put(firstColumnName, a.getId());
+        cv.put(secondColumnName, b.getId());
+        db.insert(tableName, null, cv);
     }
 
     @Override

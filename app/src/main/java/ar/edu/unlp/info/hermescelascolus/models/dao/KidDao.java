@@ -63,6 +63,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
         while (cursor.moveToNext()) {
              kids.add(this.loadFromCursor(cursor));
         }
+        cursor.close();
         return kids;
     }
 
@@ -70,7 +71,9 @@ public class KidDao extends GenericDao implements Dao<Kid> {
     public Kid getById(long id) {
         Cursor cursor = rawQuery(SELECT_QUERY + " WHERE _id = ?", String.valueOf(id));
         if (cursor.moveToNext()) {
-            return loadFromCursor(cursor);
+            Kid kid = loadFromCursor(cursor);
+            cursor.close();
+            return kid;
         } else {
             throw new RuntimeException(String.format("Kid with id %d not found", id));
         }

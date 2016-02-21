@@ -39,6 +39,7 @@ public class PictogramDao extends GenericDao implements Dao<Pictogram>{
         while (cursor.moveToNext()) {
             pictograms.add(this.loadFromCursor(cursor));
         }
+        cursor.close();
         return pictograms;
     }
 
@@ -47,7 +48,9 @@ public class PictogramDao extends GenericDao implements Dao<Pictogram>{
 //        this.open();
         Cursor cursor = rawQuery(SELECT + " WHERE id = ?", String.valueOf(id));
         if (cursor.moveToNext()) {
-            return this.loadFromCursor(cursor);
+            Pictogram p = this.loadFromCursor(cursor);
+            cursor.close();
+            return p;
         } else {
             throw new RuntimeException(String.format("Pictogram with id %d not found", id));
         }
