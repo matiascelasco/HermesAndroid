@@ -130,7 +130,7 @@ public class SettingsFormActivity extends FormActivity {
 
             @Override
             public void onClick(View v) {
-                //TODO: Daos.KID.delete(kid);
+                Daos.KID.delete(kid);
                 startInitialActivity();
             }
         });
