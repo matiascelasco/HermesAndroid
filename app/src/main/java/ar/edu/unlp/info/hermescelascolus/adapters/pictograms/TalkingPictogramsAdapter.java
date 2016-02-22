@@ -27,8 +27,12 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
         v.setOnClickListener(new ImageView.OnClickListener(){
             @Override
             public void onClick(View v) {
+
+               /* MediaPlayer mp = MediaPlayer.create(context, pictogram.getSoundId());
+                mp.start();*/
                 //try to load the sound from the assets folder
                 try {
+                    System.out.println("trying to load: "+pictogram.getPath() + "/" + pictogram.getName() + ".m4a");
                     AssetFileDescriptor afd = appContext.getAssets().openFd(pictogram.getPath() + "/" + pictogram.getName() + ".m4a");
                     MediaPlayer mp = new MediaPlayer();
                     mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
@@ -36,10 +40,9 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                     mp.start();
                 }
                 catch(IOException e){
-
+                    System.out.println(e.getMessage());
                 }
-                //MediaPlayer mp = MediaPlayer.create(context, pictogram.getSoundId());
-                //mp.start();
+                
             }
         });
     }
