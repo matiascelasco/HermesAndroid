@@ -52,17 +52,6 @@ public class SelectablePictogramsAdapter extends PictogramsAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View v = super.getView(position, convertView, parent);
-        if (position == 0 && pictograms.get(position).getCategory().equals(Category.PISTA)){
-            System.out.println(
-                    String.format(
-                            "%s: getView %d. pictogramId %d. %d selectedPictograms",
-                            pictograms.get(position).getCategory().name(),
-                            position,
-                            pictograms.get(position).getId(),
-                            selectedPictograms.size()
-                    )
-            );
-        }
         if (selectedPictograms.contains(pictograms.get(position))) {
             addBorder(v);
         } else {

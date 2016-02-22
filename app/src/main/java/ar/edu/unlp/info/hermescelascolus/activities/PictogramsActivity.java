@@ -90,10 +90,11 @@ public abstract class PictogramsActivity extends AppCompatActivity {
 
     public void pictogramSelected(Pictogram pictogram){
         kid.addPictogram(pictogram);
+        System.out.format("Este pibe tiene %d pictograms\n", Daos.KID_PICTOGRAM.getRelated(kid).size());
     }
 
     public void pictogramUnselected(Pictogram pictogram){
         kid.removePictogram(pictogram);
-        System.out.println("pictogramUnselected super");
+        System.out.format("Este pibe tiene %d pictograms\n", Daos.KID_PICTOGRAM.getRelated(kid).size());
     }
 }

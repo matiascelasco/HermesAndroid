@@ -30,6 +30,7 @@ CREATE TABLE KidCategory (
 );
 
 CREATE TABLE KidPictogram (
+    _id INTEGER PRIMARY KEY NOT NULL,
     kid_id INTEGER NOT NULL,
     pictogram_id INTEGER NOT NULL,
     FOREIGN KEY(kid_id) REFERENCES Kid(_id),
