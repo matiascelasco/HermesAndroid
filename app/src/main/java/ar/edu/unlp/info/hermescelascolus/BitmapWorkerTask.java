@@ -38,8 +38,7 @@ public class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
         return decodeSampledBitmapFromResource(res, data, 100, 100);
     }
 
-    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
-                                                         int reqWidth, int reqHeight) {
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
 
 // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
