@@ -60,7 +60,10 @@ public class ManyToManyDao<A extends Model, B extends Model> extends GenericDao 
         ContentValues cv = new ContentValues();
         cv.put(firstColumnName, a.getId());
         cv.put(secondColumnName, b.getId());
-        db.insert(tableName, null, cv);
+        long id = db.insert(tableName, null, cv);
+        if (id == -1){
+            throw new RuntimeException("BD error");
+        }
     }
 
     @Override

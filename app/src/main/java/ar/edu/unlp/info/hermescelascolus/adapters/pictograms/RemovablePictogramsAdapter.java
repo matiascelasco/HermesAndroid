@@ -12,7 +12,7 @@ import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class RemovablePictogramsAdapter extends PictogramsAdapter {
 
-    public RemovablePictogramsAdapter(PictogramsActivity context, String title, Collection<Pictogram> pictograms) {
+    public RemovablePictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms) {
         super(context, title, pictograms);
     }
 

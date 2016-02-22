@@ -19,7 +19,7 @@ public class Daos {
 
     public static void initialize(Context context){
         if (KID == null){
-            context.deleteDatabase(DBHelper.DATABASE_NAME);  //TODO: just for testing. remove later
+//            context.deleteDatabase(DBHelper.DATABASE_NAME);  //TODO: just for testing. remove later
             KID = new KidDao(context);
             CATEGORY = new CategoryDao();
             PICTOGRAM = new PictogramDao(context);
@@ -37,8 +37,8 @@ public class Daos {
                     "pictogram_id",
                     PICTOGRAM
             );
-            KidSeeder.seed();  //TODO: just for testing. remove later
-            PictogramSeeder.seed();
+//            KidSeeder.seed();  //TODO: just for testing. remove later
+//            PictogramSeeder.seed();  //TODO: move to database on create
         }
     }
 

@@ -10,6 +10,7 @@ import java.util.Set;
 
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
+import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class SelectablePictogramsAdapter extends PictogramsAdapter {
@@ -51,8 +52,21 @@ public class SelectablePictogramsAdapter extends PictogramsAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View v = super.getView(position, convertView, parent);
-        if (selectedPictograms.contains(pictograms.get(position))){
+        if (position == 0 && pictograms.get(position).getCategory().equals(Category.PISTA)){
+            System.out.println(
+                    String.format(
+                            "%s: getView %d. pictogramId %d. %d selectedPictograms",
+                            pictograms.get(position).getCategory().name(),
+                            position,
+                            pictograms.get(position).getId(),
+                            selectedPictograms.size()
+                    )
+            );
+        }
+        if (selectedPictograms.contains(pictograms.get(position))) {
             addBorder(v);
+        } else {
+            removeBorder(v);
         }
         return v;
     }

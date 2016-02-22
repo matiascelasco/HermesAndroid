@@ -94,5 +94,6 @@ public abstract class PictogramsActivity extends AppCompatActivity {
 
     public void pictogramUnselected(Pictogram pictogram){
         kid.removePictogram(pictogram);
+        System.out.println("pictogramUnselected super");
     }
 }
