@@ -38,7 +38,7 @@ public class Daos {
                     PICTOGRAM
             );
             KidSeeder.seed();  //TODO: just for testing. remove later
-            PictogramSeeder.seed();
+            PictogramSeeder.seed();  //TODO: move to database on create
         }
     }
 

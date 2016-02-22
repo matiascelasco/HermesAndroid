@@ -46,7 +46,7 @@ public class PictogramDao extends GenericDao implements Dao<Pictogram>{
     @Override
     public Pictogram getById(long id) {
 //        this.open();
-        Cursor cursor = rawQuery(SELECT + " WHERE id = ?", String.valueOf(id));
+        Cursor cursor = rawQuery(SELECT + " WHERE _id = ?", String.valueOf(id));
         if (cursor.moveToNext()) {
             Pictogram p = this.loadFromCursor(cursor);
             cursor.close();

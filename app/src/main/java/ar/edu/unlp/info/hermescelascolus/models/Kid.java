@@ -1,7 +1,12 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
@@ -12,21 +17,30 @@ public class Kid implements Model {
     private String name;
     private String surname;
     private Gender gender;
+    private List<Pictogram> pictograms = null;
+    private Map<Category, Set<Pictogram>> pictogramsByCategory = null;
 
     public Kid(){
         id = 0;
     }
 
-    public Collection<Pictogram> getPictograms() {
-        return Daos.KID_PICTOGRAM.getRelated(this);
+    public List<Pictogram> getPictograms() {
+        if (pictograms == null){
+            pictograms = new ArrayList<>(Daos.KID_PICTOGRAM.getRelated(this));
+        }
+        return Collections.unmodifiableList(pictograms);
     }
 
     public void addPictogram(Pictogram pictogram){
         Daos.KID_PICTOGRAM.add(this, pictogram);
+        pictograms.add(pictogram);
+        pictogramsByCategory.get(pictogram.getCategory()).add(pictogram);
     }
 
     public void removePictogram(Pictogram pictogram){
         Daos.KID_PICTOGRAM.remove(this, pictogram);
+        pictograms.remove(pictogram);
+        pictogramsByCategory.get(pictogram.getCategory()).remove(pictogram);
     }
 
     public Collection<Category> getCategories() {
@@ -37,14 +51,17 @@ public class Kid implements Model {
         Daos.KID_CATEGORY.setRelated(this, categories);
     }
 
-    public Set<Pictogram> getPictogramsSetByCategory(Category c){
-        Set<Pictogram> set = new HashSet<>();
-        for (Pictogram p: Daos.KID_PICTOGRAM.getRelated(this)){
-            if (p.getCategory().equals(c)){
-                set.add(p);
+    public Set<Pictogram> getPictogramsSetByCategory(Category category){
+        if (pictogramsByCategory == null){
+            pictogramsByCategory = new EnumMap<>(Category.class);
+            for (Category c: Daos.CATEGORY.all()) {
+                pictogramsByCategory.put(c, new HashSet<Pictogram>());
+            }
+            for (Pictogram p: pictograms) {
+                pictogramsByCategory.get(p.getCategory()).add(p);
             }
         }
-        return set;
+        return pictogramsByCategory.get(category);
     }
 
     public String getFullName() {

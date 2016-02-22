@@ -21,10 +21,10 @@ public abstract class PictogramsAdapter extends BaseAdapter {
 
     protected abstract void subscribeHandlers(ImageView v, Pictogram pictogram);
 
-    protected PictogramsAdapter(PictogramsActivity context, String title, Collection<Pictogram> pictograms){
+    protected PictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms){
         this.context = context;
         this.title = title;
-        this.pictograms = new ArrayList<>(pictograms);
+        this.pictograms = pictograms;
     }
 
     public int getCount() {

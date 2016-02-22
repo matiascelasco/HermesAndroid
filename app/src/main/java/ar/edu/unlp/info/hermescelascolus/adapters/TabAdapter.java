@@ -19,7 +19,7 @@ public class TabAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public synchronized Fragment getItem(int position) {
         TabFragment fragment = new TabFragment();
         fragment.setPictogramsAdapter(pictogramsAdapters.get(position));
 //        Pair<String, List<Pictogram>> pair = tabs.get(position);
