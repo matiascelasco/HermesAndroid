@@ -1,5 +1,10 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +13,25 @@ import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.TalkingPictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Mode;
+import ar.edu.unlp.info.hermescelascolus.models.Notification;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class KidActivity extends PictogramsActivity {
+    private ArrayList<Notification> notifications = new ArrayList<Notification>();
 
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void clearOutNotifications(){
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     protected int getMenuId() {

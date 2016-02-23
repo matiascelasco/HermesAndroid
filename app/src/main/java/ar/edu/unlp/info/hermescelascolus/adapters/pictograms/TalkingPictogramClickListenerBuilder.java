@@ -3,15 +3,18 @@ package ar.edu.unlp.info.hermescelascolus.adapters.pictograms;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TalkingPictogramClickListenerBuilder {
-    public static ImageView.OnClickListener buildListener(final Context appContext, final Pictogram pictogram){
+    public static ImageView.OnClickListener buildListener(final Context appContext, final Pictogram pictogram, final Context actContext){
         return new ImageView.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -28,6 +31,16 @@ public class TalkingPictogramClickListenerBuilder {
                 }
                 catch(IOException e){
                     throw new RuntimeException(e);
+                }
+
+                //test notification sending
+                ConnectivityManager connMgr = (ConnectivityManager) actContext.getSystemService(appContext.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    Toast.makeText(appContext, "device is connected", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    //store notifications
                 }
 
             }

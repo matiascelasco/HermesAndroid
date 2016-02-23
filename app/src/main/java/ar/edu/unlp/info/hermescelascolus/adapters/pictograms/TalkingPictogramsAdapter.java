@@ -14,15 +14,17 @@ import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TalkingPictogramsAdapter extends PictogramsAdapter {
     Context appContext;
+    Context activityContext;
 
     public TalkingPictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms, Context appContext) {
         super(context, title, pictograms);
         this.appContext = appContext;
+        this.activityContext = context;
     }
 
     @Override
     protected void subscribeHandlers(ImageView v, final Pictogram pictogram) {
-        v.setOnClickListener(TalkingPictogramClickListenerBuilder.buildListener(appContext, pictogram));
+        v.setOnClickListener(TalkingPictogramClickListenerBuilder.buildListener(appContext, pictogram, activityContext));
     }
 
 }

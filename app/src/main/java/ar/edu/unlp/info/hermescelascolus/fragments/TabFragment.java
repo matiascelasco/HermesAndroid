@@ -64,7 +64,7 @@ public class TabFragment extends Fragment {
                 image.setOnClickListener(
                         TalkingPictogramClickListenerBuilder.buildListener(
                                 getActivity().getApplicationContext(),
-                                pictogram
+                                pictogram, this.getContext()
                         )
                 );
 
