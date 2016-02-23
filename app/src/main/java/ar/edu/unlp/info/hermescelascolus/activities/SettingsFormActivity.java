@@ -13,7 +13,6 @@ import android.widget.GridLayout;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -118,9 +117,6 @@ public class SettingsFormActivity extends FormActivity {
                     settings.setMonitorPort(port);
 
                     //TODO: Daos.SETTINGS.save(settings);
-                    for (Category c : kid.getCategories()) {
-                        System.out.println(c.name());
-                    }
                     Daos.KID.save(kid);
 
                     startPreviousActivity();

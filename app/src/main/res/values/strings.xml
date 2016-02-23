@@ -23,4 +23,8 @@
     <string name="port_required_msg">Falta el puerto</string>
     <string name="ip_invalid">Dirección IP inválida</string>
     <string name="port_invalid">Puerto inválido</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="students">ALUMN@S</string>
+    <string name="cedica_logo">Logo de Cedica</string>
 </resources>

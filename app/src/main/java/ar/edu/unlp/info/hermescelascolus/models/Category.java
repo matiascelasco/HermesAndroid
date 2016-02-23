@@ -23,7 +23,7 @@ public enum Category implements Model {
         return Collections.unmodifiableList(pictograms);
     }
 
-    public String getPath() {
+    public String getDir() {
         return path;
     }
 

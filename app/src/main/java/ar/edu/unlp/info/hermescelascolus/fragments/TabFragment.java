@@ -11,8 +11,7 @@ import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 
 public class TabFragment extends Fragment {
-    public static final String TITLE = "category";
-    public static final String PICTOGRAM_IDS = "pictograms";
+    public final static String LAYOUT_ID = "ar.edu.unlp.info.hermescelascolus.LAYOUT_ID";
 
     private PictogramsAdapter pictogramsAdapter;
 
@@ -23,10 +22,12 @@ public class TabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        // The last two arguments ensure LayoutParams are inflated
-        // properly.
+        Bundle args = getArguments();
         View rootView = inflater.inflate(
-                R.layout.fragment_collection_object, container, false);
+                args.getInt(LAYOUT_ID),
+                container,
+                false
+        );
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
 
         if (pictogramsAdapter == null){

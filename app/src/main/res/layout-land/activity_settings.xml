@@ -17,8 +17,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <include layout="@layout/kid_settings"/>
+            android:layout_height="wrap_content">
+            <include layout="@layout/activity_settings_kid"/>
         </LinearLayout>
     </ScrollView>
 
@@ -29,8 +29,13 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <include layout="@layout/general_settings"/>
+            android:layout_height="wrap_content">
+            <include layout="@layout/activity_settings_general"/>
+            <Button
+                android:id="@+id/save_button"
+                android:text="@string/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 

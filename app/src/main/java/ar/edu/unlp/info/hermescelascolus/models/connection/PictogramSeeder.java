@@ -1,15 +1,11 @@
 package ar.edu.unlp.info.hermescelascolus.models.connection;
 
-import android.content.Context;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
-import ar.edu.unlp.info.hermescelascolus.models.dao.PictogramDao;
 
 public class PictogramSeeder {
 
@@ -65,8 +61,6 @@ public class PictogramSeeder {
     };
 
 
-    private static List<Pictogram> array;
-
     private static Category getCategory(int i){
         if (0 <= i && i <= 6){
             return Category.NECESIDADES;
@@ -92,9 +86,101 @@ public class PictogramSeeder {
             pictogram.setImageId((int) table[i][IMAGE_ID]);
             pictogram.setSoundId((int) table[i][SOUND_ID]);
             pictogram.setCategory(getCategory(i));
-            System.out.println(i);
             Daos.PICTOGRAM.save(pictogram);
         }
     }
 
 }
+
+/*package ar.edu.unlp.info.hermescelascolus.models.connection;
+
+import android.content.Context;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.models.Category;
+import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
+import ar.edu.unlp.info.hermescelascolus.models.dao.PictogramDao;
+
+public class PictogramSeeder {
+
+    private static String names[] = {
+            "no",
+            "si",
+            "banio",
+            "sed_ninia",
+            "sed_ninio",
+            "cansada",
+            "cansado",
+            "dolorida",
+            "dolorido",
+            "triste_ninia",
+            "triste_ninio",
+            "sorprendida",
+            "sorprendido",
+            "asustada",
+            "asustado",
+            "contenta",
+            "contento",
+            "enojada",
+            "enojado",
+            "caballo",
+            "casco",
+            "cepillo",
+            "zanahoria",
+            "limpieza",
+            "escarba_vasos",
+            "montura",
+            "matra",
+            "pasto",
+            "riendas",
+            "rasqueta_dura",
+            "rasqueta_blanda",
+            "caballo",
+            "caballo2",
+            "caballo3",
+            "chapas",
+            "burbujas",
+            "broches",
+            "aro",
+            "letras",
+            "maracas",
+            "palos",
+            "cubos",
+            "pato",
+            "pelota",
+            "tarima",
+    };
+
+    private static Category getCategory(int i){
+        if (0 <= i && i <= 6){
+            return Category.NECESIDADES;
+        }
+        if (7 <= i && i <= 18){
+            return Category.EMOCIONES;
+        }
+        if (19 <= i && i <= 30){
+            return Category.ESTABLO;
+        }
+        if (31 <= i && i <= 42){
+            return Category.PISTA;
+        }
+        throw new RuntimeException(
+                "Category not found for pictogram with order index " + String.valueOf(i)
+        );
+    }
+
+    public static void seed(){
+        for (int i = 0; i < 43; i++){
+            Pictogram pictogram = new Pictogram();
+            pictogram.setName(names[i]);
+            pictogram.setCategory(getCategory(i));
+            Daos.PICTOGRAM.save(pictogram);
+        }
+    }
+
+}
+*/

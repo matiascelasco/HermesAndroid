@@ -2,8 +2,6 @@ package ar.edu.unlp.info.hermescelascolus.models.dao;
 
 import java.util.List;
 
-import ar.edu.unlp.info.hermescelascolus.models.Kid;
-
 public interface Dao <T>{
 
     List<T> all();

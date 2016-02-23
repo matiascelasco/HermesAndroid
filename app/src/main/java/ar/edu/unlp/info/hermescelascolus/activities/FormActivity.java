@@ -1,5 +1,6 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import ar.edu.unlp.info.hermescelascolus.validation.EditTextValidator;
 import ar.edu.unlp.info.hermescelascolus.validation.NonEmptyStringValidator;
 import ar.edu.unlp.info.hermescelascolus.validation.ValidationError;
 
+@SuppressLint("Registered")
 public class FormActivity extends AppCompatActivity {
     protected Kid kid;
     protected EditText firstNameInput;
@@ -58,7 +60,6 @@ public class FormActivity extends AppCompatActivity {
         kid.setSurname(lastName);
         kid.setGender(gender);
 
-        System.out.println(gender);
     }
 
 }

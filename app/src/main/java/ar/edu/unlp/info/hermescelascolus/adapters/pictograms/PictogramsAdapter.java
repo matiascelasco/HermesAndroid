@@ -5,8 +5,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
@@ -53,6 +51,7 @@ public abstract class PictogramsAdapter extends BaseAdapter {
         }
 
         BitmapWorkerTask.loadBitmap(pictograms.get(position).getImageId(), imageView);
+//        AssetBitmapWorkerTask.loadBitmap(pictograms.get(position).getImagePath(), imageView);
         subscribeHandlers(imageView, pictograms.get(position));
 
         return imageView;

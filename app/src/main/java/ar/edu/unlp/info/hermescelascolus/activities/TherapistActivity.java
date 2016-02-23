@@ -63,7 +63,6 @@ public class TherapistActivity extends PictogramsActivity {
     public void pictogramUnselected(Pictogram pictogram){
         super.pictogramUnselected(pictogram);
         adapterByCategory.get(pictogram.getCategory()).notifyDataSetChanged();
-        System.out.println("pictogramUnselected child");
     }
 
 }
