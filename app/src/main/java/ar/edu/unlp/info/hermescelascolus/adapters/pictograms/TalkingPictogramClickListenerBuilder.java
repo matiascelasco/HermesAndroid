@@ -20,7 +20,6 @@ public class TalkingPictogramClickListenerBuilder {
                 mp.start();*/
                 //try to load the sound from the assets folder
                 try {
-                    System.out.println(pictogram.getSoundPath());
                     AssetFileDescriptor afd = appContext.getAssets().openFd(pictogram.getSoundPath());
                     MediaPlayer mp = new MediaPlayer();
                     mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
