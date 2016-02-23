@@ -22,26 +22,7 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
 
     @Override
     protected void subscribeHandlers(ImageView v, final Pictogram pictogram) {
-        v.setOnClickListener(new ImageView.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-               /* MediaPlayer mp = MediaPlayer.create(context, pictogram.getSoundId());
-                mp.start();*/
-                //try to load the sound from the assets folder
-                try {
-                    AssetFileDescriptor afd = appContext.getAssets().openFd(pictogram.getSoundPath());
-                    MediaPlayer mp = new MediaPlayer();
-                    mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                    mp.prepare();
-                    mp.start();
-                }
-                catch(IOException e){
-                    throw new RuntimeException(e);
-                }
-
-            }
-        });
+        v.setOnClickListener(TalkingPictogramClickListenerBuilder.buildListener(appContext, pictogram));
     }
 
 }

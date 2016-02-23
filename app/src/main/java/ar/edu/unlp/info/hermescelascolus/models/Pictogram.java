@@ -1,6 +1,35 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
+
 public class Pictogram implements Model {
+
+    private static Pictogram yes;
+    private static Pictogram no;
+
+    private static void setYesNo(){
+        for (Pictogram p: Daos.PICTOGRAM.all()){
+            if (p.getName().equals("si")){
+                yes = p;
+            }
+            if (p.getName().equals("no")){
+                no = p;
+            }
+        }
+    }
+    public static Pictogram getYes() {
+        if (yes == null){
+            setYesNo();
+        }
+        return yes;
+    }
+
+    public static Pictogram getNo() {
+        if (no == null){
+            setYesNo();
+        }
+        return no;
+    }
 
     public int getImageId() {
         return imageId;

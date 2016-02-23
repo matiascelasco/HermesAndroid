@@ -22,7 +22,11 @@ public class PictogramDao extends GenericDao implements Dao<Pictogram>{
     private Pictogram loadFromCursor(Cursor cursor){
         Pictogram p = new Pictogram();
         p.setId(cursor.getInt(0));
-        p.setCategory(Daos.CATEGORY.getById(cursor.getInt(1)));
+        if (!cursor.isNull(1)){
+            p.setCategory(Daos.CATEGORY.getById(cursor.getInt(1)));
+        } else {
+            p.setCategory(null);
+        }
         p.setName(cursor.getString(2));
         p.setImageId(cursor.getInt(3));
         p.setSoundId(cursor.getInt(4));
@@ -61,7 +65,7 @@ public class PictogramDao extends GenericDao implements Dao<Pictogram>{
         cv.put("name", pictogram.getName());
         Category category = pictogram.getCategory();
         if (category == null){
-            cv.put("category_id", "null");
+            cv.putNull("category_id");
         }
         else {
             cv.put("category_id", category.getId());
