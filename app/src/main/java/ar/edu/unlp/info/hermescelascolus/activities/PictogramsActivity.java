@@ -18,6 +18,7 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.List;
 
+import ar.edu.unlp.info.hermescelascolus.AssetBitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.adapters.TabAdapter;

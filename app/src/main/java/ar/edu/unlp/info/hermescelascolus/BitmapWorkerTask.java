@@ -26,8 +26,7 @@ public class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
     }
 
     public BitmapWorkerTask(ImageView imageView) {
-
-// Use a WeakReference to ensure the ImageView can be garbage collected
+        // Use a WeakReference to ensure the ImageView can be garbage collected
         imageViewReference = new WeakReference<>(imageView);
     }
 
@@ -40,15 +39,15 @@ public class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
 
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
 
-// First decode with inJustDecodeBounds=true to check dimensions
+        // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(res, resId, options);
 
-// Calculate inSampleSize
+        // Calculate inSampleSize
         options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
 
-// Decode bitmap with inSampleSize set
+        // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
     }

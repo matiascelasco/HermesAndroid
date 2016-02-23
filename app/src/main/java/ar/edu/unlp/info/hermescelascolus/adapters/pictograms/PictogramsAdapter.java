@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+import ar.edu.unlp.info.hermescelascolus.AssetBitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
