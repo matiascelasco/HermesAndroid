@@ -1,10 +1,13 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,7 +15,6 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.List;
 
-import ar.edu.unlp.info.hermescelascolus.AssetBitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.adapters.TabAdapter;
@@ -22,6 +24,7 @@ import ar.edu.unlp.info.hermescelascolus.models.Mode;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
+@SuppressLint("Registered")
 public abstract class PictogramsActivity extends AppCompatActivity {
 
     public final static String KID_ID = "ar.edu.unlp.info.hermescelascolus.KID_ID";
@@ -45,8 +48,14 @@ public abstract class PictogramsActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_logo);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setIcon(R.mipmap.ic_logo);
+        } else {
+            Log.e("hermes", "Couldn't get support action bar");
+        }
 
 
         BitmapWorkerTask.setResources(getResources());

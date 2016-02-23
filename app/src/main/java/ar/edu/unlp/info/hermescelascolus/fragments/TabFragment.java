@@ -11,8 +11,6 @@ import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 
 public class TabFragment extends Fragment {
-    public static final String TITLE = "category";
-    public static final String PICTOGRAM_IDS = "pictograms";
     public final static String LAYOUT_ID = "ar.edu.unlp.info.hermescelascolus.LAYOUT_ID";
 
     private PictogramsAdapter pictogramsAdapter;

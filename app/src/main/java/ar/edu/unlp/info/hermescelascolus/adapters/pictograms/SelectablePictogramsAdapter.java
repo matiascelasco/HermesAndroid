@@ -10,7 +10,6 @@ import java.util.Set;
 
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
-import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class SelectablePictogramsAdapter extends PictogramsAdapter {
