@@ -7,6 +7,7 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class PictogramDao extends GenericDao implements Dao<Pictogram>{
@@ -58,7 +59,13 @@ public class PictogramDao extends GenericDao implements Dao<Pictogram>{
 //        this.open();
         ContentValues cv = new ContentValues();
         cv.put("name", pictogram.getName());
-        cv.put("category_id", pictogram.getCategory().getId());
+        Category category = pictogram.getCategory();
+        if (category == null){
+            cv.put("category_id", "null");
+        }
+        else {
+            cv.put("category_id", category.getId());
+        }
         cv.put("image_id", pictogram.getImageId());
         cv.put("sound_id", pictogram.getSoundId());
 
