@@ -62,7 +62,10 @@ public class PictogramSeeder {
 
 
     private static Category getCategory(int i){
-        if (0 <= i && i <= 6){
+        if (0 <= i && i <= 1) {
+            return null;
+        }
+        if (2 <= i && i <= 6){
             return Category.NECESIDADES;
         }
         if (7 <= i && i <= 18){
