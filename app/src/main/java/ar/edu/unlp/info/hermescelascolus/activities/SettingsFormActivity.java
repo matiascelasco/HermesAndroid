@@ -118,9 +118,6 @@ public class SettingsFormActivity extends FormActivity {
                     settings.setMonitorPort(port);
 
                     //TODO: Daos.SETTINGS.save(settings);
-                    for (Category c : kid.getCategories()) {
-                        System.out.println(c.name());
-                    }
                     Daos.KID.save(kid);
 
                     startPreviousActivity();

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import ar.edu.unlp.info.hermescelascolus.AssetBitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
@@ -53,6 +54,7 @@ public abstract class PictogramsAdapter extends BaseAdapter {
         }
 
         BitmapWorkerTask.loadBitmap(pictograms.get(position).getImageId(), imageView);
+//        AssetBitmapWorkerTask.loadBitmap(pictograms.get(position).getImagePath(), imageView);
         subscribeHandlers(imageView, pictograms.get(position));
 
         return imageView;

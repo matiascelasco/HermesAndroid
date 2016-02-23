@@ -42,13 +42,19 @@ public class Pictogram implements Model {
         this.name = name;
     }
 
-    public String getPath() {
+    private String getDir() {
         if (name.equals("si") || name.equals("no")){
-            return "/";
+            return "";
         }
-        return category.getPath();
+        return category.getDir();
     }
 
+    public String getSoundPath() {
+        return String.format("%s/%s.m4a", getDir(), name);
+    }
+    public String getImagePath() {
+        return String.format("%s/%s.png", getDir(), name);
+    }
 
     private long id;
     private int imageId;
@@ -71,4 +77,5 @@ public class Pictogram implements Model {
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
+
 }

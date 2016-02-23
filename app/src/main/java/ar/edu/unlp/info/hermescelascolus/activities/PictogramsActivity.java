@@ -12,6 +12,7 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.List;
 
+import ar.edu.unlp.info.hermescelascolus.AssetBitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.adapters.TabAdapter;
@@ -49,12 +50,13 @@ public abstract class PictogramsActivity extends AppCompatActivity {
 
 
         BitmapWorkerTask.setResources(getResources());
+//        AssetBitmapWorkerTask.setAppContext(getApplicationContext());
     }
 
     protected void updatePictograms(long kidId){
         kid = Daos.KID.getById(kidId);
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), getPictogramsAdapters()));
+        viewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), getPictogramsAdapters(), getCurrentMode()));
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
@@ -95,11 +97,9 @@ public abstract class PictogramsActivity extends AppCompatActivity {
 
     public void pictogramSelected(Pictogram pictogram){
         kid.addPictogram(pictogram);
-        System.out.format("Este pibe tiene %d pictograms\n", Daos.KID_PICTOGRAM.getRelated(kid).size());
     }
 
     public void pictogramUnselected(Pictogram pictogram){
         kid.removePictogram(pictogram);
-        System.out.format("Este pibe tiene %d pictograms\n", Daos.KID_PICTOGRAM.getRelated(kid).size());
     }
 }
