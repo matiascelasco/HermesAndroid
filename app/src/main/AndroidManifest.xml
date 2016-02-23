@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
@@ -20,11 +20,23 @@
         </activity>
         <activity
             android:name=".activities.KidActivity"
-            android:screenOrientation="sensor"/>
+            android:screenOrientation="sensor"
+            android:parentActivityName=".activities.InitialActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.InitialActivity" />
+        </activity>
         <activity
             android:name=".activities.SettingsFormActivity"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".activities.TherapistActivity"/>
+        <activity android:name=".activities.TherapistActivity"
+            android:parentActivityName=".activities.InitialActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.InitialActivity" />
+        </activity>
         <activity
             android:name=".activities.NewKidFormActivity"
             android:windowSoftInputMode="stateHidden"/>

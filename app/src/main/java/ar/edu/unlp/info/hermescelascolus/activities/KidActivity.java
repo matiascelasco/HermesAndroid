@@ -46,4 +46,10 @@ public class KidActivity extends PictogramsActivity {
         return Mode.KID;
     }
 
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        updatePictograms(kid.getId());
+    }
+
 }

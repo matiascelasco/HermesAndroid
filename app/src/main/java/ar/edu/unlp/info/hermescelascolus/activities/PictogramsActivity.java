@@ -37,22 +37,26 @@ public abstract class PictogramsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         long kidId = intent.getLongExtra(KID_ID, -1);
+
+        updatePictograms(kidId);
+
+        setTitle(kid.getName());
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        BitmapWorkerTask.setResources(getResources());
+    }
+
+    protected void updatePictograms(long kidId){
         kid = Daos.KID.getById(kidId);
-
-
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), getPictogramsAdapters()));
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
-//        setTitle(kid.getFullName()); TODO: restore this line and delete the following
-        setTitle(kid.getFullName() + " " + getCurrentMode().name());
-
-
-            Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
-        BitmapWorkerTask.setResources(getResources());
     }
 
     @Override
@@ -80,7 +84,7 @@ public abstract class PictogramsActivity extends AppCompatActivity {
                 intent.putExtra(KID_ID, kid.getId());
                 break;
             default:
-                throw new IllegalStateException("Option does not exist");
+                return super.onOptionsItemSelected(item);
         }
         startActivity(intent);
         return true;
