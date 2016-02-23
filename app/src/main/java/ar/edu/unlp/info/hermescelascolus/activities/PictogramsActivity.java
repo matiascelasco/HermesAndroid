@@ -40,7 +40,7 @@ public abstract class PictogramsActivity extends AppCompatActivity {
 
         updatePictograms(kidId);
 
-        setTitle(kid.getName());
+        setTitle(kid.getFullName());
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
