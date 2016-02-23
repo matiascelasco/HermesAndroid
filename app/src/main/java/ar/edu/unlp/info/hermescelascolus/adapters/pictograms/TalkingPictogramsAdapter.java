@@ -30,17 +30,16 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 mp.start();*/
                 //try to load the sound from the assets folder
                 try {
-                    System.out.println("trying to load: "+pictogram.getPath() + "/" + pictogram.getName() + ".m4a");
-                    AssetFileDescriptor afd = appContext.getAssets().openFd(pictogram.getPath() + "/" + pictogram.getName() + ".m4a");
+                    AssetFileDescriptor afd = appContext.getAssets().openFd(pictogram.getSoundPath());
                     MediaPlayer mp = new MediaPlayer();
                     mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                     mp.prepare();
                     mp.start();
                 }
                 catch(IOException e){
-                    System.out.println(e.getMessage());
+                    throw new RuntimeException(e);
                 }
-                
+
             }
         });
     }
