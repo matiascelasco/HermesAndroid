@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.Gender;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
@@ -41,10 +44,15 @@ public class FormActivity extends AppCompatActivity {
 
 
         genderInput = (Spinner) findViewById(R.id.gender_input);
-        ArrayAdapter<Gender> adapter = new ArrayAdapter<>(
+        List<GenderWrapper> wrappers = new ArrayList<>();
+        for (Gender gender: Gender.values()){
+            wrappers.add(new GenderWrapper(getResources().getString(gender.getNameStringId()), gender));
+        }
+
+        ArrayAdapter<GenderWrapper> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
-                Gender.values()
+                wrappers
         );
         genderInput.setAdapter(adapter);
 
@@ -54,7 +62,7 @@ public class FormActivity extends AppCompatActivity {
     protected void retrieveDataFromBasicKidFields() throws ValidationError {
         String firstName = firstNameValidator.getValue();
         String lastName = lastNameValidator.getValue();
-        Gender gender = (Gender) genderInput.getSelectedItem();
+        Gender gender = ((GenderWrapper) genderInput.getSelectedItem()).getGender();
 
         kid.setName(firstName);
         kid.setSurname(lastName);

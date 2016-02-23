@@ -9,12 +9,16 @@ public enum Gender {
     MALE("M", R.string.male),
     FEMALE("F", R.string.female);
 
-    private String name;
+    private int nameStringId;
     private String value;
+
+    public int getNameStringId() {
+        return nameStringId;
+    }
 
     Gender(String value, int nameStringId){
         this.value = value;
-        this.name = Resources.getSystem().getString(nameStringId);
+        this.nameStringId = nameStringId;
     }
 
     public String getValue() {
@@ -30,9 +34,8 @@ public enum Gender {
         throw new RuntimeException(String.format("\"%s\" is not the value of any gender", value));
     }
 
-    @Override
     public String toString(){
-        return name;
+        return value;
     }
 
 
