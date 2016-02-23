@@ -32,6 +32,9 @@ public class Kid implements Model {
     }
 
     public void addPictogram(Pictogram pictogram){
+        if (pictogram.getCategory() == null){
+            throw new RuntimeException("YES-NO pictograms can't be assigned to a kid");
+        }
         Daos.KID_PICTOGRAM.add(this, pictogram);
         pictograms.add(pictogram);
         pictogramsByCategory.get(pictogram.getCategory()).add(pictogram);
@@ -58,7 +61,9 @@ public class Kid implements Model {
                 pictogramsByCategory.put(c, new HashSet<Pictogram>());
             }
             for (Pictogram p: pictograms) {
-                pictogramsByCategory.get(p.getCategory()).add(p);
+                if (p.getCategory() != null){
+                    pictogramsByCategory.get(p.getCategory()).add(p);
+                }
             }
         }
         return pictogramsByCategory.get(category);

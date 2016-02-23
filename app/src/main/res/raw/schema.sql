@@ -16,7 +16,7 @@ CREATE TABLE Kid (
 
 CREATE TABLE Pictogram (
     _id INTEGER PRIMARY KEY NOT NULL,
-    category_id INTEGER NOT NULL,
+    category_id INTEGER,
     name VARCHAR(20) NOT NULL,
     image_id INTEGER NOT NULL,
     sound_id INTEGER NOT NULL
@@ -37,3 +37,4 @@ CREATE TABLE KidPictogram (
     FOREIGN KEY(pictogram_id) REFERENCES Pictogram(_id),
     UNIQUE(kid_id, pictogram_id) ON CONFLICT REPLACE
 );
+

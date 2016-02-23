@@ -1,6 +1,35 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
+
 public class Pictogram implements Model {
+
+    private static Pictogram yes;
+    private static Pictogram no;
+
+    private static void setYesNo(){
+        for (Pictogram p: Daos.PICTOGRAM.all()){
+            if (p.getName().equals("si")){
+                yes = p;
+            }
+            if (p.getName().equals("no")){
+                no = p;
+            }
+        }
+    }
+    public static Pictogram getYes() {
+        if (yes == null){
+            setYesNo();
+        }
+        return yes;
+    }
+
+    public static Pictogram getNo() {
+        if (no == null){
+            setYesNo();
+        }
+        return no;
+    }
 
     public int getImageId() {
         return imageId;
@@ -42,19 +71,19 @@ public class Pictogram implements Model {
         this.name = name;
     }
 
-    private String getDir() {
+    private String getDirPath() {
         if (name.equals("si") || name.equals("no")){
             return "";
         }
-        return category.getDir();
+        return category.getDir() + "/";
     }
 
     public String getSoundPath() {
-        return String.format("%s/%s.m4a", getDir(), name);
+        return getDirPath() + name + ".m4a";
     }
 
     public String getImagePath() {
-        return String.format("%s/%s.png", getDir(), name);
+        return getDirPath() + name + ".png";
     }
 
     private long id;
