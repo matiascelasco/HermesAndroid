@@ -18,7 +18,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <include layout="@layout/kid_settings"/>
+            <include layout="@layout/activity_settings_kid"/>
         </LinearLayout>
     </ScrollView>
 
@@ -30,7 +30,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <include layout="@layout/general_settings"/>
+            <include layout="@layout/activity_settings_general"/>
         </LinearLayout>
     </ScrollView>
 
