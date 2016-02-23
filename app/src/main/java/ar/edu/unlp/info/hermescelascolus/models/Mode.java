@@ -20,7 +20,7 @@ public enum Mode {
     public Class<?> getActivityClass() {
         return activityClass;
     }
-    public int getFragmentLayourId() {
+    public int getFragmentLayoutId() {
         return fragmentLayoutId;
     }
 }

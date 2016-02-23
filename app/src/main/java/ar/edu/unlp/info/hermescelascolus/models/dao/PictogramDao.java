@@ -2,14 +2,11 @@ package ar.edu.unlp.info.hermescelascolus.models.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.unlp.info.hermescelascolus.R;
-import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class PictogramDao extends GenericDao implements Dao<Pictogram>{

@@ -25,4 +25,6 @@
     <string name="port_invalid">Puerto inválido</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
+    <string name="students">ALUMN@S</string>
+    <string name="cedica_logo">Logo de Cedica</string>
 </resources>

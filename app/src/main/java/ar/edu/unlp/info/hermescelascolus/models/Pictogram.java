@@ -52,6 +52,7 @@ public class Pictogram implements Model {
     public String getSoundPath() {
         return String.format("%s/%s.m4a", getDir(), name);
     }
+
     public String getImagePath() {
         return String.format("%s/%s.png", getDir(), name);
     }

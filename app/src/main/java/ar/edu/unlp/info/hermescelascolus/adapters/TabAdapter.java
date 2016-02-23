@@ -33,7 +33,7 @@ public class TabAdapter extends FragmentStatePagerAdapter {
 //            array.add(pictogram.getId());
 //        }
 //        args.putIntegerArrayList(TabFragment.PICTOGRAM_IDS, array);
-        args.putInt(TabFragment.LAYOUT_ID, mode.getFragmentLayourId());
+        args.putInt(TabFragment.LAYOUT_ID, mode.getFragmentLayoutId());
         fragment.setArguments(args);
         return fragment;
     }

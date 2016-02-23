@@ -1,15 +1,11 @@
 package ar.edu.unlp.info.hermescelascolus.models.connection;
 
-import android.content.Context;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
-import ar.edu.unlp.info.hermescelascolus.models.dao.PictogramDao;
 
 public class PictogramSeeder {
 
@@ -64,8 +60,6 @@ public class PictogramSeeder {
         {"tarima",          R.drawable.tarima,          R.raw.tarima}
     };
 
-
-    private static List<Pictogram> array;
 
     private static Category getCategory(int i){
         if (0 <= i && i <= 6){

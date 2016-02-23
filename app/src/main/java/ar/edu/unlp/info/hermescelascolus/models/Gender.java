@@ -1,16 +1,20 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
+import android.content.res.Resources;
+
+import ar.edu.unlp.info.hermescelascolus.R;
+
 public enum Gender {
 
-    MALE("M", "Masculino"),
-    FEMALE("F", "Femenino");
+    MALE("M", R.string.male),
+    FEMALE("F", R.string.female);
 
     private String name;
     private String value;
 
-    Gender(String value, String name){
+    Gender(String value, int nameStringId){
         this.value = value;
-        this.name = name;
+        this.name = Resources.getSystem().getString(nameStringId);
     }
 
     public String getValue() {
