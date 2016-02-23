@@ -45,6 +45,7 @@ public abstract class PictogramsActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_logo);
 
 
         BitmapWorkerTask.setResources(getResources());
