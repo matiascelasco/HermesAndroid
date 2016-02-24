@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import ar.edu.unlp.info.hermescelascolus.models.Notification;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TalkingPictogramClickListenerBuilder {
@@ -32,6 +33,8 @@ public class TalkingPictogramClickListenerBuilder {
                 catch(IOException e){
                     throw new RuntimeException(e);
                 }
+                //creates the notification
+                Notification notification = new Notification();
 
                 //test notification sending
                 ConnectivityManager connMgr = (ConnectivityManager) actContext.getSystemService(appContext.CONNECTIVITY_SERVICE);
@@ -40,7 +43,7 @@ public class TalkingPictogramClickListenerBuilder {
                     Toast.makeText(appContext, "device is connected", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    //store notifications
+                    //
                 }
 
             }

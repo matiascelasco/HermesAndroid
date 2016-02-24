@@ -53,6 +53,7 @@ public abstract class PictogramsAdapter extends BaseAdapter {
 
         BitmapWorkerTask.loadBitmap(pictograms.get(position).getImageId(), imageView);
 //        AssetBitmapWorkerTask.loadBitmap(pictograms.get(position).getImagePath(), imageView);
+
         subscribeHandlers(imageView, pictograms.get(position));
 
         return imageView;

@@ -7,54 +7,41 @@ import java.util.Date;
  */
 public class Notification {
 
-    private int id;
-    private Kid kid;
-    private Date dateTimeSent;
-    private String content; //pictogram's name
-    private Category category;
+    private String category;
+    private String content;
     private final String context = "CEDICA"; //this is constant, CEDICA
+    private String kid;
+    private Date sent;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Kid getKid() {
+    public String getKid() {
         return kid;
     }
 
-    public void setKid(Kid kid) {
+    public void setKid(String kid) {
         this.kid = kid;
     }
 
-    public Date getDateTimeSent() {
-        return dateTimeSent;
+    public Date getSent() {
+        return sent;
     }
 
     public void setDateTimeSent(Date dateTimeSent) {
-        this.dateTimeSent = dateTimeSent;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
+        this.sent = dateTimeSent;
     }
 
     public String getContext() {
         return context;
+    }
+
+    public void setContent(String content){
+        this.content = content;
+    }
+
+    public String getContent(){ //pictogram name
+        return this.content;
+    }
+
+    public String getCategory(){ //pictogram category
+        return category;
     }
 }
