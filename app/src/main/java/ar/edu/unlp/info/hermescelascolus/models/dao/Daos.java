@@ -20,7 +20,6 @@ public class Daos {
 
     public static void initialize(Context context){
         if (KID == null){
-            context.deleteDatabase(DBHelper.DATABASE_NAME);  //TODO: just for testing. remove later
             SETTINGS = new SettingsDao(context);
             KID = new KidDao(context);
             CATEGORY = new CategoryDao();
@@ -39,7 +38,6 @@ public class Daos {
                     "pictogram_id",
                     PICTOGRAM
             );
-            KidSeeder.seed();  //TODO: just for testing. remove later
         }
     }
 
