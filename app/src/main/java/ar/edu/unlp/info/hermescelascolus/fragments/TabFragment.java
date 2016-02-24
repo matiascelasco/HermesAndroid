@@ -64,7 +64,6 @@ public class TabFragment extends Fragment {
                 image.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 image.setAdjustViewBounds(true);
                 image.setImageBitmap(BitmapBuilder.build(getContext(), pictogram.getImagePath()));
-                ArrayList<Notification> notifications =  new ArrayList<>();
                 image.setOnClickListener(
                         TalkingPictogramClickListenerBuilder.buildListener(
                                 getActivity().getApplicationContext(),

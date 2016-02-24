@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.NotificationSenderTask;
 import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
-import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Notification;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
@@ -36,20 +34,20 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
 
     @Override
     protected void subscribeHandlers(ImageView v, final Pictogram pictogram) {
-       /* v.setOnClickListener(TalkingPictogramClickListenerBuilder.buildListener(appContext, pictogram, activityContext));*/
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try {
                     AssetFileDescriptor afd = appContext.getAssets().openFd(pictogram.getSoundPath());
                     MediaPlayer mp = new MediaPlayer();
                     mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                     mp.prepare();
                     mp.start();
-                }
-                catch(IOException e){
+                } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+
                 //creates the notification
                 Notification notification = new Notification();
                 notification.setContent(pictogram.getName());
@@ -63,13 +61,16 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 ConnectivityManager connMgr = (ConnectivityManager) activityContext.getSystemService(appContext.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()) {
-                    //send the notification in asynchronous way
-                    new NotificationSenderTask().execute(notif);
-                    //empty the notification list
-                    notif = new ArrayList<>();
-
+                    synchronized (notif){
+                        //send the notification in asynchronous way
+                        new NotificationSenderTask().execute(notif);
+                        //empty the notification list
+                        notif = new ArrayList<>();
+                    }
                 }
+
             }
+
         });
     }
 

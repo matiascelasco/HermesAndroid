@@ -22,9 +22,6 @@ public class TalkingPictogramClickListenerBuilder {
             @Override
             public void onClick(View v) {
 
-               /* MediaPlayer mp = MediaPlayer.create(context, pictogram.getSoundId());
-                mp.start();
-                //try to load the sound from the assets folder
                 try {
                     AssetFileDescriptor afd = appContext.getAssets().openFd(pictogram.getSoundPath());
                     MediaPlayer mp = new MediaPlayer();
@@ -34,21 +31,10 @@ public class TalkingPictogramClickListenerBuilder {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                //creates the notification
-                Notification notification = new Notification();
 
-                //test notification sending
-                ConnectivityManager connMgr = (ConnectivityManager) appContext.getSystemService(appContext.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    Toast.makeText(appContext, "device is connected", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(appContext, "device is not connected", Toast.LENGTH_SHORT).show();
-                }
-
-            }*/
 
             }
+
         };
     }
 }
