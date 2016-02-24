@@ -1,19 +1,12 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
 
-public class Settings {
+public class Settings implements Model {
 
-    private static final Settings instance = new Settings();
-    static {
-        instance.setMonitorIp("192.168.0.1");
-        instance.setMonitorPort("8000");
-    }
-    public static Settings getInstance(){
-        return instance;
-    }
+    private long id;
 
-    private Settings(){
-
+    public Settings(){
+        id = 0;
     }
 
     private String monitorIp;
@@ -36,4 +29,12 @@ public class Settings {
     }
 
 
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

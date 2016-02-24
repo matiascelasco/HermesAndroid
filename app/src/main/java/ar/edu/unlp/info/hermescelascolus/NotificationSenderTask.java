@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import ar.edu.unlp.info.hermescelascolus.models.Notification;
+import ar.edu.unlp.info.hermescelascolus.models.Settings;
+import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 import ar.edu.unlp.info.hermescelascolus.models.helpers.DateSerializer;
 
 /**
@@ -46,7 +48,12 @@ public class NotificationSenderTask extends AsyncTask<ArrayList<Notification>, V
         System.out.println(jsonString);
 
         //retrieved from general settings
-         String postUrl = "http://192.168.1.107:8000/load-notifications";
+        Settings settings = Daos.SETTINGS.all().get(0);
+         String postUrl = String.format(
+                 "http://%s:%s/load-notifications",
+                 settings.getMonitorIp(),
+                 settings.getMonitorPort()
+         );
         //trying (and failid) to use HTTPURLConnection
        /* URL urlToRequest = null;
         try {

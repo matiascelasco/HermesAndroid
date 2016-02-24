@@ -5,11 +5,13 @@ import android.content.Context;
 import ar.edu.unlp.info.hermescelascolus.models.Category;
 import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
+import ar.edu.unlp.info.hermescelascolus.models.Settings;
 import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 import ar.edu.unlp.info.hermescelascolus.models.connection.KidSeeder;
 
 public class Daos {
 
+    public static Dao<Settings> SETTINGS;
     public static Dao<Kid> KID;
     public static Dao<Category> CATEGORY;
     public static Dao<Pictogram> PICTOGRAM;
@@ -19,6 +21,7 @@ public class Daos {
     public static void initialize(Context context){
         if (KID == null){
             context.deleteDatabase(DBHelper.DATABASE_NAME);  //TODO: just for testing. remove later
+            SETTINGS = new SettingsDao(context);
             KID = new KidDao(context);
             CATEGORY = new CategoryDao();
             PICTOGRAM = new PictogramDao(context);

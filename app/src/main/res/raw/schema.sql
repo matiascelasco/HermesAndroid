@@ -1,7 +1,7 @@
-CREATE TABLE GeneralSettings (
+CREATE TABLE Settings (
     _id INTEGER PRIMARY KEY NOT NULL,
     ip_address VARCHAR(12) NOT NULL,
-    port INTEGER NOT NULL
+    port VARCHAR(4) NOT NULL
 );
 
 CREATE TABLE Kid (

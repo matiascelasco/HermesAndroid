@@ -1,4 +1,4 @@
-INSERT INTO GeneralSettings(ip_address, port) VALUES('192.168.100.1', '8080');
+INSERT INTO Settings(ip_address, port) VALUES('192.168.100.1', '8080');
 
 INSERT INTO Pictogram(name, category_id)VALUES('no', null);
 INSERT INTO Pictogram(name, category_id)VALUES('si', null);

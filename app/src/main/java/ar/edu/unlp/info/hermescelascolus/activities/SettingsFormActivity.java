@@ -50,7 +50,7 @@ public class SettingsFormActivity extends FormActivity {
 
         kid = Daos.KID.getById(kidId);
         previousMode = Mode.values()[previousModeOrdinal];
-        settings = Settings.getInstance();
+        settings = Daos.SETTINGS.all().get(0);
 
         initializeBasicKidFields();
 
@@ -116,7 +116,7 @@ public class SettingsFormActivity extends FormActivity {
                     settings.setMonitorIp(ip);
                     settings.setMonitorPort(port);
 
-                    //TODO: Daos.SETTINGS.save(settings);
+                    Daos.SETTINGS.save(settings);
                     Daos.KID.save(kid);
 
                     startPreviousActivity();
