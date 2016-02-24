@@ -4,8 +4,6 @@ CREATE TABLE GeneralSettings (
     port INTEGER NOT NULL
 );
 
-INSERT INTO GeneralSettings(ip_address, port) VALUES('192.168.100.1', '8080');
-
 CREATE TABLE Kid (
     _id INTEGER PRIMARY KEY NOT NULL,
     name VARCHAR(50) NOT NULL,
@@ -17,9 +15,7 @@ CREATE TABLE Kid (
 CREATE TABLE Pictogram (
     _id INTEGER PRIMARY KEY NOT NULL,
     category_id INTEGER,
-    name VARCHAR(20) NOT NULL,
-    image_id INTEGER NOT NULL,
-    sound_id INTEGER NOT NULL
+    name VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE KidCategory (

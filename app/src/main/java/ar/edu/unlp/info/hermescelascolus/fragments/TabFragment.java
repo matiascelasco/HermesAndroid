@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+import ar.edu.unlp.info.hermescelascolus.BitmapBuilder;
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.TalkingPictogramClickListenerBuilder;
@@ -51,6 +52,7 @@ public class TabFragment extends Fragment {
             LinearLayout layout =
                     (LinearLayout) rootView.findViewById(R.id.yes_no_pictograms_container);
             Pictogram[] yesNoPictograms = {Pictogram.getYes(), Pictogram.getNo()};
+            System.out.println(yesNoPictograms);
             for (Pictogram pictogram: yesNoPictograms){
                 ImageView image = new ImageView(getContext());
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -61,7 +63,7 @@ public class TabFragment extends Fragment {
                 image.setLayoutParams(lp);
                 image.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 image.setAdjustViewBounds(true);
-                image.setImageResource(pictogram.getImageId());
+                image.setImageBitmap(BitmapBuilder.build(getContext(), pictogram.getImagePath()));
                 ArrayList<Notification> notifications =  new ArrayList<>();
                 image.setOnClickListener(
                         TalkingPictogramClickListenerBuilder.buildListener(

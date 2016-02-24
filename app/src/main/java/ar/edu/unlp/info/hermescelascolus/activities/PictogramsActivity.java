@@ -2,8 +2,6 @@ package ar.edu.unlp.info.hermescelascolus.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,14 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.List;
 
-import ar.edu.unlp.info.hermescelascolus.AssetBitmapWorkerTask;
-import ar.edu.unlp.info.hermescelascolus.BitmapWorkerTask;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.adapters.TabAdapter;
 import ar.edu.unlp.info.hermescelascolus.R;
@@ -60,11 +55,6 @@ public abstract class PictogramsActivity extends AppCompatActivity {
         } else {
             Log.e("hermes", "Couldn't get support action bar");
         }
-
-
-        BitmapWorkerTask.setResources(getResources());
-//        AssetBitmapWorkerTask.setAppContext(getApplicationContext());
-
     }
 
     protected void updatePictograms(long kidId){

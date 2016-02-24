@@ -13,7 +13,7 @@ import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 public class PictogramDao extends GenericDao implements Dao<Pictogram>{
 
     private static final String SELECT =
-            "SELECT _id, category_id, name, image_id, sound_id FROM Pictogram";
+            "SELECT _id, category_id, name FROM Pictogram";
 
     public PictogramDao(Context context) {
         super(context);
@@ -28,8 +28,6 @@ public class PictogramDao extends GenericDao implements Dao<Pictogram>{
             p.setCategory(null);
         }
         p.setName(cursor.getString(2));
-        p.setImageId(cursor.getInt(3));
-        p.setSoundId(cursor.getInt(4));
         return p;
     }
 
@@ -70,8 +68,6 @@ public class PictogramDao extends GenericDao implements Dao<Pictogram>{
         else {
             cv.put("category_id", category.getId());
         }
-        cv.put("image_id", pictogram.getImageId());
-        cv.put("sound_id", pictogram.getSoundId());
 
         // Inserting Row
         db.beginTransaction();

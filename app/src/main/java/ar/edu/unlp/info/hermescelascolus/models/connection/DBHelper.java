@@ -34,11 +34,9 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
+    private void runScriptFile(SQLiteDatabase db, int resId){
         //this method must execute if the database file does not exists
-        InputStream in = context.getResources().openRawResource(R.raw.schema);
+        InputStream in = context.getResources().openRawResource(resId);
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
         StringBuilder builder = new StringBuilder();
@@ -55,6 +53,12 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        runScriptFile(db, R.raw.schema);
+        runScriptFile(db, R.raw.fixture);
     }
 
     @Override

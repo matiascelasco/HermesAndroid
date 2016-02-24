@@ -31,14 +31,6 @@ public class Pictogram implements Model {
         return no;
     }
 
-    public int getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
-    }
-
     public long getId() {
         return id;
     }
@@ -53,14 +45,6 @@ public class Pictogram implements Model {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public int getSoundId() {
-        return soundId;
-    }
-
-    public void setSoundId(int soundId) {
-        this.soundId = soundId;
     }
 
     public String getName() {
@@ -87,8 +71,6 @@ public class Pictogram implements Model {
     }
 
     private long id;
-    private int imageId;
-    private int soundId;
     private Category category;
     private String name;
 

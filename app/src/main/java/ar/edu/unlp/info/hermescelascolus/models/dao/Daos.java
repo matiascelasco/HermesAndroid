@@ -7,7 +7,6 @@ import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.models.connection.DBHelper;
 import ar.edu.unlp.info.hermescelascolus.models.connection.KidSeeder;
-import ar.edu.unlp.info.hermescelascolus.models.connection.PictogramSeeder;
 
 public class Daos {
 
@@ -38,9 +37,6 @@ public class Daos {
                     PICTOGRAM
             );
             KidSeeder.seed();  //TODO: just for testing. remove later
-            PictogramSeeder.seed();  //TODO: move to database on create
-            KID_PICTOGRAM.add(KID.getById(3), PICTOGRAM.getById(22));
-            KID_PICTOGRAM.add(KID.getById(3), PICTOGRAM.getById(23));
         }
     }
 
