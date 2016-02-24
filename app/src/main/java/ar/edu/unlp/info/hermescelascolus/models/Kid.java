@@ -60,7 +60,7 @@ public class Kid implements Model {
             for (Category c: Daos.CATEGORY.all()) {
                 pictogramsByCategory.put(c, new HashSet<Pictogram>());
             }
-            for (Pictogram p: pictograms) {
+            for (Pictogram p: getPictograms()) {
                 if (p.getCategory() != null){
                     pictogramsByCategory.get(p.getCategory()).add(p);
                 }

@@ -46,7 +46,7 @@ public class NotificationSenderTask extends AsyncTask<ArrayList<Notification>, V
         System.out.println(jsonString);
 
         //retrieved from general settings
-         String postUrl = "http://192.168.1.100:8000/load-notifications";
+         String postUrl = "http://192.168.0.18:8000/load-notifications";
         //trying (and failid) to use HTTPURLConnection
        /* URL urlToRequest = null;
         try {
@@ -92,15 +92,8 @@ public class NotificationSenderTask extends AsyncTask<ArrayList<Notification>, V
                 System.out.println(line);
             }
             return true;
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return false;
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-            return false;
         } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException(e);
         }
 
     }
