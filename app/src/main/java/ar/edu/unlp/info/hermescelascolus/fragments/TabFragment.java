@@ -9,10 +9,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.TalkingPictogramClickListenerBuilder;
 import ar.edu.unlp.info.hermescelascolus.models.Mode;
+import ar.edu.unlp.info.hermescelascolus.models.Notification;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TabFragment extends Fragment {
@@ -25,8 +28,7 @@ public class TabFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Bundle args = getArguments();
         Mode mode = Mode.values()[args.getInt(MODE_ORDINAL)];
         View rootView = inflater.inflate(
@@ -60,11 +62,11 @@ public class TabFragment extends Fragment {
                 image.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 image.setAdjustViewBounds(true);
                 image.setImageResource(pictogram.getImageId());
-
+                ArrayList<Notification> notifications =  new ArrayList<>();
                 image.setOnClickListener(
                         TalkingPictogramClickListenerBuilder.buildListener(
                                 getActivity().getApplicationContext(),
-                                pictogram, this.getContext()
+                                pictogram
                         )
                 );
 

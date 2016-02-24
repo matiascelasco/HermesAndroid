@@ -55,6 +55,7 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 notification.setContent(pictogram.getName());
                 notification.setKid(kidName);
                 notification.setDateTimeSent(new Date());
+                notification.setCategory(pictogram.getCategory().getDir());
                 //store the notification for posterior sending
                 notif.add(notification);
 
@@ -64,7 +65,8 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 if (networkInfo != null && networkInfo.isConnected()) {
                     //send the notification in asynchronous way
                     new NotificationSenderTask().execute(notif);
-                        //empty the notification list
+                    //empty the notification list
+                    notif = new ArrayList<>();
 
                 }
             }

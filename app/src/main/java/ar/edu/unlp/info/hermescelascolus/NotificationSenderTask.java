@@ -8,15 +8,21 @@ import android.os.AsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,33 +46,69 @@ public class NotificationSenderTask extends AsyncTask<ArrayList<Notification>, V
         System.out.println(jsonString);
 
         //retrieved from general settings
-        String postUrl = "http://192.168.1.100:8000/load-notifications";
+         String postUrl = "http://192.168.1.100:8000/load-notifications";
+        //trying (and failid) to use HTTPURLConnection
+       /* URL urlToRequest = null;
         try {
-            URL urlToRequest = new URL(postUrl);
-            HttpURLConnection urlConnection = (HttpURLConnection) urlToRequest.openConnection();
-            urlConnection.setDoOutput(true);
+            urlToRequest = new URL(postUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection urlConnection = null;
+        try {
+            urlConnection = (HttpURLConnection) urlToRequest.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        urlConnection.setDoOutput(true);
+        try {
             urlConnection.setRequestMethod("POST");
-            urlConnection.setRequestProperty("Content Type", "application/x-www-form-urlencoded");
-            //prepare message size
-            urlConnection.setFixedLengthStreamingMode(jsonString.getBytes().length);
-            //send
-            PrintWriter out = new PrintWriter(urlConnection.getOutputStream());
-            out.print(jsonString);
-            out.close();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        urlConnection.setRequestProperty("Content Type", "application/x-www-form-urlencoded");
+         //prepare message size
+         urlConnection.setFixedLengthStreamingMode(jsonString.getBytes().length);
+         //send
+        PrintWriter out = null;
+        try {
+            out = new PrintWriter(urlConnection.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.print(jsonString);
+         out.close();*/
+        HttpClient client = new DefaultHttpClient();
+        HttpPost post = new HttpPost(postUrl);
+        System.out.println("Sending JSON message to monitor at " + postUrl);
+        try {
+            post.setEntity(new StringEntity(jsonString));
+            post.setHeader("Content-type", "application/json");
+            HttpResponse response = client.execute(post);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+            System.out.println("Response from monitor:");
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            return true;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
 
-        }catch(MalformedURLException e){
-            new RuntimeException("problem with URL");
-        }
-        catch(IOException e){
-            new RuntimeException("problem with I/O");
-        }
-        return false;
     }
 
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         if(aBoolean == true){
-            //the app could send the data
+           // we have to empty the ArrayList
         }
         else{
             //you are screwed

@@ -44,4 +44,8 @@ public class Notification {
     public String getCategory(){ //pictogram category
         return category;
     }
+
+    public void setCategory(String cat){
+        this.category = cat;
+    }
 }

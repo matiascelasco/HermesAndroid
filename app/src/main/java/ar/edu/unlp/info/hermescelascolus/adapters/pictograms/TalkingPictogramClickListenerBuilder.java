@@ -16,14 +16,14 @@ import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TalkingPictogramClickListenerBuilder {
 
-    public static ImageView.OnClickListener buildListener(final Context appContext, final Pictogram pictogram){
+    public static ImageView.OnClickListener buildListener(final Context appContext, final Pictogram pictogram) {
 
         return new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                /* MediaPlayer mp = MediaPlayer.create(context, pictogram.getSoundId());
-                mp.start();*/
+                mp.start();
                 //try to load the sound from the assets folder
                 try {
                     AssetFileDescriptor afd = appContext.getAssets().openFd(pictogram.getSoundPath());
@@ -42,11 +42,13 @@ public class TalkingPictogramClickListenerBuilder {
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()) {
                     Toast.makeText(appContext, "device is connected", Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
                     Toast.makeText(appContext, "device is not connected", Toast.LENGTH_SHORT).show();
                 }
-             
+
+            }*/
+
+            }
         };
     }
 }
