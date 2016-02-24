@@ -13,7 +13,6 @@ public enum Category implements Model {
     EMOCIONES("emotions");
 
     public List<Pictogram> getPictograms(){
-        //TODO: change this implementation when db is ready
         List<Pictogram> pictograms = new ArrayList<>();
         for (Pictogram p: Daos.PICTOGRAM.all()){
             if (p.getCategory() != null && p.getCategory().equals(this)){

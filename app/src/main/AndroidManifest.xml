@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".activities.KidActivity"
-            android:screenOrientation="sensor"
+            android:screenOrientation="locked"
             android:parentActivityName=".activities.InitialActivity">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -30,6 +30,7 @@
                 android:value=".activities.InitialActivity" />
         </activity>
         <activity android:name=".activities.TherapistActivity"
+            android:screenOrientation="locked"
             android:parentActivityName=".activities.InitialActivity">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -38,9 +39,11 @@
         </activity>
         <activity
             android:name=".activities.SettingsFormActivity"
+            android:screenOrientation="sensor"
             android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".activities.NewKidFormActivity"
+            android:screenOrientation="sensor"
             android:windowSoftInputMode="stateHidden"/>
 
     </application>

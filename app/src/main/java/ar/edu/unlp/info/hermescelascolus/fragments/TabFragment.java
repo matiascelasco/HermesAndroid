@@ -40,7 +40,6 @@ public class TabFragment extends Fragment {
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
 
         if (pictogramsAdapter == null){
-            // TODO: sometimes this exception is thrown, I don't know why
             // maybe this thing of the setPictogramsAdapter was a bad idea
             throw new IllegalStateException(
                     "setPictogramsAdapter must be called after the constructor"

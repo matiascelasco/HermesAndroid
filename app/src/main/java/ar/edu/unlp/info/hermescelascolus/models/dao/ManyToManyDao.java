@@ -48,7 +48,6 @@ public class ManyToManyDao<A extends Model, B extends Model> extends GenericDao 
 
     @Override
     public void setRelated(A a, Collection<B> bs) {
-        //TODO: transaction
         delete(tableName, firstColumnName + " = ?", String.valueOf(a.getId()));
         for (B b: bs){
             add(a, b);
