@@ -15,21 +15,22 @@ import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.NotificationSenderTask;
 import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
+import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Notification;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TalkingPictogramsAdapter extends PictogramsAdapter {
-    Context appContext;
-    Context activityContext;
-    ArrayList<Notification> notif;
-    String kidName;
+    private Context appContext;
+    private Context activityContext;
+    private ArrayList<Notification> notif;
+    private Kid kid;
 
-    public TalkingPictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms, Context appContext, ArrayList<Notification> notifications) {
+    public TalkingPictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms, Context appContext, Kid kid, ArrayList<Notification> notifications) {
         super(context, title, pictograms);
         this.appContext = appContext;
         this.activityContext = context;
         this.notif = notifications;
-        this.kidName = title;
+        this.kid = kid;
     }
 
     @Override
@@ -49,7 +50,7 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 }
 
                 //creates the notification
-                Notification notification = new Notification(kidName, pictogram);
+                Notification notification = new Notification(kid, pictogram);
 
                 //store the notification for posterior sending
                 notif.add(notification);

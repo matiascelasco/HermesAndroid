@@ -10,9 +10,9 @@ public class Notification {
     private String kid;
     private Date sent;
 
-    public Notification(String kidName, Pictogram pictogram){
+    public Notification(Kid kid, Pictogram pictogram){
         this.content = pictogram.getNameToBeDisplayed();
-        this.kid = kidName;
+        this.kid = kid.getFullName();
         this.sent = new Date();
         this.category = pictogram.getCategory().getNameToBeDisplayed();
     }
