@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import ar.edu.unlp.info.hermescelascolus.NotificationSenderTask;
@@ -21,13 +19,11 @@ import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TalkingPictogramsAdapter extends PictogramsAdapter {
     private Context appContext;
-    private Context activityContext;
     private Kid kid;
 
-    public TalkingPictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms, Context appContext, Kid kid) {
+    public TalkingPictogramsAdapter(Context appContext, PictogramsActivity context, Kid kid, String title, List<Pictogram> pictograms) {
         super(context, title, pictograms);
         this.appContext = appContext;
-        this.activityContext = context;
         this.kid = kid;
     }
 
@@ -54,15 +50,11 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 Notification.queue.add(notification);
 
                 //test notification sending
-                ConnectivityManager connMgr = (ConnectivityManager) activityContext.getSystemService(appContext.CONNECTIVITY_SERVICE);
+                ConnectivityManager connMgr = (ConnectivityManager) appContext.getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()) {
-                    synchronized (Notification.queue){
-                        //send the notification in asynchronous way
-                        new NotificationSenderTask().execute(Notification.queue);
-                        //empty the notification list
-                        Notification.queue = new ArrayList<>();
-                    }
+                    //send the notification in asynchronous way
+                    new NotificationSenderTask().execute(Notification.queue);
                 }
 
             }

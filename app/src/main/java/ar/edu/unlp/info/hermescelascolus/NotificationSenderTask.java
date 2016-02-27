@@ -1,15 +1,11 @@
 package ar.edu.unlp.info.hermescelascolus;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -18,12 +14,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -32,9 +22,6 @@ import ar.edu.unlp.info.hermescelascolus.models.Settings;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 import ar.edu.unlp.info.hermescelascolus.models.helpers.DateSerializer;
 
-/**
- * Created by laura on 23/02/16.
- */
 public class NotificationSenderTask extends AsyncTask<ArrayList<Notification>, Void, Boolean> {
 
     @Override
@@ -98,11 +85,12 @@ public class NotificationSenderTask extends AsyncTask<ArrayList<Notification>, V
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
             }
+            //empty the notification list
+            notificationToSend.clear();
             return true;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override

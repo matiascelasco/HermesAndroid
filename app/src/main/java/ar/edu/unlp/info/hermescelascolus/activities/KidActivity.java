@@ -42,11 +42,23 @@ public class KidActivity extends PictogramsActivity {
             pictograms.add(p);
         }
 
-        adapters.add(new TalkingPictogramsAdapter(this, kid.getName(), pictograms, getApplicationContext(), kid));
+        adapters.add(new TalkingPictogramsAdapter(
+                getApplicationContext(),
+                this,
+                kid,
+                kid.getName(),
+                pictograms
+        ));
 
         // The following tabs contains the pictograms from that category enabled for that kid
         for (Category c : kid.getCategories()) {
-            adapters.add(new TalkingPictogramsAdapter(this, c.getNameToBeDisplayed(), c.getPictograms(), getApplicationContext(), kid));
+            adapters.add(new TalkingPictogramsAdapter(
+                    getApplicationContext(),
+                    this,
+                    kid,
+                    c.getNameToBeDisplayed(),
+                    c.getPictograms()
+            ));
         }
 
         return adapters;

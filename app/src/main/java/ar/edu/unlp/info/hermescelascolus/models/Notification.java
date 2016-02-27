@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Notification {
 
-    public static ArrayList<Notification> queue = new ArrayList<>();
+    public static final ArrayList<Notification> queue = new ArrayList<>();
 
     private String category;
     private String content;
