@@ -17,11 +17,6 @@ import ar.edu.unlp.info.hermescelascolus.models.Notification;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class KidActivity extends PictogramsActivity {
-    private ArrayList<Notification> notifications = new ArrayList<>();
-
-    public ArrayList<Notification> getNotifications() {
-        return notifications;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +42,11 @@ public class KidActivity extends PictogramsActivity {
             pictograms.add(p);
         }
 
-        adapters.add(new TalkingPictogramsAdapter(this, kid.getName(), pictograms, getApplicationContext(), kid, notifications));
+        adapters.add(new TalkingPictogramsAdapter(this, kid.getName(), pictograms, getApplicationContext(), kid));
 
         // The following tabs contains the pictograms from that category enabled for that kid
         for (Category c : kid.getCategories()) {
-            adapters.add(new TalkingPictogramsAdapter(this, c.getNameToBeDisplayed(), c.getPictograms(), getApplicationContext(), kid, notifications));
+            adapters.add(new TalkingPictogramsAdapter(this, c.getNameToBeDisplayed(), c.getPictograms(), getApplicationContext(), kid));
         }
 
         return adapters;

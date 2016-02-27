@@ -22,14 +22,12 @@ import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 public class TalkingPictogramsAdapter extends PictogramsAdapter {
     private Context appContext;
     private Context activityContext;
-    private ArrayList<Notification> notif;
     private Kid kid;
 
-    public TalkingPictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms, Context appContext, Kid kid, ArrayList<Notification> notifications) {
+    public TalkingPictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms, Context appContext, Kid kid) {
         super(context, title, pictograms);
         this.appContext = appContext;
         this.activityContext = context;
-        this.notif = notifications;
         this.kid = kid;
     }
 
@@ -53,17 +51,17 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 Notification notification = new Notification(kid, pictogram);
 
                 //store the notification for posterior sending
-                notif.add(notification);
+                Notification.queue.add(notification);
 
                 //test notification sending
                 ConnectivityManager connMgr = (ConnectivityManager) activityContext.getSystemService(appContext.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()) {
-                    synchronized (notif){
+                    synchronized (Notification.queue){
                         //send the notification in asynchronous way
-                        new NotificationSenderTask().execute(notif);
+                        new NotificationSenderTask().execute(Notification.queue);
                         //empty the notification list
-                        notif = new ArrayList<>();
+                        Notification.queue = new ArrayList<>();
                     }
                 }
 
