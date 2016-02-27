@@ -7,10 +7,10 @@ import java.util.List;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public enum Category implements Model {
-    PISTA("track"),
-    ESTABLO("barn"),
-    NECESIDADES("needs"),
-    EMOCIONES("emotions");
+    TRACK("Pista", "track"),
+    BARN("Establo", "barn"),
+    NEEDS("Necesidades", "needs"),
+    EMOTIONS("Emociones", "emotions");
 
     public List<Pictogram> getPictograms(){
         List<Pictogram> pictograms = new ArrayList<>();
@@ -23,14 +23,19 @@ public enum Category implements Model {
     }
 
     public String getDir() {
-        return path;
+        return dir;
+    }
+    public String getNameToBeDisplayed() {
+        return nameToBeDisplayed;
     }
 
-    Category(String dir) {
-        this.path = dir;
+    Category(String nameToBeDisplayed, String dir) {
+        this.dir = dir;
+        this.nameToBeDisplayed = nameToBeDisplayed;
     }
 
-    private String path;
+    private String dir;
+    private String nameToBeDisplayed;
 
     public long getId(){
         return (long) ordinal();

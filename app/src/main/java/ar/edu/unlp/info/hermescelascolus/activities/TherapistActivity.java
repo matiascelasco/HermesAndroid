@@ -39,7 +39,7 @@ public class TherapistActivity extends PictogramsActivity {
             // is required as an extra parameter
             Set<Pictogram> selected = kid.getPictogramsSetByCategory(c);
             SelectablePictogramsAdapter adapter =
-                    new SelectablePictogramsAdapter(this, c.name(), c.getPictograms(), selected);
+                    new SelectablePictogramsAdapter(this, c.getNameToBeDisplayed(), c.getPictograms(), selected);
             adapters.add(adapter);
             adapterByCategory.put(c, adapter);
         }

@@ -55,6 +55,21 @@ public class Pictogram implements Model {
         this.name = name;
     }
 
+    public String getNameToBeDisplayed() {
+
+        // if (name.equals("Si")){
+        //     return "Sí";  // not needed because Yes No notifications are never sent
+        // }
+
+        // capitalize first letter
+        String nameToBeDisplayed = name.substring(0, 1).toUpperCase() + name.substring(1);
+        nameToBeDisplayed = nameToBeDisplayed.replace("_ninio", "");
+        nameToBeDisplayed = nameToBeDisplayed.replace("_ninia", "");
+        nameToBeDisplayed = nameToBeDisplayed.replace("Banio", "Baño");
+        nameToBeDisplayed = nameToBeDisplayed.replace('_', ' ');
+        return nameToBeDisplayed;
+    }
+
     private String getDirPath() {
         if (name.equals("si") || name.equals("no")){
             return "";

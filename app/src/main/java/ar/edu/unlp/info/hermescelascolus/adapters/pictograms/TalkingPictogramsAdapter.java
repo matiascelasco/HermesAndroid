@@ -49,11 +49,8 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 }
 
                 //creates the notification
-                Notification notification = new Notification();
-                notification.setContent(pictogram.getName());
-                notification.setKid(kidName);
-                notification.setDateTimeSent(new Date());
-                notification.setCategory(pictogram.getCategory().getDir());
+                Notification notification = new Notification(kidName, pictogram);
+
                 //store the notification for posterior sending
                 notif.add(notification);
 

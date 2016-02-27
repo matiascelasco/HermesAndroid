@@ -51,7 +51,7 @@ public class KidActivity extends PictogramsActivity {
 
         // The following tabs contains the pictograms from that category enabled for that kid
         for (Category c : kid.getCategories()) {
-            adapters.add(new TalkingPictogramsAdapter(this, c.name(), c.getPictograms(), getApplicationContext(), notifications));
+            adapters.add(new TalkingPictogramsAdapter(this, c.getNameToBeDisplayed(), c.getPictograms(), getApplicationContext(), notifications));
         }
 
         return adapters;

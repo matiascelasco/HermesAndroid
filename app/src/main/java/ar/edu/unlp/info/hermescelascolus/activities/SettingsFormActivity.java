@@ -66,7 +66,7 @@ public class SettingsFormActivity extends FormActivity {
             checkBox.setLayoutParams(new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
-            checkBox.setText(c.name());
+            checkBox.setText(c.getNameToBeDisplayed());
             checkBox.setChecked(categories.contains(c));
             checkboxContainer.addView(checkBox);
             checkboxByCategory.put(c, checkBox);
