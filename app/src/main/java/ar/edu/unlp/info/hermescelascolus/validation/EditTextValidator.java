@@ -23,6 +23,7 @@ public class EditTextValidator {
                 throw new ValidationError(v.getMessage());
             }
         }
-        return value;
+        // Remove trailing spaces at the beginning and the end of the string
+        return value.replaceAll("^\\s+", "").replaceAll("\\s+$", "");
     }
 }
