@@ -17,6 +17,8 @@ public class EditTextValidator {
 
     public String getValue() throws ValidationError {
         String value = editText.getText().toString();
+        // Remove trailing spaces at the beginning and the end of the string
+        value = value.replaceAll("^\\s+", "").replaceAll("\\s+$", "");
         for (Validator<String> v: validators){
             if (!v.isValid(value)){
                 editText.setError(v.getMessage());
@@ -24,6 +26,6 @@ public class EditTextValidator {
             }
         }
         // Remove trailing spaces at the beginning and the end of the string
-        return value.replaceAll("^\\s+", "").replaceAll("\\s+$", "");
+        return value;
     }
 }
