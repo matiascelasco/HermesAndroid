@@ -24,6 +24,22 @@ public class InitialActivity extends AppCompatActivity {
 
         Daos.initialize(getApplicationContext());
 
+        loadKids();
+
+
+
+        FloatingActionButton addKidButton = (FloatingActionButton) findViewById(R.id.fab);
+        addKidButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startCreateKidActivity();
+            }
+        });
+
+
+    }
+
+    private void loadKids(){
         ArrayAdapter<Kid> adapter = new ArrayAdapter<>(
                 this,
                 R.layout.kid_list_item,
@@ -39,18 +55,6 @@ public class InitialActivity extends AppCompatActivity {
                 startKidActivity(kid);
             }
         });
-
-
-
-        FloatingActionButton addKidButton = (FloatingActionButton) findViewById(R.id.fab);
-        addKidButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startCreateKidActivity();
-            }
-        });
-
-
     }
 
     private void startKidActivity(Kid kid){
@@ -78,5 +82,11 @@ public class InitialActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        loadKids();
     }
 }
