@@ -4,6 +4,7 @@ package ar.edu.unlp.info.hermescelascolus.models;
 public class Settings implements Model {
 
     private long id;
+    private boolean showNetworkErrors;
 
     public Settings(){
         id = 0;
@@ -36,5 +37,13 @@ public class Settings implements Model {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public boolean shouldShowNetworkErrors() {
+        return showNetworkErrors;
+    }
+
+    public void setShowNetworkErrors(boolean showNetworkErrors) {
+        this.showNetworkErrors = showNetworkErrors;
     }
 }

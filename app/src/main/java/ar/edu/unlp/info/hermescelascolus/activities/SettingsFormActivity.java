@@ -94,6 +94,9 @@ public class SettingsFormActivity extends FormActivity {
                 );
         portInput.setText(settings.getMonitorPort());
 
+        final CheckBox showNetworkErrorsCheckbox = (CheckBox) findViewById(R.id.show_network_errors_checkbox);
+        showNetworkErrorsCheckbox.setChecked(settings.shouldShowNetworkErrors());
+
         saveButton.setOnClickListener(new Button.OnClickListener() {
 
             @Override
@@ -113,8 +116,10 @@ public class SettingsFormActivity extends FormActivity {
 
                     String ip = ipValidator.getValue();
                     String port = portValidator.getValue();
+                    boolean shouldShowNetworkErrors = showNetworkErrorsCheckbox.isChecked();
                     settings.setMonitorIp(ip);
                     settings.setMonitorPort(port);
+                    settings.setShowNetworkErrors(shouldShowNetworkErrors);
 
                     Daos.SETTINGS.save(settings);
                     Daos.KID.save(kid);

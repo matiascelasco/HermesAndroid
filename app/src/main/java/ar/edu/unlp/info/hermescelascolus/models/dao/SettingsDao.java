@@ -7,8 +7,6 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.unlp.info.hermescelascolus.models.Gender;
-import ar.edu.unlp.info.hermescelascolus.models.Kid;
 import ar.edu.unlp.info.hermescelascolus.models.Settings;
 
 public class SettingsDao extends GenericDao implements Dao<Settings>{
@@ -22,6 +20,7 @@ public class SettingsDao extends GenericDao implements Dao<Settings>{
         s.setId(cursor.getInt(0));
         s.setMonitorIp(cursor.getString(1));
         s.setMonitorPort(cursor.getString(2));
+        s.setShowNetworkErrors(cursor.getInt(3) == 1);
         return s;
     }
 
@@ -29,7 +28,7 @@ public class SettingsDao extends GenericDao implements Dao<Settings>{
     public List<Settings> all() {
         List<Settings> settingsList = new ArrayList<>();
         Cursor cursor = rawQuery(
-                "SELECT _id, ip_address, port FROM Settings"
+                "SELECT _id, ip_address, port, show_network_errors FROM Settings"
         );
         while (cursor.moveToNext()) {
             settingsList.add(this.loadFromCursor(cursor));
@@ -48,6 +47,7 @@ public class SettingsDao extends GenericDao implements Dao<Settings>{
         ContentValues cv = new ContentValues();
         cv.put("ip_address", settings.getMonitorIp());
         cv.put("port", settings.getMonitorPort());
+        cv.put("show_network_errors", settings.shouldShowNetworkErrors() ? 1 : 0);
 
         update("Settings", cv, "_id = ?", String.valueOf(settings.getId()));
     }

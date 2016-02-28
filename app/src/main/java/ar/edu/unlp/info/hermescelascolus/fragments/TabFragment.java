@@ -9,14 +9,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
-
 import ar.edu.unlp.info.hermescelascolus.BitmapBuilder;
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
-import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.TalkingPictogramClickListenerBuilder;
+import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramSoundPlayer;
 import ar.edu.unlp.info.hermescelascolus.models.Mode;
-import ar.edu.unlp.info.hermescelascolus.models.Notification;
 import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TabFragment extends Fragment {
@@ -52,7 +49,7 @@ public class TabFragment extends Fragment {
                     (LinearLayout) rootView.findViewById(R.id.yes_no_pictograms_container);
             Pictogram[] yesNoPictograms = {Pictogram.getYes(), Pictogram.getNo()};
             System.out.println(yesNoPictograms);
-            for (Pictogram pictogram: yesNoPictograms){
+            for (final Pictogram pictogram: yesNoPictograms){
                 ImageView image = new ImageView(getContext());
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -63,12 +60,15 @@ public class TabFragment extends Fragment {
                 image.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 image.setAdjustViewBounds(true);
                 image.setImageBitmap(BitmapBuilder.build(getContext(), pictogram.getImagePath()));
-                image.setOnClickListener(
-                        TalkingPictogramClickListenerBuilder.buildListener(
+                image.setOnClickListener(new ImageView.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PictogramSoundPlayer.play(
                                 getActivity().getApplicationContext(),
                                 pictogram
-                        )
-                );
+                        );
+                    }
+                });
 
                 layout.addView(image);
             }

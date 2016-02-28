@@ -26,4 +26,10 @@
             android:layout_height="wrap_content" />
     </android.support.design.widget.TextInputLayout>
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_network_errors_checkbox"
+        android:text="@string/show_network_errors"/>
+
 </merge>
