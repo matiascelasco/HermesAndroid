@@ -8,21 +8,37 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.activities.PictogramsActivity;
@@ -37,100 +53,20 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
     private Context appContext;
     private Kid kid;
     private Settings settings;
+    RequestQueue requestQueue;
 
     public TalkingPictogramsAdapter(Context appContext, PictogramsActivity context, Kid kid, String title, List<Pictogram> pictograms) {
         super(context, title, pictograms);
         this.appContext = appContext;
         this.kid = kid;
         this.settings = Daos.SETTINGS.all().get(0);
+        this.requestQueue = Volley.newRequestQueue(context);
     }
 
-    private class NotificationSenderTask extends AsyncTask<ArrayList<Notification>, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(ArrayList<Notification>... params) {
-            ArrayList<Notification> notificationToSend = params[0];
-            //convert list to JSON
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(Date.class, new DateSerializer())
-                    .create();
-            String jsonString = gson.toJson(notificationToSend);
-
-            //retrieved from general settings
-            Settings settings = Daos.SETTINGS.all().get(0);
-            String postUrl = String.format(
-                    "http://%s:%s/load-notifications",
-                    settings.getMonitorIp(),
-                    settings.getMonitorPort()
-            );
-            System.out.println(postUrl);
-            System.out.println(jsonString);
-
-
-            //trying (and failid) to use HTTPURLConnection
-       /* URL urlToRequest = null;
-        try {
-            urlToRequest = new URL(postUrl);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        HttpURLConnection urlConnection = null;
-        try {
-            urlConnection = (HttpURLConnection) urlToRequest.openConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        urlConnection.setDoOutput(true);
-        try {
-            urlConnection.setRequestMethod("POST");
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        }
-        urlConnection.setRequestProperty("Content Type", "application/x-www-form-urlencoded");
-         //prepare message size
-         urlConnection.setFixedLengthStreamingMode(jsonString.getBytes().length);
-         //send
-        PrintWriter out = null;
-        try {
-            out = new PrintWriter(urlConnection.getOutputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        out.print(jsonString);
-         out.close();*/
-            HttpClient client = new DefaultHttpClient();
-            HttpPost post = new HttpPost(postUrl);
-            System.out.println("Sending JSON message to monitor at " + postUrl);
-            try {
-                post.setEntity(new StringEntity(jsonString));
-                post.setHeader("Content-type", "application/json");
-                HttpResponse response = client.execute(post);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-                System.out.println("Response from monitor:");
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
-                //empty the notification list
-                notificationToSend.clear();
-                return true;
-            } catch (IOException e) {
-                return false;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Boolean success) {
-            if (!success){
-                showToast(R.string.monitor_fail_error_msg);
-            }
-        }
-    }
-
-    private void showToast(int resId){
+    private void maybeShowToast(int resId){
         if (settings.shouldShowNetworkErrors()){
             Toast.makeText(
-                    appContext,
+                    context,
                     appContext.getResources().getString(resId),
                     Toast.LENGTH_LONG
             ).show();
@@ -148,71 +84,54 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 //creates the notification
                 Notification notification = new Notification(kid, pictogram);
 
-                /*
+                //store the notification for posterior sending
+                Notification.queue.add(notification);
 
-
-
-                //convert list to JSON
                 Gson gson = new GsonBuilder()
                         .registerTypeAdapter(Date.class, new DateSerializer())
                         .create();
-                String jsonString = gson.toJson(notification);
-
+                Map<String, List<Notification>> qwe = new HashMap<>();
+                qwe.put("notifications", Notification.queue);
+                String jsonString = gson.toJson(qwe);
 
 
                 //retrieved from general settings
-                Settings settings = Daos.SETTINGS.all().get(0);
-
-                String uri = String.format(
+                String postUrl = String.format(
                         "http://%s:%s/load-notifications",
                         settings.getMonitorIp(),
                         settings.getMonitorPort()
                 );
 
-                // Add any headers if required
-                Header[] headers = new Header[] {
-                        new Header("Content-Type", "application/json"),
-                        // gzip content when posting
-//                new Header("Content-Encoding", "gzip")
-                };
-
-
-                // Create the message to send
-                Message message = null;
+                // TODO: Unnecessary double parsing
+                JSONObject json;
                 try {
-                    message = new Message(
-                            new URI(uri),
-                            jsonString,
-                            headers);
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
+                    json = new JSONObject(jsonString);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
                 }
 
-                // Send the message to Reyna
-                StoreService.start(context, message);
-
-
-                // set Reyna logging level, same constant values as android.util.log (ERROR, WARN, INFO, DEBUG, VERBOSE)
-                StoreService.setLogLevel(Log.VERBOSE);
-
-                */
-
-
-                //store the notification for posterior sending
-                Notification.queue.add(notification);
-
-                //test notification sending
-                ConnectivityManager connMgr = (ConnectivityManager) appContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    //send the notification in asynchronous way
-                    new NotificationSenderTask().execute(Notification.queue);
-                }
-                else {
-                    showToast(R.string.network_fail_error_msg);
-                }
-
-
+                Request request = new JsonObjectRequest(
+                        postUrl,
+                        json,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Notification.queue.clear();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                if (error.getMessage().toUpperCase().contains("ECONNREFUSED")){  //TODO: this is awful
+                                    maybeShowToast(R.string.monitor_fail_error_msg);
+                                }
+                                else {
+                                    maybeShowToast(R.string.network_fail_error_msg);
+                                }
+                            }
+                        }
+                );
+                requestQueue.add(request);
             }
 
         });

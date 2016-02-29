@@ -21,6 +21,8 @@ public class PictogramSoundPlayer {
         try {
             AssetFileDescriptor afd = appContext.getAssets().openFd(pictogram.getSoundPath());
             MediaPlayer mp = new MediaPlayer();
+            // TODO: annoying message in the logcat:
+            // "E/MediaPlayer: Should have subtitle controller already set"
             mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
             mp.prepare();
