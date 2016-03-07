@@ -31,11 +31,15 @@
         No se pudo enviar la notificación.
         Compruebe que el monitor este corriendo y que la dirección IP y puerto sean las correctas.
         La notificación será encolada para su posterior envío.
+        Si no quiere volver a ver este mensaje deshabilite la opción "Mostrar errores del monitor"
+        en el panel de Ajustes.
     </string>
     <string name="network_fail_error_msg">
         No se pudo enviar la notificación.
         Compruebe su acceso a la red.
         La notificación será encolada para su posterior envío.
+        Si no quiere volver a ver este mensaje deshabilite la opción "Mostrar errores del monitor"
+        en el panel de Ajustes.
     </string>
     <string name="show_network_errors">Mostrar errores del monitor</string>
     <string name="small">Chico</string>
