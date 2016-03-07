@@ -10,16 +10,19 @@ import java.util.List;
 import ar.edu.unlp.info.hermescelascolus.fragments.TabFragment;
 import ar.edu.unlp.info.hermescelascolus.adapters.pictograms.PictogramsAdapter;
 import ar.edu.unlp.info.hermescelascolus.models.Mode;
+import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TabAdapter extends FragmentStatePagerAdapter {
 
     private List<PictogramsAdapter> pictogramsAdapters;
     private Mode mode;
+    private Pictogram.Size size;
 
-    public TabAdapter(FragmentManager fm, List<PictogramsAdapter> pictogramsAdapters, Mode mode) {
+    public TabAdapter(FragmentManager fm, List<PictogramsAdapter> pictogramsAdapters, Mode mode, Pictogram.Size size) {
         super(fm);
         this.pictogramsAdapters = pictogramsAdapters;
         this.mode = mode;
+        this.size = size;
     }
 
     @Override
@@ -34,6 +37,7 @@ public class TabAdapter extends FragmentStatePagerAdapter {
 //        }
 //        args.putIntegerArrayList(TabFragment.PICTOGRAM_IDS, array);
         args.putInt(TabFragment.MODE_ORDINAL, mode.ordinal());
+        args.putInt(TabFragment.COLUMN_WIDTH, size.getColumnWidth());
         fragment.setArguments(args);
         return fragment;
     }

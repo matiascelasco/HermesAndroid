@@ -13,7 +13,7 @@ import ar.edu.unlp.info.hermescelascolus.models.Kid;
 public class KidDao extends GenericDao implements Dao<Kid> {
 
     private static final String SELECT_QUERY =
-            "SELECT _id, name, surname, gender, pictogramSize FROM Kid";
+            "SELECT _id, name, surname, gender, pictogram_size_id FROM Kid";
 
     public KidDao(Context context) {
         super(context);
@@ -24,7 +24,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
         cv.put("name", k.getName());
         cv.put("surname", k.getSurname());
         cv.put("gender", k.getGender().getValue());
-        cv.put("pictogramSize", 0);
+        cv.put("pictogram_size_id", k.getPictogramSize().getId());
 
 //        db.beginTransaction();
 
@@ -53,6 +53,7 @@ public class KidDao extends GenericDao implements Dao<Kid> {
         kid.setName(cursor.getString(1));
         kid.setSurname(cursor.getString(2));
         kid.setGender(Gender.getByValue(cursor.getString(3)));
+        kid.setPictogramSize(Daos.PICTOGRAM_SIZE.getById(cursor.getInt(4)));
         return kid;
     }
 

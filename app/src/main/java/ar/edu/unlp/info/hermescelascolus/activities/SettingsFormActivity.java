@@ -5,19 +5,25 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import ar.edu.unlp.info.hermescelascolus.R;
+import ar.edu.unlp.info.hermescelascolus.models.Gender;
 import ar.edu.unlp.info.hermescelascolus.models.Mode;
+import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 import ar.edu.unlp.info.hermescelascolus.validation.EditTextValidator;
 import ar.edu.unlp.info.hermescelascolus.validation.IpValidator;
 import ar.edu.unlp.info.hermescelascolus.validation.NonEmptyStringValidator;
@@ -58,8 +64,20 @@ public class SettingsFormActivity extends FormActivity {
         lastNameInput.setText(kid.getSurname());
         genderInput.setSelection(kid.getGender().ordinal());
 
-        Set<Category> categories = new HashSet<>(kid.getCategories());
+        final Spinner sizeInput = (Spinner) findViewById(R.id.pictograms_size_input);
+        List<Wrapper<Pictogram.Size>> wrappers = new ArrayList<>();
+        for (Pictogram.Size size: Pictogram.Size.values()){
+            wrappers.add(new Wrapper<>(getResources().getString(size.getNameStringId()), size));
+        }
+        ArrayAdapter<Wrapper<Pictogram.Size>> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                wrappers
+        );
+        sizeInput.setAdapter(adapter);
+        sizeInput.setSelection(kid.getPictogramSize().ordinal());
 
+        Set<Category> categories = new HashSet<>(kid.getCategories());
         GridLayout checkboxContainer = (GridLayout) findViewById(R.id.category_checkboxes);
         for (Category c: Category.values()){
             CheckBox checkBox = new AppCompatCheckBox(this);
@@ -104,6 +122,11 @@ public class SettingsFormActivity extends FormActivity {
                 try {
                     retrieveDataFromBasicKidFields();
 
+                    Pictogram.Size sizeWrapper = (
+                            (Wrapper<Pictogram.Size>) sizeInput.getSelectedItem()
+                    ).getValue();
+                    kid.setPictogramSize(sizeWrapper);
+
                     LinkedList<Category> checkedCategories = new LinkedList<>();
                     for (Category c : Category.values()) {
                         if (checkboxByCategory.get(c).isChecked()) {
@@ -111,8 +134,6 @@ public class SettingsFormActivity extends FormActivity {
                         }
                     }
                     kid.setCategories(checkedCategories);
-
-                    //TODO: pictogram size
 
                     String ip = ipValidator.getValue();
                     String port = portValidator.getValue();

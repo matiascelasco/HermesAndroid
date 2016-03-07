@@ -14,8 +14,7 @@
         android:text="@string/pictograms_size"/>
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/pictograms_size_input"
-        android:entries="@array/pictograms_sizes_array"
-        android:prompt="@string/gender"
+        android:prompt="@string/pictograms_size"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.AppCompatSpinner>

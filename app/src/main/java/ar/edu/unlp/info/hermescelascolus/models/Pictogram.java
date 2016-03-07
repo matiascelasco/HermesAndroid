@@ -1,8 +1,38 @@
 package ar.edu.unlp.info.hermescelascolus.models;
 
+import ar.edu.unlp.info.hermescelascolus.R;
 import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 
 public class Pictogram implements Model {
+
+    public enum Size implements Model {
+        SMALL(R.string.small, 128),
+        MEDIUM(R.string.medium, 256),
+        LARGE(R.string.large, 512);
+
+        private int nameStringId;
+        private int columnWidth;
+
+        Size(int nameStringId, int columnWidth) {
+            this.nameStringId = nameStringId;
+            this.columnWidth = columnWidth;
+        }
+
+        @Override
+        public long getId() {
+            return ordinal();
+        }
+
+        public int getNameStringId() {
+            return nameStringId;
+        }
+
+        public int getColumnWidth() {
+            return columnWidth;
+        }
+
+    }
+
 
     private static Pictogram yes;
     private static Pictogram no;

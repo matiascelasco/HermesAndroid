@@ -10,7 +10,7 @@ CREATE TABLE Kid (
     name VARCHAR(50) NOT NULL,
     surname VARCHAR(20) NOT NULL,
     gender VARCHAR(1) NOT NULL,
-    pictogramSize INTEGER NOT NULL
+    pictogram_size_id INTEGER NOT NULL
 );
 
 CREATE TABLE Pictogram (

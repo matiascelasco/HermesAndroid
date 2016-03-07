@@ -17,11 +17,13 @@ public class Kid implements Model {
     private String name;
     private String surname;
     private Gender gender;
+    private Pictogram.Size pictogramSize;
     private List<Pictogram> pictograms = null;
     private Map<Category, Set<Pictogram>> pictogramsByCategory = null;
 
     public Kid(){
         id = 0;
+        pictogramSize = Pictogram.Size.MEDIUM;
     }
 
     public List<Pictogram> getPictograms() {
@@ -110,4 +112,11 @@ public class Kid implements Model {
     }
 
 
+    public Pictogram.Size getPictogramSize() {
+        return pictogramSize;
+    }
+
+    public void setPictogramSize(Pictogram.Size pictogramSize) {
+        this.pictogramSize = pictogramSize;
+    }
 }

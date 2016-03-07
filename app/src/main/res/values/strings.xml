@@ -38,4 +38,7 @@
         La notificación será encolada para su posterior envío.
     </string>
     <string name="show_network_errors">Mostrar errores del monitor</string>
+    <string name="small">Chico</string>
+    <string name="medium">Mediano</string>
+    <string name="large">Grande</string>
 </resources>

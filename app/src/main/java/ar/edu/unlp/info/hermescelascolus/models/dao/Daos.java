@@ -15,6 +15,7 @@ public class Daos {
     public static Dao<Kid> KID;
     public static Dao<Category> CATEGORY;
     public static Dao<Pictogram> PICTOGRAM;
+    public static Dao<Pictogram.Size> PICTOGRAM_SIZE;
     public static IManyToManyDao<Kid, Category> KID_CATEGORY;
     public static IManyToManyDao<Kid, Pictogram> KID_PICTOGRAM;
 
@@ -22,7 +23,8 @@ public class Daos {
         if (KID == null){
             SETTINGS = new SettingsDao(context);
             KID = new KidDao(context);
-            CATEGORY = new CategoryDao();
+            CATEGORY = new EnumDao<>(Category.class);
+            PICTOGRAM_SIZE = new EnumDao<>(Pictogram.Size.class);
             PICTOGRAM = new PictogramDao(context);
             KID_CATEGORY = new ManyToManyDao<>(
                     context,

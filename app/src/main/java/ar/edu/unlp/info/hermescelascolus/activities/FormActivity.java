@@ -44,12 +44,12 @@ public class FormActivity extends AppCompatActivity {
 
 
         genderInput = (Spinner) findViewById(R.id.gender_input);
-        List<GenderWrapper> wrappers = new ArrayList<>();
+        List<Wrapper<Gender>> wrappers = new ArrayList<>();
         for (Gender gender: Gender.values()){
-            wrappers.add(new GenderWrapper(getResources().getString(gender.getNameStringId()), gender));
+            wrappers.add(new Wrapper<>(getResources().getString(gender.getNameStringId()), gender));
         }
 
-        ArrayAdapter<GenderWrapper> adapter = new ArrayAdapter<>(
+        ArrayAdapter<Wrapper<Gender>> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
                 wrappers
@@ -62,7 +62,7 @@ public class FormActivity extends AppCompatActivity {
     protected void retrieveDataFromBasicKidFields() throws ValidationError {
         String firstName = firstNameValidator.getValue();
         String lastName = lastNameValidator.getValue();
-        Gender gender = ((GenderWrapper) genderInput.getSelectedItem()).getGender();
+        Gender gender = ((Wrapper<Gender>) genderInput.getSelectedItem()).getValue();
 
         kid.setName(firstName);
         kid.setSurname(lastName);

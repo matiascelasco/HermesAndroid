@@ -18,6 +18,7 @@ import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 
 public class TabFragment extends Fragment {
     public final static String MODE_ORDINAL = "ar.edu.unlp.info.hermescelascolus.MODE_ORDINAL";
+    public final static String COLUMN_WIDTH = "ar.edu.unlp.info.hermescelascolus.COLUMN_WIDTH";
 
     private PictogramsAdapter pictogramsAdapter;
 
@@ -35,6 +36,7 @@ public class TabFragment extends Fragment {
                 false
         );
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
+        grid.setColumnWidth(args.getInt(COLUMN_WIDTH));
 
         if (pictogramsAdapter == null){
             // maybe this thing of the setPictogramsAdapter was a bad idea

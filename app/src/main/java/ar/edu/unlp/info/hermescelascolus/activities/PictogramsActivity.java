@@ -60,7 +60,14 @@ public abstract class PictogramsActivity extends AppCompatActivity {
     protected void updatePictograms(long kidId){
         kid = Daos.KID.getById(kidId);
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(new TabAdapter(getSupportFragmentManager(), getPictogramsAdapters(), getCurrentMode()));
+        viewPager.setAdapter(
+                new TabAdapter(
+                        getSupportFragmentManager(),
+                        getPictogramsAdapters(),
+                        getCurrentMode(),
+                        kid.getPictogramSize()
+                )
+        );
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
