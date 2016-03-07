@@ -50,7 +50,6 @@ public class TabFragment extends Fragment {
             LinearLayout layout =
                     (LinearLayout) rootView.findViewById(R.id.yes_no_pictograms_container);
             Pictogram[] yesNoPictograms = {Pictogram.getYes(), Pictogram.getNo()};
-            System.out.println(yesNoPictograms);
             for (final Pictogram pictogram: yesNoPictograms){
                 ImageView image = new ImageView(getContext());
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(

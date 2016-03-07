@@ -18,9 +18,6 @@ public class BitmapBuilder {
         int w = bm.getWidth();
         int h = bm.getHeight();
 
-        System.out.println(width);
-        System.out.println(w);
-
         Bitmap newImage = Bitmap.createBitmap(w, h, config);
 
         Canvas c = new Canvas(newImage);
