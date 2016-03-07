@@ -19,6 +19,7 @@ import ar.edu.unlp.info.hermescelascolus.models.Pictogram;
 public class TabFragment extends Fragment {
     public final static String MODE_ORDINAL = "ar.edu.unlp.info.hermescelascolus.MODE_ORDINAL";
     public final static String COLUMN_WIDTH = "ar.edu.unlp.info.hermescelascolus.COLUMN_WIDTH";
+    public final static String WEIGHT = "ar.edu.unlp.info.hermescelascolus.WEIGHT";
 
     private PictogramsAdapter pictogramsAdapter;
 
@@ -35,8 +36,10 @@ public class TabFragment extends Fragment {
                 container,
                 false
         );
+        int columnWidth = args.getInt(COLUMN_WIDTH);
+        int weight = args.getInt(WEIGHT);
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
-        grid.setColumnWidth(args.getInt(COLUMN_WIDTH));
+        grid.setColumnWidth(columnWidth);
 
         if (pictogramsAdapter == null){
             // maybe this thing of the setPictogramsAdapter was a bad idea
@@ -54,14 +57,22 @@ public class TabFragment extends Fragment {
                 ImageView image = new ImageView(getContext());
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        weight
                 );
-                lp.setMargins(2, 2, 2, 2);
+                lp.setMargins(6, 6, 6, 6);
                 image.setLayoutParams(lp);
                 image.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 image.setAdjustViewBounds(true);
-                //TODO: the size of these images is fixed, is this ok?
-                image.setImageBitmap(BitmapBuilder.build(getContext(), pictogram.getImagePath(), 100, 100));
+
+                image.setImageBitmap(
+                        BitmapBuilder.build(
+                                getContext(),
+                                pictogram.getImagePath(),
+                                100,
+                                100
+                        )
+                );
                 image.setOnClickListener(new ImageView.OnClickListener() {
                     @Override
                     public void onClick(View v) {

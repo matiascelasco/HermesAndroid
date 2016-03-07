@@ -38,6 +38,7 @@ public class TabAdapter extends FragmentStatePagerAdapter {
 //        args.putIntegerArrayList(TabFragment.PICTOGRAM_IDS, array);
         args.putInt(TabFragment.MODE_ORDINAL, mode.ordinal());
         args.putInt(TabFragment.COLUMN_WIDTH, size.getColumnWidth());
+        args.putInt(TabFragment.WEIGHT, size.getWeight());
         fragment.setArguments(args);
         return fragment;
     }

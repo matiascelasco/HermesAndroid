@@ -90,9 +90,9 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
                 Gson gson = new GsonBuilder()
                         .registerTypeAdapter(Date.class, new DateSerializer())
                         .create();
-                Map<String, List<Notification>> qwe = new HashMap<>();
-                qwe.put("notifications", Notification.queue);
-                String jsonString = gson.toJson(qwe);
+                Map<String, List<Notification>> map = new HashMap<>();
+                map.put("notifications", Notification.queue);
+                String jsonString = gson.toJson(map);
 
 
                 //retrieved from general settings

@@ -9,7 +9,7 @@ public class Notification {
 
     private String category;
     private String content;
-    private final String context = "CEDICA"; //this is constant, CEDICA
+    private final String context = "CEDICA";
     private String kid;
     private Date sent;
 

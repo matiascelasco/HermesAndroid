@@ -6,16 +6,18 @@ import ar.edu.unlp.info.hermescelascolus.models.dao.Daos;
 public class Pictogram implements Model {
 
     public enum Size implements Model {
-        SMALL(R.string.small, 128),
-        MEDIUM(R.string.medium, 256),
-        LARGE(R.string.large, 512);
+        SMALL(R.string.small, 130, 2),
+        MEDIUM(R.string.medium, 195, 3),
+        LARGE(R.string.large, 260, 4);
 
+        private final int weight;
         private int nameStringId;
         private int columnWidth;
 
-        Size(int nameStringId, int columnWidth) {
+        Size(int nameStringId, int columnWidth, int weight) {
             this.nameStringId = nameStringId;
             this.columnWidth = columnWidth;
+            this.weight = weight;
         }
 
         @Override
@@ -31,6 +33,9 @@ public class Pictogram implements Model {
             return columnWidth;
         }
 
+        public int getWeight() {
+            return weight;
+        }
     }
 
 
