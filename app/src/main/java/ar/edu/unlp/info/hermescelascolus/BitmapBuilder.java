@@ -12,13 +12,16 @@ import java.io.InputStream;
 
 public class BitmapBuilder {
 
-    public static Bitmap build(Context context, String path){
-        Bitmap bm = decodeFile(path, 100, 100, context);
+    public static Bitmap build(Context context, String path, int width, int height){
+        Bitmap bm = decodeFile(path, width, height, context);
         Bitmap.Config config = bm.getConfig();
-        int width = bm.getWidth();
-        int height = bm.getHeight();
+        int w = bm.getWidth();
+        int h = bm.getHeight();
 
-        Bitmap newImage = Bitmap.createBitmap(width, height, config);
+        System.out.println(width);
+        System.out.println(w);
+
+        Bitmap newImage = Bitmap.createBitmap(w, h, config);
 
         Canvas c = new Canvas(newImage);
         c.drawBitmap(bm, 0, 0, null);

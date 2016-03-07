@@ -47,7 +47,8 @@ public class KidActivity extends PictogramsActivity {
                 this,
                 kid,
                 kid.getName(),
-                pictograms
+                pictograms,
+                kid.getPictogramSize()
         ));
 
         // The following tabs contains the pictograms from that category enabled for that kid
@@ -57,7 +58,8 @@ public class KidActivity extends PictogramsActivity {
                     this,
                     kid,
                     c.getNameToBeDisplayed(),
-                    c.getPictograms()
+                    c.getPictograms(),
+                    kid.getPictogramSize()
             ));
         }
 

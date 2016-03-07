@@ -55,8 +55,8 @@ public class TalkingPictogramsAdapter extends PictogramsAdapter {
     private Settings settings;
     RequestQueue requestQueue;
 
-    public TalkingPictogramsAdapter(Context appContext, PictogramsActivity context, Kid kid, String title, List<Pictogram> pictograms) {
-        super(context, title, pictograms);
+    public TalkingPictogramsAdapter(Context appContext, PictogramsActivity context, Kid kid, String title, List<Pictogram> pictograms, Pictogram.Size size) {
+        super(context, title, pictograms, size);
         this.appContext = appContext;
         this.kid = kid;
         this.settings = Daos.SETTINGS.all().get(0);

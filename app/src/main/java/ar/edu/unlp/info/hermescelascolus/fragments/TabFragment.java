@@ -61,7 +61,8 @@ public class TabFragment extends Fragment {
                 image.setLayoutParams(lp);
                 image.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 image.setAdjustViewBounds(true);
-                image.setImageBitmap(BitmapBuilder.build(getContext(), pictogram.getImagePath()));
+                //TODO: the size of these images is fixed, is this ok?
+                image.setImageBitmap(BitmapBuilder.build(getContext(), pictogram.getImagePath(), 100, 100));
                 image.setOnClickListener(new ImageView.OnClickListener() {
                     @Override
                     public void onClick(View v) {

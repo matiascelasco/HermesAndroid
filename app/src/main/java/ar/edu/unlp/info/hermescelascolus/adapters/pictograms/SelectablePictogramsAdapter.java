@@ -19,8 +19,9 @@ public class SelectablePictogramsAdapter extends PictogramsAdapter {
     public SelectablePictogramsAdapter(PictogramsActivity context,
                                        String title,
                                        List<Pictogram> pictograms,
-                                       Set<Pictogram> selectedPictograms) {
-        super(context, title, pictograms);
+                                       Set<Pictogram> selectedPictograms,
+                                       Pictogram.Size size) {
+        super(context, title, pictograms, size);
         this.selectedPictograms = selectedPictograms;
     }
 

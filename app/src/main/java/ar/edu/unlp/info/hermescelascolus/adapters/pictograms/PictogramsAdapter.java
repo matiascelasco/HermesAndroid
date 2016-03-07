@@ -23,13 +23,15 @@ public abstract class PictogramsAdapter extends BaseAdapter {
     protected PictogramsActivity context;
     protected List<Pictogram> pictograms;
     private String title;
+    private Pictogram.Size size;
 
     protected abstract void subscribeHandlers(ImageView v, Pictogram pictogram);
 
-    protected PictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms){
+    protected PictogramsAdapter(PictogramsActivity context, String title, List<Pictogram> pictograms, Pictogram.Size size){
         this.context = context;
         this.title = title;
         this.pictograms = pictograms;
+        this.size = size;
     }
 
     public int getCount() {
@@ -58,7 +60,7 @@ public abstract class PictogramsAdapter extends BaseAdapter {
         }
 
         imageView.setImageBitmap(
-                BitmapBuilder.build(context, pictograms.get(position).getImagePath())
+                BitmapBuilder.build(context, pictograms.get(position).getImagePath(), size.getColumnWidth(), size.getColumnWidth())
         );
 
         subscribeHandlers(imageView, pictograms.get(position));

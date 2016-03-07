@@ -29,7 +29,14 @@ public class TherapistActivity extends PictogramsActivity {
 
         // The first tab has the kid pictograms, which can be removed with a long click.
         // That's why the RemovablePictogramsAdapter subclass is used
-        adapters.add(new RemovablePictogramsAdapter(this, kid.getName(), kid.getPictograms()));
+        adapters.add(
+                new RemovablePictogramsAdapter(
+                        this,
+                        kid.getName(),
+                        kid.getPictograms(),
+                        kid.getPictogramSize()
+                )
+        );
 
         // The following tabs contains the pictograms from each category
         // The pictograms can be selected with a click and that's why the
@@ -39,7 +46,13 @@ public class TherapistActivity extends PictogramsActivity {
             // is required as an extra parameter
             Set<Pictogram> selected = kid.getPictogramsSetByCategory(c);
             SelectablePictogramsAdapter adapter =
-                    new SelectablePictogramsAdapter(this, c.getNameToBeDisplayed(), c.getPictograms(), selected);
+                    new SelectablePictogramsAdapter(
+                            this,
+                            c.getNameToBeDisplayed(),
+                            c.getPictograms(),
+                            selected,
+                            kid.getPictogramSize()
+                    );
             adapters.add(adapter);
             adapterByCategory.put(c, adapter);
         }
