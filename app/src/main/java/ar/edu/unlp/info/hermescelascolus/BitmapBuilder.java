@@ -1,12 +1,10 @@
 package ar.edu.unlp.info.hermescelascolus;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -34,18 +32,14 @@ public class BitmapBuilder {
             o.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(is, null, o);
 
-            final int REQUIRED_WIDTH = WIDTH;
-            final int REQUIRED_HEIGHT = HEIGHT;
             int scale = 1;
-            while (o.outWidth / scale / 2 >= REQUIRED_WIDTH && o.outHeight / scale / 2 >= REQUIRED_HEIGHT)
+            while (o.outWidth / scale / 2 >= WIDTH && o.outHeight / scale / 2 >= HEIGHT)
                 scale *= 2;
 
             BitmapFactory.Options o2 = new BitmapFactory.Options();
             o2.inSampleSize = scale;
             is = context.getAssets().open(filePath);
             bm = BitmapFactory.decodeStream(is, null, o2);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
