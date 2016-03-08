@@ -45,4 +45,5 @@
     <string name="small">Chico</string>
     <string name="medium">Mediano</string>
     <string name="large">Grande</string>
+    <string name="delete_kid_msg">¿Está seguro que desea eliminar a %s?</string>
 </resources>

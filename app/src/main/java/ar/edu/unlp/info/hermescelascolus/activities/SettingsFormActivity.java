@@ -1,7 +1,9 @@
 package ar.edu.unlp.info.hermescelascolus.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -156,11 +159,22 @@ public class SettingsFormActivity extends FormActivity {
 
         Button deleteButton = (Button) findViewById(R.id.delete_kid_button);
         deleteButton.setOnClickListener(new Button.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                Daos.KID.delete(kid);
-                startInitialActivity();
+                new AlertDialog.Builder(SettingsFormActivity.this)
+                        .setTitle(getResources().getString(R.string.delete_kid))
+                        .setMessage(String.format(
+                                getResources().getString(R.string.delete_kid_msg),
+                                kid.getName()
+                        ))
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                Daos.KID.delete(kid);
+                                startInitialActivity();
+                            }
+                        })
+                        .show();
             }
         });
 
