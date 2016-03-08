@@ -20,6 +20,7 @@ public class TabFragment extends Fragment {
     public final static String MODE_ORDINAL = "ar.edu.unlp.info.hermescelascolus.MODE_ORDINAL";
     public final static String COLUMN_WIDTH = "ar.edu.unlp.info.hermescelascolus.COLUMN_WIDTH";
     public final static String WEIGHT = "ar.edu.unlp.info.hermescelascolus.WEIGHT";
+    public final static String SHOW_YES_NO = "ar.edu.unlp.info.hermescelascolus.SHOW_YES_NO";
 
     private PictogramsAdapter pictogramsAdapter;
 
@@ -31,13 +32,14 @@ public class TabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Bundle args = getArguments();
         Mode mode = Mode.values()[args.getInt(MODE_ORDINAL)];
+        int columnWidth = args.getInt(COLUMN_WIDTH);
+        int weight = args.getInt(WEIGHT);
+        boolean showYesNo = args.getBoolean(SHOW_YES_NO);
         View rootView = inflater.inflate(
-                mode.getFragmentLayoutId(),
+                showYesNo ? R.layout.tab_fragment : R.layout.tab_fragment_grid,
                 container,
                 false
         );
-        int columnWidth = args.getInt(COLUMN_WIDTH);
-        int weight = args.getInt(WEIGHT);
         GridView grid = (GridView) rootView.findViewById(R.id.grid);
         grid.setColumnWidth(columnWidth);
 
@@ -49,7 +51,7 @@ public class TabFragment extends Fragment {
         }
         grid.setAdapter(pictogramsAdapter);
 
-        if (mode.equals(Mode.KID)){
+        if (showYesNo){
             LinearLayout layout =
                     (LinearLayout) rootView.findViewById(R.id.yes_no_pictograms_container);
             Pictogram[] yesNoPictograms = {Pictogram.getYes(), Pictogram.getNo()};
@@ -73,19 +75,23 @@ public class TabFragment extends Fragment {
                                 100
                         )
                 );
-                image.setOnClickListener(new ImageView.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        PictogramSoundPlayer.play(
-                                getActivity().getApplicationContext(),
-                                pictogram
-                        );
-                    }
-                });
+                if (mode.equals(Mode.KID)) {
+                    image.setOnClickListener(new ImageView.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            PictogramSoundPlayer.play(
+                                    getActivity().getApplicationContext(),
+                                    pictogram
+                            );
+                        }
+                    });
+                }
 
                 layout.addView(image);
             }
         }
+
+
 
 
         return rootView;

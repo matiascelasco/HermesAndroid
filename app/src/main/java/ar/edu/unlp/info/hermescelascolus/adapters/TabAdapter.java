@@ -29,16 +29,11 @@ public class TabAdapter extends FragmentStatePagerAdapter {
     public synchronized Fragment getItem(int position) {
         TabFragment fragment = new TabFragment();
         fragment.setPictogramsAdapter(pictogramsAdapters.get(position));
-//        Pair<String, List<Pictogram>> pair = tabs.get(position);
         Bundle args = new Bundle();
-//        ArrayList<Integer> array = new ArrayList<>();
-//        for (Pictogram pictogram: pair.second){
-//            array.add(pictogram.getId());
-//        }
-//        args.putIntegerArrayList(TabFragment.PICTOGRAM_IDS, array);
         args.putInt(TabFragment.MODE_ORDINAL, mode.ordinal());
         args.putInt(TabFragment.COLUMN_WIDTH, size.getColumnWidth());
         args.putInt(TabFragment.WEIGHT, size.getWeight());
+        args.putBoolean(TabFragment.SHOW_YES_NO, mode.equals(Mode.KID) || position == 0);
         fragment.setArguments(args);
         return fragment;
     }
