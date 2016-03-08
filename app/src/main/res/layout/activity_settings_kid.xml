@@ -2,6 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
+        style="@style/H1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/kid"/>
@@ -9,6 +10,7 @@
     <include layout="@layout/kid_basic_fields"/>
 
     <TextView
+        style="@style/H2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pictograms_size"/>
@@ -20,6 +22,7 @@
     </android.support.v7.widget.AppCompatSpinner>
 
     <TextView
+        style="@style/H2"
         android:text="@string/enable_categories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

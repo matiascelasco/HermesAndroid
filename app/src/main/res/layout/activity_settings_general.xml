@@ -2,11 +2,13 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
+        style="@style/H1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/general_settings"/>
 
     <android.support.design.widget.TextInputLayout
+        style="@style/H2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
@@ -17,6 +19,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        style="@style/H2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText

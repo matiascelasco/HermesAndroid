@@ -36,7 +36,7 @@ public abstract class PictogramsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tabs_with_pictograms);
+        setContentView(R.layout.activity_pictograms);
 
         Intent intent = getIntent();
         long kidId = intent.getLongExtra(KID_ID, -1);

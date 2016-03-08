@@ -20,11 +20,13 @@
             android:layout_height="wrap_content" />
     </android.support.design.widget.TextInputLayout>
     <TextView
+        style="@style/H2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/gender"/>
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/gender_input"
+        style="Widget.AppCompat.Spinner"
         android:prompt="@string/gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
